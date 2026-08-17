@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@theme {
+  --color-LIME: #cef739;
+  --color-DARK-LIME: #283300;
+  --color-TEXT-COLOR: #fff;
+  --color-LIGHT: #c6c6c6;
+  --color-FADED: #9d9d9d;
+  --color-NORMAL: #2e2e2e;
+  --color-MEDIUM: #202022;
+  --color-DARK: #171719;
+  --color-BGCOLOR: #0a0a0a;
+  --color-GREEN: #42eb05;
+  --color-LIME: #cef739;
+  --color-DARK-LIME: #283300;
+  --color-RED: #ff4141;
+  --color-BG-COLOR: var(--color-neutral-900);
+}
