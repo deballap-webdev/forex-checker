@@ -30,7 +30,7 @@
   },
   "scripts": {
     "tailwind": "npx @tailwindcss/cli -i src/input.css -o build/css/style.css --watch",
-    "prettier": "npx prettier --write **/*.{html,css}"
+    "prettier": "npx prettier --write **/*.{html}"
   },
   "keywords": [],
   "author": "",

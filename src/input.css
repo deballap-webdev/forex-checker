@@ -14,5 +14,19 @@
   --color-LIME: #cef739;
   --color-DARK-LIME: #283300;
   --color-RED: #ff4141;
-  --color-BG-COLOR: var(--color-neutral-900);
+
+  --font-FF: "JetBrains Mono", monospace;
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-item {
+  @apply border-r-NORMAL flex w-max animate-[ticker_5s_linear_infinite] items-center justify-center gap-2.5 border-r px-3 py-3 text-[10px] md:px-3 md:text-[12px];
 }
