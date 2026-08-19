@@ -22,7 +22,7 @@
       </div>
       <div class="bg-DARK relative flex">
         <div
-          class="bg-LIME text-BGCOLOR align absolute z-20 w-20 px-2 py-3 text-[10px] font-medium md:px-4 md:text-[12px]"
+          class="bg-LIME text-BGCOLOR absolute z-20 px-2 py-3 text-[10px] font-medium md:px-4 md:text-[12px]"
         >
           <span class="mr-2">•</span>LIVE MARKETS
         </div>
@@ -101,11 +101,15 @@
                 </button>
               </div>
             </div>
-            <div>
+            <div
+              class="bg-MEDIUM flex min-h-12 min-w-12 items-center justify-center rounded-lg"
+            >
               <img
                 src="img/icon-exchange-vertical.svg"
                 alt=""
-                class="md:rotate-90"
+                width="20"
+                height="20"
+                class="h-4.5 w-4 md:rotate-90"
               />
             </div>
             <div
@@ -128,6 +132,33 @@
                   />EUR ▼
                 </button>
               </div>
+            </div>
+          </div>
+          <div
+            class="border-NORMAL flex w-full flex-col items-center gap-16 border-t border-dashed p-4 md:flex-row md:justify-between md:px-5"
+          >
+            <div class="text-[10px] md:text-[12px]">USD = 0.8530 EU</div>
+            <div
+              class="flex w-full justify-around md:w-fit md:items-center md:justify-start md:gap-3"
+            >
+              <button
+                class="bg-LIME text-BGCOLOR flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-[12px] font-medium"
+              >
+                <img
+                  src="img/star-solid-full.svg"
+                  alt=""
+                  width="150"
+                  height="150"
+                  class="h-4 w-4"
+                />
+                FAVOURITED
+              </button>
+
+              <button
+                class="border-LIME flex items-center justify-center gap-3 rounded-lg border px-3 py-2 text-[12px] font-medium"
+              >
+                LOG CONVERSION
+              </button>
             </div>
           </div>
         </div>
