@@ -16,13 +16,13 @@
     <header>
       <div class="flex flex-row items-center justify-between px-6 py-5">
         <img src="img/logo.svg" alt="" />
-        <div class="text-FADED text-[10px] md:text-[14px]">
+        <div class="text-FADED text-[0.625rem] md:text-[0.875rem]">
           55 CURRENCIES • EOD • ECB DATA
         </div>
       </div>
-      <div class="bg-DARK relative flex">
+      <div class="bg-DARK relative flex overflow-hidden">
         <div
-          class="bg-LIME text-BGCOLOR absolute z-20 px-2 py-3 text-[10px] font-medium md:px-4 md:text-[12px]"
+          class="bg-LIME text-BGCOLOR absolute z-20 px-2 py-3 text-[0.625rem] font-medium md:px-4 md:text-[0.75rem]"
         >
           <span class="mr-2">•</span>LIVE MARKETS
         </div>
@@ -85,11 +85,11 @@
             <div
               class="bg-MEDIUM border-NORMAL flex w-full flex-col items-start justify-start gap-5 rounded-2xl border p-4"
             >
-              <div class="text-LIGHT text-[14px]border">SEND</div>
+              <div class="text-LIGHT text-[0.875rem]border">SEND</div>
               <div class="flex w-full justify-between">
-                <div class="text-[32px] font-bold lg:text-[40px]">1000</div>
+                <div class="text-[2rem] font-bold lg:text-[2.5rem]">1000</div>
                 <button
-                  class="text-[14px ] bg-NORMAL border-LIGHT-BORDER-COLOR flex items-center gap-2 rounded-lg border p-2.5"
+                  class="bg-NORMAL border-LIGHT-BORDER-COLOR flex items-center gap-2 rounded-lg border p-2.5 text-[0.875rem]"
                 >
                   <img
                     src="img/flags/eu.webp"
@@ -97,7 +97,7 @@
                     height="100"
                     class="h-5 w-5 rounded-[50%]"
                     alt=""
-                  />EUR ▼
+                  />EUR ▾
                 </button>
               </div>
             </div>
@@ -115,13 +115,13 @@
             <div
               class="bg-MEDIUM border-NORMAL flex w-full flex-col items-start justify-start gap-5 rounded-2xl border p-4"
             >
-              <div class="text-LIGHT text-[14px]border">RECIEVE</div>
+              <div class="text-LIGHT text-[0.875rem]">RECIEVE</div>
               <div class="flex w-full justify-between">
-                <div class="text-LIME text-[32px] font-bold lg:text-[40px]">
+                <div class="text-LIME text-[2rem] font-bold lg:text-[2.5rem]">
                   853.07
                 </div>
                 <button
-                  class="text-[14px ] bg-NORMAL border-LIGHT-BORDER-COLOR flex items-center gap-2 rounded-lg border p-2.5"
+                  class="bg-NORMAL border-LIGHT-BORDER-COLOR flex items-center gap-2 rounded-lg border p-2.5 text-[0.875rem]"
                 >
                   <img
                     src="img/flags/eu.webp"
@@ -129,20 +129,20 @@
                     height="100"
                     class="h-5 w-5 rounded-[50%]"
                     alt=""
-                  />EUR ▼
+                  />EUR ▾
                 </button>
               </div>
             </div>
           </div>
           <div
-            class="border-NORMAL flex w-full flex-col items-center gap-16 border-t border-dashed p-4 md:flex-row md:justify-between md:px-5"
+            class="border-NORMAL flex w-full flex-col items-center gap-4 border-t border-dashed p-4 md:flex-row md:justify-between md:px-5"
           >
-            <div class="text-[10px] md:text-[12px]">USD = 0.8530 EU</div>
+            <div class="text-[0.625rem] md:text-[0.75rem]">USD = 0.8530 EU</div>
             <div
               class="flex w-full justify-around md:w-fit md:items-center md:justify-start md:gap-3"
             >
               <button
-                class="bg-LIME text-BGCOLOR flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-[12px] font-medium"
+                class="bg-LIME text-BGCOLOR flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-[0.75rem] font-medium"
               >
                 <img
                   src="img/star-solid-full.svg"
@@ -155,11 +155,173 @@
               </button>
 
               <button
-                class="border-LIME flex items-center justify-center gap-3 rounded-lg border px-3 py-2 text-[12px] font-medium"
+                class="border-LIME flex items-center justify-center gap-3 rounded-lg border px-3 py-2 text-[0.75rem] font-medium"
               >
                 LOG CONVERSION
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-4">
+        <button
+          class="bg-DARK flex items-center justify-between rounded-lg px-3 text-[1rem] md:hidden"
+        >
+          <div class="flex h-10 items-center justify-center gap-2">COMPARE</div>
+
+          <div class="rotate-90">></div>
+        </button>
+        <nav class="border-MEDIUM hidden gap-2 border-b md:flex">
+          <a href="">HISTORY</a>
+          <a href="">COMPARE</a>
+          <a href="">FAVOURITES</a>
+          <a href="">LOG</a>
+        </nav>
+
+        <div
+          class="bg-DARK border-MEDIUM flex flex-col gap-4 rounded-2xl p-4 md:p-5"
+        >
+          <div
+            class="flex w-full flex-col gap-2.5 md:flex-row md:justify-between"
+          >
+            <div class="flex items-center gap-3">
+              <div class="text-FADED text-[0.875rem]">MULTI-CURRENCY</div>
+              <div class="text-[1rem]">1,000 FROM USD</div>
+            </div>
+            <div class="text-FADED text-[0.75rem]">8 PAIRS</div>
+          </div>
+
+          <div class="compare-currency">
+            <img
+              src="img/flags/gb.webp"
+              width="200"
+              height="200"
+              class="flag"
+            />
+            <div class="pair-container">
+              <div class="name-abbr">GBP</div>
+              <div class="name-full">British Pound</div>
+            </div>
+            <div class="exchange-container">
+              <div class="exchange-rate">736.65</div>
+              <div class="exchange-at">@ 0.7366</div>
+            </div>
+
+            <button class="fav-btn active">
+              <img
+                src="img/icon-star-filled.svg"
+                alt=""
+                width="16"
+                height="16"
+                class="h-4 w-4"
+              />
+            </button>
+          </div>
+
+          <div class="compare-currency">
+            <img
+              src="img/flags/jp.webp"
+              width="200"
+              height="200"
+              class="flag"
+            />
+            <div class="pair-container">
+              <div class="name-abbr">JPY</div>
+              <div class="name-full">Japanese Yen</div>
+            </div>
+            <div class="exchange-container">
+              <div class="exchange-rate">157,910</div>
+              <div class="exchange-at">@ 157.91</div>
+            </div>
+
+            <button class="fav-btn active">
+              <img
+                src="img/icon-star-filled.svg"
+                alt=""
+                width="16"
+                height="16"
+                class="h-4 w-4"
+              />
+            </button>
+          </div>
+          <div class="compare-currency">
+            <img
+              src="img/flags/jp.webp"
+              width="200"
+              height="200"
+              class="flag"
+            />
+            <div class="pair-container">
+              <div class="name-abbr">JPY</div>
+              <div class="name-full">Japanese Yen</div>
+            </div>
+            <div class="exchange-container">
+              <div class="exchange-rate">157,910</div>
+              <div class="exchange-at">@ 157.91</div>
+            </div>
+
+            <button class="fav-btn">
+              <img
+                src="img/icon-star                  .svg"
+                alt=""
+                width="16"
+                height="16"
+                class="h-4 w-4"
+              />
+            </button>
+          </div>
+          <div class="compare-currency">
+            <img
+              src="img/flags/jp.webp"
+              width="200"
+              height="200"
+              class="flag"
+            />
+            <div class="pair-container">
+              <div class="name-abbr">JPY</div>
+              <div class="name-full">Japanese Yen</div>
+            </div>
+            <div class="exchange-container">
+              <div class="exchange-rate">157,910</div>
+              <div class="exchange-at">@ 157.91</div>
+            </div>
+
+            <button class="fav-btn">
+              <img
+                src="img/icon-star                  .svg"
+                alt=""
+                width="16"
+                height="16"
+                class="h-4 w-4"
+              />
+            </button>
+          </div>
+          <div class="compare-currency">
+            <img
+              src="img/flags/jp.webp"
+              width="200"
+              height="200"
+              class="flag"
+            />
+            <div class="pair-container">
+              <div class="name-abbr">JPY</div>
+              <div class="name-full">Japanese Yen</div>
+            </div>
+            <div class="exchange-container">
+              <div class="exchange-rate">157,910</div>
+              <div class="exchange-at">@ 157.91</div>
+            </div>
+
+            <button class="fav-btn active">
+              <img
+                src="img/icon-star-filled.svg"
+                alt=""
+                width="16"
+                height="16"
+                class="h-4 w-4"
+              />
+            </button>
           </div>
         </div>
       </section>

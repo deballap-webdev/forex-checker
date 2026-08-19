@@ -30,3 +30,39 @@
 .ticker-item {
   @apply border-r-NORMAL flex w-max animate-[ticker_30s_linear_infinite] items-center justify-center gap-2.5 border-r px-3 py-3 text-[10px] md:px-3 md:text-[12px];
 }
+
+.compare-currency {
+  @apply bg-MEDIUM border-NORMAL flex w-full items-center gap-2.5 rounded-[10px] border p-3 md:gap-5 md:px-4 md:py-3;
+
+  .flag {
+    @apply h-6 w-6 rounded-[50%];
+  }
+
+  .pair-container {
+    @apply flex w-full flex-col gap-1.5;
+
+    .name-abbr {
+      @apply text-[0.875rem];
+    }
+    .name-full {
+      @apply text-FADED text-[0.75rem];
+    }
+  }
+
+  .exchange-container {
+    .exchange-at {
+      @apply text-FADED text-[0.625rem];
+    }
+    .exchange-rate {
+      @apply text-[1rem];
+    }
+  }
+
+  .fav-btn {
+    @apply border-NORMAL bg-MEDIUM flex h-8 w-8 items-center justify-center rounded-lg border p-2;
+  }
+
+  .active {
+    @apply border-LIME;
+  }
+}
