@@ -66,3 +66,11 @@
     @apply border-LIME;
   }
 }
+
+.interval-btn {
+  @apply text-FADED rounded-[44px] px-4 py-3 text-center text-[0.75rem] tracking-[0.5px];
+}
+
+.interval-btn-active {
+  @apply bg-NORMAL rounded-lg px-4 py-3 text-center text-[0.75rem] tracking-[0.5px];
+}
