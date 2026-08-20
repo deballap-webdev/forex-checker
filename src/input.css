@@ -73,6 +73,34 @@
   @apply bg-NORMAL rounded-lg px-4 py-3 text-center text-[0.75rem] tracking-[0.5px];
 }
 
-.bi {
-  background-image: linear-gradient(#cef739, #283300);
+.conv-log-item {
+  @apply bg-MEDIUM border-NORMAL flex w-full items-center gap-2.5 rounded-[10px] border p-3 md:gap-4 md:p-4;
+
+  .date-currency-wrapper {
+    @apply flex w-full flex-col justify-center gap-1 md:flex-row;
+
+    .date {
+      @apply text-FADED flex w-full items-center gap-2.5 text-[0.875rem] tracking-[1px] md:w-16 md:max-w-16;
+    }
+
+    .currency {
+      @apply text-TEXT-COLOR text-[0.875rem] tracking-[1px];
+    }
+  }
+
+  .price-container {
+    @apply flex flex-col items-end justify-center md:flex-row md:justify-between md:gap-5;
+
+    .send-price {
+      @apply text-LIGHT text-[1rem] tracking-[1px];
+    }
+
+    .receive-price {
+      @apply text-LIME text-[1rem] tracking-[1px];
+    }
+  }
+
+  .delete-btn {
+    @apply bg-MEDIUM border-NORMAL flex h-8 min-h-8 w-8 min-w-8 items-center justify-center gap-2 rounded-lg border p-2;
+  }
 }

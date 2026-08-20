@@ -8,7 +8,6 @@
       "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-rose-600: oklch(58.6% 0.253 17.585);
     --spacing: 0.25rem;
     --font-weight-medium: 500;
     --font-weight-bold: 700;
@@ -228,9 +227,6 @@
   .hidden {
     display: none;
   }
-  .table {
-    display: table;
-  }
   .h-4 {
     height: calc(var(--spacing) * 4);
   }
@@ -255,12 +251,6 @@
   .w-5 {
     width: calc(var(--spacing) * 5);
   }
-  .w-\[100\%-52px\] {
-    width: 100%-52px;
-  }
-  .w-\[100\%\] {
-    width: 100%;
-  }
   .w-\[calc\(100\%-52px\)\] {
     width: calc(100% - 52px);
   }
@@ -276,17 +266,8 @@
   .min-w-12 {
     min-width: calc(var(--spacing) * 12);
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
   .rotate-90 {
     rotate: 90deg;
-  }
-  .transform {
-    transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
-  }
-  .resize {
-    resize: both;
   }
   .flex-col {
     flex-direction: column;
@@ -311,9 +292,6 @@
   }
   .justify-start {
     justify-content: flex-start;
-  }
-  .gap-1 {
-    gap: var(--spacing);
   }
   .gap-2 {
     gap: calc(var(--spacing) * 2);
@@ -341,9 +319,6 @@
   }
   .rounded-2xl {
     border-radius: var(--radius-2xl);
-  }
-  .rounded-\[10px\] {
-    border-radius: 10px;
   }
   .rounded-\[18px\] {
     border-radius: 18px;
@@ -403,20 +378,11 @@
   .bg-NORMAL {
     background-color: var(--color-NORMAL);
   }
-  .p-0 {
-    padding: 0px;
-  }
   .p-0\.5 {
     padding: calc(var(--spacing) * 0.5);
   }
-  .p-2 {
-    padding: calc(var(--spacing) * 2);
-  }
   .p-2\.5 {
     padding: calc(var(--spacing) * 2.5);
-  }
-  .p-3 {
-    padding: calc(var(--spacing) * 3);
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);
@@ -523,18 +489,8 @@
   .text-TEXT-COLOR {
     color: var(--color-TEXT-COLOR);
   }
-  .text-rose-600 {
-    color: var(--color-rose-600);
-  }
-  .underline {
-    text-decoration-line: underline;
-  }
   .opacity-70 {
     opacity: 70%;
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
   }
   @media (width >= 48rem) {
     .md\:flex {
@@ -569,9 +525,6 @@
     }
     .md\:justify-start {
       justify-content: flex-start;
-    }
-    .md\:gap-2\.5 {
-      gap: calc(var(--spacing) * 2.5);
     }
     .md\:gap-3 {
       gap: calc(var(--spacing) * 3);
@@ -737,28 +690,98 @@
   --tw-tracking: 0.5px;
   letter-spacing: 0.5px;
 }
-.bi {
-  background-image: linear-gradient(#cef739, #283300);
-}
-@property --tw-rotate-x {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-rotate-y {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-rotate-z {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-skew-x {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-skew-y {
-  syntax: "*";
-  inherits: false;
+.conv-log-item {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: calc(var(--spacing) * 2.5);
+  border-radius: 10px;
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  border-color: var(--color-NORMAL);
+  background-color: var(--color-MEDIUM);
+  padding: calc(var(--spacing) * 3);
+  @media (width >= 48rem) {
+    gap: calc(var(--spacing) * 4);
+  }
+  @media (width >= 48rem) {
+    padding: calc(var(--spacing) * 4);
+  }
+  .date-currency-wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--spacing);
+    @media (width >= 48rem) {
+      flex-direction: row;
+    }
+    .date {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      gap: calc(var(--spacing) * 2.5);
+      font-size: 0.875rem;
+      --tw-tracking: 1px;
+      letter-spacing: 1px;
+      color: var(--color-FADED);
+      @media (width >= 48rem) {
+        width: calc(var(--spacing) * 16);
+      }
+      @media (width >= 48rem) {
+        max-width: calc(var(--spacing) * 16);
+      }
+    }
+    .currency {
+      font-size: 0.875rem;
+      --tw-tracking: 1px;
+      letter-spacing: 1px;
+      color: var(--color-TEXT-COLOR);
+    }
+  }
+  .price-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    @media (width >= 48rem) {
+      flex-direction: row;
+    }
+    @media (width >= 48rem) {
+      justify-content: space-between;
+    }
+    @media (width >= 48rem) {
+      gap: calc(var(--spacing) * 5);
+    }
+    .send-price {
+      font-size: 1rem;
+      --tw-tracking: 1px;
+      letter-spacing: 1px;
+      color: var(--color-LIGHT);
+    }
+    .receive-price {
+      font-size: 1rem;
+      --tw-tracking: 1px;
+      letter-spacing: 1px;
+      color: var(--color-LIME);
+    }
+  }
+  .delete-btn {
+    display: flex;
+    height: calc(var(--spacing) * 8);
+    min-height: calc(var(--spacing) * 8);
+    width: calc(var(--spacing) * 8);
+    min-width: calc(var(--spacing) * 8);
+    align-items: center;
+    justify-content: center;
+    gap: calc(var(--spacing) * 2);
+    border-radius: var(--radius-lg);
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+    border-color: var(--color-NORMAL);
+    background-color: var(--color-MEDIUM);
+    padding: calc(var(--spacing) * 2);
+  }
 }
 @property --tw-border-style {
   syntax: "*";
@@ -777,24 +800,13 @@
   syntax: "*";
   inherits: false;
 }
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
-      --tw-rotate-x: initial;
-      --tw-rotate-y: initial;
-      --tw-rotate-z: initial;
-      --tw-skew-x: initial;
-      --tw-skew-y: initial;
       --tw-border-style: solid;
       --tw-leading: initial;
       --tw-font-weight: initial;
       --tw-tracking: initial;
-      --tw-outline-style: solid;
     }
   }
 }
