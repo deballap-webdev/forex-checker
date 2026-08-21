@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-LIME: #cef739;
-  --color-DARK-LIME: #283300;
-  --color-TEXT-COLOR: #fff;
-  --color-LIGHT: #c6c6c6;
-  --color-FADED: #9d9d9d;
-  --color-NORMAL: #2e2e2e;
-  --color-MEDIUM: #202022;
-  --color-DARK: #171719;
-  --color-BGCOLOR: #0a0a0a;
-  --color-GREEN: #42eb05;
-  --color-RED: #ff4141;
-  --color-LIGHT-BORDER-COLOR: #3d3d3d;
-  --color-LIGHT-COLOR: #454547;
+  --color-PRIMARY: #cef739;
+  --color-PRIMARY-SUBTLE: #283300;
+  --color-TEXT-PRIMARY: #fff;
+  --color-TEXT-SECONDARY: #c6c6c6;
+  --color-TEXT-MUTED: #9d9d9d;
+  --color-SURFACE-ELEVATED: #2e2e2e;
+  --color-SURFACE: #202022;
+  --color-SURFACE-BASE: #171719;
+  --color-BACKGROUND: #0a0a0a;
+  --color-SUCCESS: #42eb05;
+  --color-DANGER: #ff4141;
+  --color-BORDER: #3d3d3d;
+  --color-BORDER-STRONG: #454547;
   --font-FF: "JetBrains Mono", monospace;
 }
 
@@ -27,11 +27,11 @@
 }
 
 .ticker-item {
-  @apply border-r-NORMAL flex w-max animate-[ticker_30s_linear_infinite] items-center justify-center gap-2.5 border-r px-3 py-3 text-[10px] md:px-3 md:text-[12px];
+  @apply border-r-SURFACE-ELEVATED flex w-max animate-[ticker_30s_linear_infinite] items-center justify-center gap-2.5 border-r px-3 py-3 text-[10px] md:px-3 md:text-[12px];
 }
 
 .compare-currency {
-  @apply bg-MEDIUM border-NORMAL hover:border-LIGHT-COLOR focus:outline-LIME flex w-full items-center gap-2.5 rounded-[10px] border p-3 hover:cursor-pointer focus:outline-1 focus:outline-offset-2 md:gap-5 md:px-4 md:py-3;
+  @apply bg-SURFACE border-SURFACE-ELEVATED hover:border-BORDER-STRONG focus:outline-PRIMARY flex w-full items-center gap-2.5 rounded-[10px] border p-3 hover:cursor-pointer focus:outline-1 focus:outline-offset-2 md:gap-5 md:px-4 md:py-3;
 
   .flag {
     @apply h-6 w-6 rounded-[50%];
@@ -44,13 +44,13 @@
       @apply text-[0.875rem];
     }
     .name-full {
-      @apply text-FADED text-[0.75rem];
+      @apply text-TEXT-MUTED text-[0.75rem];
     }
   }
 
   .exchange-container {
     .exchange-at {
-      @apply text-FADED text-[0.625rem];
+      @apply text-TEXT-MUTED text-[0.625rem];
     }
     .exchange-rate {
       @apply text-[1rem];
@@ -58,38 +58,38 @@
   }
 
   .fav-btn {
-    @apply border-NORMAL bg-MEDIUM hover:bg-NORMAL focus:outline-LIME flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border p-2 hover:cursor-pointer focus:outline-1 focus:outline-offset-2;
+    @apply border-SURFACE-ELEVATED bg-SURFACE hover:bg-SURFACE-ELEVATED focus:outline-PRIMARY flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border p-2 hover:cursor-pointer focus:outline-1 focus:outline-offset-2;
   }
 
   .active {
-    @apply border-LIME;
+    @apply border-PRIMARY;
   }
 }
 
 .interval-container {
-  @apply bg-DARK flex w-fit rounded-lg p-0.5;
+  @apply bg-SURFACE-BASE flex w-fit rounded-lg p-0.5;
 
   .interval-btn {
-    @apply text-FADED hover:bg-NORMAL hover:text-TEXT-COLOR focus:outline-LIME rounded-[44px] px-4 py-3 text-center text-[0.75rem] tracking-[0.5px] hover:cursor-pointer hover:rounded-lg focus:rounded-lg focus:outline-1 focus:outline-offset-2;
+    @apply text-TEXT-MUTED hover:bg-SURFACE-ELEVATED hover:text-TEXT-PRIMARY focus:outline-PRIMARY rounded-[44px] px-4 py-3 text-center text-[0.75rem] tracking-[0.5px] hover:cursor-pointer hover:rounded-lg focus:rounded-lg focus:outline-1 focus:outline-offset-2;
   }
 
   .active {
-    @apply bg-NORMAL text-TEXT-COLOR rounded-lg;
+    @apply bg-SURFACE-ELEVATED text-TEXT-PRIMARY rounded-lg;
   }
 }
 
 .conv-log-item {
-  @apply bg-MEDIUM border-NORMAL hover:border-LIGHT-COLOR focus:outline-LIME flex w-full items-center gap-2.5 rounded-[10px] border p-3 hover:cursor-pointer focus:outline-1 focus:outline-offset-2 md:gap-4 md:p-4;
+  @apply bg-SURFACE border-SURFACE-ELEVATED hover:border-BORDER-STRONG focus:outline-PRIMARY flex w-full items-center gap-2.5 rounded-[10px] border p-3 hover:cursor-pointer focus:outline-1 focus:outline-offset-2 md:gap-4 md:p-4;
 
   .date-currency-wrapper {
     @apply flex w-full flex-col justify-center gap-1 md:flex-row;
 
     .date {
-      @apply text-FADED flex w-full items-center gap-2.5 text-[0.875rem] tracking-[1px] md:w-16 md:max-w-16;
+      @apply text-TEXT-MUTED flex w-full items-center gap-2.5 text-[0.875rem] tracking-[1px] md:w-16 md:max-w-16;
     }
 
     .currency {
-      @apply text-TEXT-COLOR text-[0.875rem] tracking-[1px];
+      @apply text-TEXT-PRIMARY text-[0.875rem] tracking-[1px];
     }
   }
 
@@ -97,21 +97,21 @@
     @apply flex flex-col items-end justify-center md:flex-row md:justify-between md:gap-5;
 
     .send-price {
-      @apply text-LIGHT text-[1rem] tracking-[1px];
+      @apply text-TEXT-SECONDARY text-[1rem] tracking-[1px];
     }
 
     .receive-price {
-      @apply text-LIME text-[1rem] tracking-[1px];
+      @apply text-PRIMARY text-[1rem] tracking-[1px];
     }
   }
 
   .delete-btn {
-    @apply bg-MEDIUM border-NORMAL hover:bg-NORMAL flex h-8 min-h-8 w-8 min-w-8 items-center justify-center gap-2 rounded-lg border p-2 hover:cursor-pointer;
+    @apply bg-SURFACE border-SURFACE-ELEVATED hover:bg-SURFACE-ELEVATED focus:outline-PRIMARY flex h-8 min-h-8 w-8 min-w-8 items-center justify-center gap-2 rounded-lg border p-2 hover:cursor-pointer focus:outline-1 focus:outline-offset-2;
   }
 }
 
 .fav-item {
-  @apply bg-MEDIUM border-NORMAL hover:border-LIGHT-BORDER-COLOR focus:outline-LIME flex w-full items-center gap-5 rounded-[10px] border p-3 hover:cursor-pointer focus:outline-1 focus:outline-offset-2 md:px-4 md:py-3;
+  @apply bg-SURFACE border-SURFACE-ELEVATED hover:border-BORDER focus:outline-PRIMARY flex w-full items-center gap-5 rounded-[10px] border p-3 hover:cursor-pointer focus:outline-1 focus:outline-offset-2 md:px-4 md:py-3;
 
   .pair-container {
     @apply flex w-full items-center gap-2;
@@ -132,21 +132,21 @@
     }
 
     .up {
-      @apply text-GREEN;
+      @apply text-SUCCESS;
     }
 
     .down {
-      @apply text-RED;
+      @apply text-DANGER;
     }
   }
 
   .fav-btn {
-    @apply border-LIME hover:bg-NORMAL focus:outline-LIME flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border p-2 hover:cursor-pointer focus:outline-1 focus:outline-offset-2;
+    @apply border-PRIMARY hover:bg-SURFACE-ELEVATED focus:outline-PRIMARY flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border p-2 hover:cursor-pointer focus:outline-1 focus:outline-offset-2;
   }
 }
 
 .picker-item {
-  @apply bg-MEDIUM border-MEDIUM hover:border-FADED focus:border-LIME flex w-full items-center gap-3 rounded-sm border px-2 py-3 hover:cursor-pointer focus:border focus:outline-0;
+  @apply bg-SURFACE border-SURFACE hover:border-TEXT-MUTED focus:border-PRIMARY flex w-full items-center gap-3 rounded-sm border px-2 py-3 hover:cursor-pointer focus:border focus:outline-0;
 
   .flag {
     @apply h-5 w-5 rounded-[50%];
@@ -157,19 +157,19 @@
   }
 
   .name-full {
-    @apply text-FADED w-full text-[0.75rem] tracking-[0.5px];
+    @apply text-TEXT-MUTED w-full text-[0.75rem] tracking-[0.5px];
   }
 }
 
 nav {
   .active {
-    @apply border-b-LIME border-b;
+    @apply border-b-PRIMARY border-b;
   }
 
   .nav-link {
-    @apply focus:outline-LIME flex h-10 items-center justify-center gap-2 p-4 text-[1rem] tracking-[1px] focus:rounded-lg focus:outline-2;
+    @apply focus:outline-PRIMARY flex h-10 items-center justify-center gap-2 p-4 text-[1rem] tracking-[1px] focus:rounded-lg focus:outline-2;
     .number {
-      @apply bg-DARK-LIME text-LIME flex h-5 w-5 items-center justify-center rounded-[50%] text-[0.625rem] leading-[100%];
+      @apply bg-PRIMARY-SUBTLE text-PRIMARY flex h-5 w-5 items-center justify-center rounded-[50%] text-[0.625rem] leading-[100%];
     }
   }
 }
