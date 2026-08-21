@@ -8,6 +8,7 @@
       "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+    --color-red-800: oklch(44.4% 0.177 26.899);
     --spacing: 0.25rem;
     --font-weight-medium: 500;
     --font-weight-bold: 700;
@@ -29,6 +30,7 @@
     --color-GREEN: #42eb05;
     --color-RED: #ff4141;
     --color-LIGHT-BORDER-COLOR: #3d3d3d;
+    --color-LIGHT-COLOR: #454547;
     --font-FF: "JetBrains Mono", monospace;
   }
 }
@@ -193,23 +195,11 @@
   .top-0 {
     top: 0px;
   }
-  .top-10 {
-    top: calc(var(--spacing) * 10);
-  }
-  .top-20 {
-    top: calc(var(--spacing) * 20);
-  }
   .top-30 {
     top: calc(var(--spacing) * 30);
   }
-  .top-40 {
-    top: calc(var(--spacing) * 40);
-  }
   .right-0 {
     right: 0px;
-  }
-  .left-0 {
-    left: 0px;
   }
   .z-10 {
     z-index: 10;
@@ -256,9 +246,6 @@
   .hidden {
     display: none;
   }
-  .table {
-    display: table;
-  }
   .h-4 {
     height: calc(var(--spacing) * 4);
   }
@@ -277,23 +264,8 @@
   .h-68 {
     height: calc(var(--spacing) * 68);
   }
-  .h-114 {
-    height: calc(var(--spacing) * 114);
-  }
-  .h-114\.5 {
-    height: calc(var(--spacing) * 114.5);
-  }
-  .max-h-114 {
-    max-height: calc(var(--spacing) * 114);
-  }
   .max-h-114\.5 {
     max-height: calc(var(--spacing) * 114.5);
-  }
-  .max-h-\[458px\] {
-    max-height: 458px;
-  }
-  .max-h-\[500px\] {
-    max-height: 500px;
   }
   .min-h-12 {
     min-height: calc(var(--spacing) * 12);
@@ -322,17 +294,8 @@
   .min-w-12 {
     min-width: calc(var(--spacing) * 12);
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
   .rotate-90 {
     rotate: 90deg;
-  }
-  .transform {
-    transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
-  }
-  .resize {
-    resize: both;
   }
   .scrollbar-none {
     scrollbar-width: none;
@@ -390,9 +353,6 @@
   }
   .overflow-y-auto {
     overflow-y: auto;
-  }
-  .overflow-y-hidden {
-    overflow-y: hidden;
   }
   .rounded-2xl {
     border-radius: var(--radius-2xl);
@@ -467,9 +427,6 @@
   .bg-NORMAL {
     background-color: var(--color-NORMAL);
   }
-  .p-0 {
-    padding: 0px;
-  }
   .p-0\.5 {
     padding: calc(var(--spacing) * 0.5);
   }
@@ -511,6 +468,9 @@
   }
   .py-8 {
     padding-block: calc(var(--spacing) * 8);
+  }
+  .pr-1 {
+    padding-right: var(--spacing);
   }
   .text-center {
     text-align: center;
@@ -594,15 +554,8 @@
   .text-TEXT-COLOR {
     color: var(--color-TEXT-COLOR);
   }
-  .underline {
-    text-decoration-line: underline;
-  }
   .opacity-70 {
     opacity: 70%;
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
   }
   .placeholder\:text-\[0\.75rem\]::placeholder {
     font-size: 0.75rem;
@@ -614,15 +567,47 @@
   .placeholder\:text-FADED::placeholder {
     color: var(--color-FADED);
   }
-  @media (width >= 40rem) {
-    .sm\:left-0 {
-      left: 0px;
+  @media (hover: hover) {
+    .hover\:cursor-pointer:hover {
+      cursor: pointer;
+    }
+    .hover\:border:hover {
+      border-style: var(--tw-border-style);
+      border-width: 1px;
+    }
+    .hover\:border-LIME:hover {
+      border-color: var(--color-LIME);
+    }
+    .hover\:bg-DARK-LIME:hover {
+      background-color: var(--color-DARK-LIME);
+    }
+    .hover\:bg-LIGHT-BORDER-COLOR:hover {
+      background-color: var(--color-LIGHT-BORDER-COLOR);
+    }
+    .hover\:underline:hover {
+      text-decoration-line: underline;
+    }
+    .hover\:decoration-FADED:hover {
+      text-decoration-color: var(--color-FADED);
+    }
+    .hover\:decoration-1:hover {
+      text-decoration-thickness: 1px;
     }
   }
+  .focus\:text-red-800:focus {
+    color: var(--color-red-800);
+  }
+  .focus\:decoration-0:focus {
+    text-decoration-thickness: 0px;
+  }
+  .focus\:outline-2:focus {
+    outline-style: var(--tw-outline-style);
+    outline-width: 2px;
+  }
+  .focus\:outline-LIME:focus {
+    outline-color: var(--color-LIME);
+  }
   @media (width >= 48rem) {
-    .md\:right-5 {
-      right: calc(var(--spacing) * 5);
-    }
     .md\:flex {
       display: flex;
     }
@@ -631,9 +616,6 @@
     }
     .md\:w-35 {
       width: calc(var(--spacing) * 35);
-    }
-    .md\:w-94 {
-      width: calc(var(--spacing) * 94);
     }
     .md\:w-fit {
       width: fit-content;
@@ -756,6 +738,16 @@
   border-color: var(--color-NORMAL);
   background-color: var(--color-MEDIUM);
   padding: calc(var(--spacing) * 3);
+  &:hover {
+    @media (hover: hover) {
+      cursor: pointer;
+    }
+  }
+  &:hover {
+    @media (hover: hover) {
+      border-color: var(--color-LIGHT-COLOR);
+    }
+  }
   @media (width >= 48rem) {
     gap: calc(var(--spacing) * 5);
   }
@@ -806,6 +798,16 @@
     border-color: var(--color-NORMAL);
     background-color: var(--color-MEDIUM);
     padding: calc(var(--spacing) * 2);
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+      }
+    }
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-NORMAL);
+      }
+    }
   }
   .active {
     border-color: var(--color-LIME);
@@ -820,16 +822,31 @@
   --tw-tracking: 0.5px;
   letter-spacing: 0.5px;
   color: var(--color-FADED);
+  &:hover {
+    @media (hover: hover) {
+      cursor: pointer;
+    }
+  }
+  &:hover {
+    @media (hover: hover) {
+      border-radius: var(--radius-lg);
+    }
+  }
+  &:hover {
+    @media (hover: hover) {
+      background-color: var(--color-NORMAL);
+    }
+  }
+  &:hover {
+    @media (hover: hover) {
+      color: var(--color-TEXT-COLOR);
+    }
+  }
 }
-.interval-btn-active {
+.active {
   border-radius: var(--radius-lg);
   background-color: var(--color-NORMAL);
-  padding-inline: calc(var(--spacing) * 4);
-  padding-block: calc(var(--spacing) * 3);
-  text-align: center;
-  font-size: 0.75rem;
-  --tw-tracking: 0.5px;
-  letter-spacing: 0.5px;
+  color: var(--color-TEXT-COLOR);
 }
 .conv-log-item {
   display: flex;
@@ -842,6 +859,16 @@
   border-color: var(--color-NORMAL);
   background-color: var(--color-MEDIUM);
   padding: calc(var(--spacing) * 3);
+  &:hover {
+    @media (hover: hover) {
+      cursor: pointer;
+    }
+  }
+  &:hover {
+    @media (hover: hover) {
+      border-color: var(--color-LIGHT-COLOR);
+    }
+  }
   @media (width >= 48rem) {
     gap: calc(var(--spacing) * 4);
   }
@@ -922,6 +949,16 @@
     border-color: var(--color-NORMAL);
     background-color: var(--color-MEDIUM);
     padding: calc(var(--spacing) * 2);
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+      }
+    }
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-NORMAL);
+      }
+    }
   }
 }
 .fav-item {
@@ -935,6 +972,16 @@
   border-color: var(--color-NORMAL);
   background-color: var(--color-MEDIUM);
   padding: calc(var(--spacing) * 3);
+  &:hover {
+    @media (hover: hover) {
+      cursor: pointer;
+    }
+  }
+  &:hover {
+    @media (hover: hover) {
+      border-color: var(--color-LIGHT-BORDER-COLOR);
+    }
+  }
   @media (width >= 48rem) {
     padding-inline: calc(var(--spacing) * 4);
   }
@@ -986,6 +1033,16 @@
     border-width: 1px;
     border-color: var(--color-LIME);
     padding: calc(var(--spacing) * 2);
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+      }
+    }
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-NORMAL);
+      }
+    }
   }
 }
 .picker-item {
@@ -1000,6 +1057,16 @@
   background-color: var(--color-MEDIUM);
   padding-inline: calc(var(--spacing) * 2);
   padding-block: calc(var(--spacing) * 3);
+  &:hover {
+    @media (hover: hover) {
+      cursor: pointer;
+    }
+  }
+  &:hover {
+    @media (hover: hover) {
+      border-color: var(--color-FADED);
+    }
+  }
   .flag {
     height: calc(var(--spacing) * 5);
     width: calc(var(--spacing) * 5);
@@ -1017,26 +1084,6 @@
     letter-spacing: 0.5px;
     color: var(--color-FADED);
   }
-}
-@property --tw-rotate-x {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-rotate-y {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-rotate-z {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-skew-x {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-skew-y {
-  syntax: "*";
-  inherits: false;
 }
 @property --tw-border-style {
   syntax: "*";
@@ -1063,11 +1110,6 @@
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
-      --tw-rotate-x: initial;
-      --tw-rotate-y: initial;
-      --tw-rotate-z: initial;
-      --tw-skew-x: initial;
-      --tw-skew-y: initial;
       --tw-border-style: solid;
       --tw-leading: initial;
       --tw-font-weight: initial;

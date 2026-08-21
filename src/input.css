@@ -13,6 +13,7 @@
   --color-GREEN: #42eb05;
   --color-RED: #ff4141;
   --color-LIGHT-BORDER-COLOR: #3d3d3d;
+  --color-LIGHT-COLOR: #454547;
   --font-FF: "JetBrains Mono", monospace;
 }
 
@@ -30,7 +31,7 @@
 }
 
 .compare-currency {
-  @apply bg-MEDIUM border-NORMAL flex w-full items-center gap-2.5 rounded-[10px] border p-3 md:gap-5 md:px-4 md:py-3;
+  @apply bg-MEDIUM border-NORMAL hover:border-LIGHT-COLOR flex w-full items-center gap-2.5 rounded-[10px] border p-3 hover:cursor-pointer md:gap-5 md:px-4 md:py-3;
 
   .flag {
     @apply h-6 w-6 rounded-[50%];
@@ -57,7 +58,7 @@
   }
 
   .fav-btn {
-    @apply border-NORMAL bg-MEDIUM flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border p-2;
+    @apply border-NORMAL bg-MEDIUM hover:bg-NORMAL flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border p-2 hover:cursor-pointer;
   }
 
   .active {
@@ -66,15 +67,15 @@
 }
 
 .interval-btn {
-  @apply text-FADED rounded-[44px] px-4 py-3 text-center text-[0.75rem] tracking-[0.5px];
+  @apply text-FADED hover:bg-NORMAL hover:text-TEXT-COLOR rounded-[44px] px-4 py-3 text-center text-[0.75rem] tracking-[0.5px] hover:cursor-pointer hover:rounded-lg;
 }
 
-.interval-btn-active {
-  @apply bg-NORMAL rounded-lg px-4 py-3 text-center text-[0.75rem] tracking-[0.5px];
+.active {
+  @apply bg-NORMAL text-TEXT-COLOR rounded-lg;
 }
 
 .conv-log-item {
-  @apply bg-MEDIUM border-NORMAL flex w-full items-center gap-2.5 rounded-[10px] border p-3 md:gap-4 md:p-4;
+  @apply bg-MEDIUM border-NORMAL hover:border-LIGHT-COLOR flex w-full items-center gap-2.5 rounded-[10px] border p-3 hover:cursor-pointer md:gap-4 md:p-4;
 
   .date-currency-wrapper {
     @apply flex w-full flex-col justify-center gap-1 md:flex-row;
@@ -101,12 +102,12 @@
   }
 
   .delete-btn {
-    @apply bg-MEDIUM border-NORMAL flex h-8 min-h-8 w-8 min-w-8 items-center justify-center gap-2 rounded-lg border p-2;
+    @apply bg-MEDIUM border-NORMAL hover:bg-NORMAL flex h-8 min-h-8 w-8 min-w-8 items-center justify-center gap-2 rounded-lg border p-2 hover:cursor-pointer;
   }
 }
 
 .fav-item {
-  @apply bg-MEDIUM border-NORMAL flex w-full items-center gap-5 rounded-[10px] border p-3 md:px-4 md:py-3;
+  @apply bg-MEDIUM border-NORMAL hover:border-LIGHT-BORDER-COLOR flex w-full items-center gap-5 rounded-[10px] border p-3 hover:cursor-pointer md:px-4 md:py-3;
 
   .pair-container {
     @apply flex w-full items-center gap-2;
@@ -136,12 +137,12 @@
   }
 
   .fav-btn {
-    @apply border-LIME flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border p-2;
+    @apply border-LIME hover:bg-NORMAL flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border p-2 hover:cursor-pointer;
   }
 }
 
 .picker-item {
-  @apply bg-MEDIUM border-MEDIUM flex w-full items-center gap-3 rounded-sm border px-2 py-3;
+  @apply bg-MEDIUM border-MEDIUM hover:border-FADED flex w-full items-center gap-3 rounded-sm border px-2 py-3 hover:cursor-pointer;
 
   .flag {
     @apply h-5 w-5 rounded-[50%];
