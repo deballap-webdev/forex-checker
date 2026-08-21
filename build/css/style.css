@@ -8,7 +8,6 @@
       "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-800: oklch(44.4% 0.177 26.899);
     --spacing: 0.25rem;
     --font-weight-medium: 500;
     --font-weight-bold: 700;
@@ -282,9 +281,6 @@
   .w-\[calc\(100\%-52px\)\] {
     width: calc(100% - 52px);
   }
-  .w-fit {
-    width: fit-content;
-  }
   .w-full {
     width: 100%;
   }
@@ -403,9 +399,6 @@
   .border-NORMAL {
     border-color: var(--color-NORMAL);
   }
-  .border-b-LIME {
-    border-bottom-color: var(--color-LIME);
-  }
   .border-b-NORMAL {
     border-bottom-color: var(--color-NORMAL);
   }
@@ -426,9 +419,6 @@
   }
   .bg-NORMAL {
     background-color: var(--color-NORMAL);
-  }
-  .p-0\.5 {
-    padding: calc(var(--spacing) * 0.5);
   }
   .p-2 {
     padding: calc(var(--spacing) * 2);
@@ -499,10 +489,6 @@
   .text-\[2rem\] {
     font-size: 2rem;
   }
-  .leading-\[100\%\] {
-    --tw-leading: 100%;
-    line-height: 100%;
-  }
   .leading-\[120\%\] {
     --tw-leading: 120%;
     line-height: 120%;
@@ -567,6 +553,17 @@
   .placeholder\:text-FADED::placeholder {
     color: var(--color-FADED);
   }
+  .focus-within\:border:focus-within {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
+  .focus-within\:border-LIME:focus-within {
+    border-color: var(--color-LIME);
+  }
+  .focus-within\:outline-0:focus-within {
+    outline-style: var(--tw-outline-style);
+    outline-width: 0px;
+  }
   @media (hover: hover) {
     .hover\:cursor-pointer:hover {
       cursor: pointer;
@@ -584,6 +581,9 @@
     .hover\:bg-LIGHT-BORDER-COLOR:hover {
       background-color: var(--color-LIGHT-BORDER-COLOR);
     }
+    .hover\:bg-NORMAL:hover {
+      background-color: var(--color-NORMAL);
+    }
     .hover\:underline:hover {
       text-decoration-line: underline;
     }
@@ -594,18 +594,23 @@
       text-decoration-thickness: 1px;
     }
   }
-  .focus\:text-red-800:focus {
-    color: var(--color-red-800);
-  }
-  .focus\:decoration-0:focus {
-    text-decoration-thickness: 0px;
+  .focus\:outline-1:focus {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
   }
   .focus\:outline-2:focus {
     outline-style: var(--tw-outline-style);
     outline-width: 2px;
   }
+  .focus\:outline-offset-2:focus {
+    outline-offset: 2px;
+  }
   .focus\:outline-LIME:focus {
     outline-color: var(--color-LIME);
+  }
+  .focus\:outline-none:focus {
+    --tw-outline-style: none;
+    outline-style: none;
   }
   @media (width >= 48rem) {
     .md\:flex {
@@ -738,6 +743,16 @@
   border-color: var(--color-NORMAL);
   background-color: var(--color-MEDIUM);
   padding: calc(var(--spacing) * 3);
+  &:focus-within {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
+  &:focus-within {
+    outline-offset: 2px;
+  }
+  &:focus-within {
+    outline-color: var(--color-LIME);
+  }
   &:hover {
     @media (hover: hover) {
       cursor: pointer;
@@ -798,6 +813,16 @@
     border-color: var(--color-NORMAL);
     background-color: var(--color-MEDIUM);
     padding: calc(var(--spacing) * 2);
+    &:focus-within {
+      outline-style: var(--tw-outline-style);
+      outline-width: 1px;
+    }
+    &:focus-within {
+      outline-offset: 2px;
+    }
+    &:focus-within {
+      outline-color: var(--color-LIME);
+    }
     &:hover {
       @media (hover: hover) {
         cursor: pointer;
@@ -813,40 +838,60 @@
     border-color: var(--color-LIME);
   }
 }
-.interval-btn {
-  border-radius: 44px;
-  padding-inline: calc(var(--spacing) * 4);
-  padding-block: calc(var(--spacing) * 3);
-  text-align: center;
-  font-size: 0.75rem;
-  --tw-tracking: 0.5px;
-  letter-spacing: 0.5px;
-  color: var(--color-FADED);
-  &:hover {
-    @media (hover: hover) {
-      cursor: pointer;
-    }
-  }
-  &:hover {
-    @media (hover: hover) {
+.interval-container {
+  display: flex;
+  width: fit-content;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-DARK);
+  padding: calc(var(--spacing) * 0.5);
+  .interval-btn {
+    border-radius: 44px;
+    padding-inline: calc(var(--spacing) * 4);
+    padding-block: calc(var(--spacing) * 3);
+    text-align: center;
+    font-size: 0.75rem;
+    --tw-tracking: 0.5px;
+    letter-spacing: 0.5px;
+    color: var(--color-FADED);
+    &:focus-within {
       border-radius: var(--radius-lg);
     }
-  }
-  &:hover {
-    @media (hover: hover) {
-      background-color: var(--color-NORMAL);
+    &:focus-within {
+      outline-style: var(--tw-outline-style);
+      outline-width: 1px;
+    }
+    &:focus-within {
+      outline-offset: 2px;
+    }
+    &:focus-within {
+      outline-color: var(--color-LIME);
+    }
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+      }
+    }
+    &:hover {
+      @media (hover: hover) {
+        border-radius: var(--radius-lg);
+      }
+    }
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-NORMAL);
+      }
+    }
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-TEXT-COLOR);
+      }
     }
   }
-  &:hover {
-    @media (hover: hover) {
-      color: var(--color-TEXT-COLOR);
-    }
+  .active {
+    border-radius: var(--radius-lg);
+    background-color: var(--color-NORMAL);
+    color: var(--color-TEXT-COLOR);
   }
-}
-.active {
-  border-radius: var(--radius-lg);
-  background-color: var(--color-NORMAL);
-  color: var(--color-TEXT-COLOR);
 }
 .conv-log-item {
   display: flex;
@@ -859,6 +904,16 @@
   border-color: var(--color-NORMAL);
   background-color: var(--color-MEDIUM);
   padding: calc(var(--spacing) * 3);
+  &:focus-within {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
+  &:focus-within {
+    outline-offset: 2px;
+  }
+  &:focus-within {
+    outline-color: var(--color-LIME);
+  }
   &:hover {
     @media (hover: hover) {
       cursor: pointer;
@@ -972,6 +1027,16 @@
   border-color: var(--color-NORMAL);
   background-color: var(--color-MEDIUM);
   padding: calc(var(--spacing) * 3);
+  &:focus-within {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
+  &:focus-within {
+    outline-offset: 2px;
+  }
+  &:focus-within {
+    outline-color: var(--color-LIME);
+  }
   &:hover {
     @media (hover: hover) {
       cursor: pointer;
@@ -1033,6 +1098,16 @@
     border-width: 1px;
     border-color: var(--color-LIME);
     padding: calc(var(--spacing) * 2);
+    &:focus-within {
+      outline-style: var(--tw-outline-style);
+      outline-width: 1px;
+    }
+    &:focus-within {
+      outline-offset: 2px;
+    }
+    &:focus-within {
+      outline-color: var(--color-LIME);
+    }
     &:hover {
       @media (hover: hover) {
         cursor: pointer;
@@ -1057,6 +1132,17 @@
   background-color: var(--color-MEDIUM);
   padding-inline: calc(var(--spacing) * 2);
   padding-block: calc(var(--spacing) * 3);
+  &:focus-within {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
+  &:focus-within {
+    border-color: var(--color-LIME);
+  }
+  &:focus-within {
+    outline-style: var(--tw-outline-style);
+    outline-width: 0px;
+  }
   &:hover {
     @media (hover: hover) {
       cursor: pointer;
@@ -1083,6 +1169,45 @@
     --tw-tracking: 0.5px;
     letter-spacing: 0.5px;
     color: var(--color-FADED);
+  }
+}
+nav .active {
+  border-bottom-style: var(--tw-border-style);
+  border-bottom-width: 1px;
+  border-bottom-color: var(--color-LIME);
+}
+nav .nav-link {
+  display: flex;
+  height: calc(var(--spacing) * 10);
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--spacing) * 2);
+  padding: calc(var(--spacing) * 4);
+  font-size: 1rem;
+  --tw-tracking: 1px;
+  letter-spacing: 1px;
+  &:focus {
+    border-radius: var(--radius-lg);
+  }
+  &:focus {
+    outline-style: var(--tw-outline-style);
+    outline-width: 2px;
+  }
+  &:focus {
+    outline-color: var(--color-LIME);
+  }
+  .number {
+    display: flex;
+    height: calc(var(--spacing) * 5);
+    width: calc(var(--spacing) * 5);
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--color-DARK-LIME);
+    font-size: 0.625rem;
+    --tw-leading: 100%;
+    line-height: 100%;
+    color: var(--color-LIME);
   }
 }
 @property --tw-border-style {

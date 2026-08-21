@@ -31,7 +31,7 @@
 }
 
 .compare-currency {
-  @apply bg-MEDIUM border-NORMAL hover:border-LIGHT-COLOR flex w-full items-center gap-2.5 rounded-[10px] border p-3 hover:cursor-pointer md:gap-5 md:px-4 md:py-3;
+  @apply bg-MEDIUM border-NORMAL hover:border-LIGHT-COLOR focus:outline-LIME flex w-full items-center gap-2.5 rounded-[10px] border p-3 hover:cursor-pointer focus:outline-1 focus:outline-offset-2 md:gap-5 md:px-4 md:py-3;
 
   .flag {
     @apply h-6 w-6 rounded-[50%];
@@ -58,7 +58,7 @@
   }
 
   .fav-btn {
-    @apply border-NORMAL bg-MEDIUM hover:bg-NORMAL flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border p-2 hover:cursor-pointer;
+    @apply border-NORMAL bg-MEDIUM hover:bg-NORMAL focus:outline-LIME flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border p-2 hover:cursor-pointer focus:outline-1 focus:outline-offset-2;
   }
 
   .active {
@@ -66,16 +66,20 @@
   }
 }
 
-.interval-btn {
-  @apply text-FADED hover:bg-NORMAL hover:text-TEXT-COLOR rounded-[44px] px-4 py-3 text-center text-[0.75rem] tracking-[0.5px] hover:cursor-pointer hover:rounded-lg;
-}
+.interval-container {
+  @apply bg-DARK flex w-fit rounded-lg p-0.5;
 
-.active {
-  @apply bg-NORMAL text-TEXT-COLOR rounded-lg;
+  .interval-btn {
+    @apply text-FADED hover:bg-NORMAL hover:text-TEXT-COLOR focus:outline-LIME rounded-[44px] px-4 py-3 text-center text-[0.75rem] tracking-[0.5px] hover:cursor-pointer hover:rounded-lg focus:rounded-lg focus:outline-1 focus:outline-offset-2;
+  }
+
+  .active {
+    @apply bg-NORMAL text-TEXT-COLOR rounded-lg;
+  }
 }
 
 .conv-log-item {
-  @apply bg-MEDIUM border-NORMAL hover:border-LIGHT-COLOR flex w-full items-center gap-2.5 rounded-[10px] border p-3 hover:cursor-pointer md:gap-4 md:p-4;
+  @apply bg-MEDIUM border-NORMAL hover:border-LIGHT-COLOR focus:outline-LIME flex w-full items-center gap-2.5 rounded-[10px] border p-3 hover:cursor-pointer focus:outline-1 focus:outline-offset-2 md:gap-4 md:p-4;
 
   .date-currency-wrapper {
     @apply flex w-full flex-col justify-center gap-1 md:flex-row;
@@ -107,7 +111,7 @@
 }
 
 .fav-item {
-  @apply bg-MEDIUM border-NORMAL hover:border-LIGHT-BORDER-COLOR flex w-full items-center gap-5 rounded-[10px] border p-3 hover:cursor-pointer md:px-4 md:py-3;
+  @apply bg-MEDIUM border-NORMAL hover:border-LIGHT-BORDER-COLOR focus:outline-LIME flex w-full items-center gap-5 rounded-[10px] border p-3 hover:cursor-pointer focus:outline-1 focus:outline-offset-2 md:px-4 md:py-3;
 
   .pair-container {
     @apply flex w-full items-center gap-2;
@@ -137,12 +141,12 @@
   }
 
   .fav-btn {
-    @apply border-LIME hover:bg-NORMAL flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border p-2 hover:cursor-pointer;
+    @apply border-LIME hover:bg-NORMAL focus:outline-LIME flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border p-2 hover:cursor-pointer focus:outline-1 focus:outline-offset-2;
   }
 }
 
 .picker-item {
-  @apply bg-MEDIUM border-MEDIUM hover:border-FADED flex w-full items-center gap-3 rounded-sm border px-2 py-3 hover:cursor-pointer;
+  @apply bg-MEDIUM border-MEDIUM hover:border-FADED focus:border-LIME flex w-full items-center gap-3 rounded-sm border px-2 py-3 hover:cursor-pointer focus:border focus:outline-0;
 
   .flag {
     @apply h-5 w-5 rounded-[50%];
@@ -154,5 +158,18 @@
 
   .name-full {
     @apply text-FADED w-full text-[0.75rem] tracking-[0.5px];
+  }
+}
+
+nav {
+  .active {
+    @apply border-b-LIME border-b;
+  }
+
+  .nav-link {
+    @apply focus:outline-LIME flex h-10 items-center justify-center gap-2 p-4 text-[1rem] tracking-[1px] focus:rounded-lg focus:outline-2;
+    .number {
+      @apply bg-DARK-LIME text-LIME flex h-5 w-5 items-center justify-center rounded-[50%] text-[0.625rem] leading-[100%];
+    }
   }
 }
