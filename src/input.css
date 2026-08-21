@@ -139,3 +139,19 @@
     @apply border-LIME flex h-8 min-h-8 w-8 min-w-8 items-center justify-center rounded-lg border p-2;
   }
 }
+
+.picker-item {
+  @apply bg-MEDIUM border-MEDIUM flex w-full items-center gap-3 rounded-sm border px-2 py-3;
+
+  .flag {
+    @apply h-5 w-5 rounded-[50%];
+  }
+
+  .name-abbr {
+    @apply text-[0.875rem] tracking-[1px];
+  }
+
+  .name-full {
+    @apply text-FADED w-full text-[0.75rem] tracking-[0.5px];
+  }
+}
