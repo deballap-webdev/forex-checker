@@ -76,8 +76,9 @@
     <main
       class="mx-auto flex max-w-275 flex-col gap-10 px-4 py-8 md:px-6 md:py-12 lg:gap-8 lg:px-8"
     >
-      <section class="flex flex-col gap-4">
-        <h2 class="tracking-[-0.5px ]">CHECK THE RATE</h2>
+      <section class="flex flex-col gap-4" aria-labelledby="convArea">
+        <h2 id="convArea">Currency Conversion Area</h2>
+        <div class="tracking-[-0.5px ]">CHECK THE RATE</div>
         <div class="bg-SURFACE-BASE rounded-[20px]">
           <div
             class="flex flex-col items-center justify-center gap-4 p-4 md:flex-row md:justify-start md:gap-6 md:p-5"
@@ -117,8 +118,11 @@
                     width="14"
                     height="20"
                   />
+                  <label for="searchFIlterSend">Search Sending Currency</label>
                   <input
                     type="search"
+                    id="searchFilterSend"
+                    name="searchFilter"
                     placeholder="Search currencies"
                     class="placeholder:text-TEXT-MUTED w-full placeholder:text-[0.75rem] placeholder:tracking-[0.5px] focus:outline-none"
                   />
@@ -493,10 +497,15 @@
                       width="14"
                       height="20"
                     />
+                    <label for="searchFilterReceive"
+                      >Search Receiving Currency</label
+                    >
                     <input
                       type="search"
+                      id="searchFilterReceive"
+                      name="searchFilter"
                       placeholder="Search currencies"
-                      class="placeholder:text-TEXT-MUTED w-full placeholder:text-[0.75rem] placeholder:tracking-[0.5px]"
+                      class="placeholder:text-TEXT-MUTED w-full placeholder:text-[0.75rem] placeholder:tracking-[0.5px] focus:outline-none"
                     />
                   </div>
                   <div class="flex flex-col gap-1">
@@ -832,7 +841,7 @@
             >
               <button
                 class="bg-PRIMARY text-BACKGROUND hover:border-PRIMARY focus:outline-PRIMARY flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-[0.75rem] font-medium hover:cursor-pointer hover:border focus:outline-1 focus:outline-offset-2"
-                aria-label="add or remove pair from favorites"
+                aria-label="add or remove item from favorites"
               >
                 <img
                   src="img/star-solid-full.svg"
@@ -878,7 +887,11 @@
 
         <section
           class="bg-SURFACE-BASE border-SURFACE flex flex-col gap-4 rounded-2xl p-4 md:p-5"
+          aria-labelledby="compareCurrency"
         >
+          <h2 id="compareCurrency">
+            Additional Exchange Rates For Sending Currency
+          </h2>
           <div
             class="flex w-full flex-col gap-2.5 md:flex-row md:justify-between"
           >
@@ -1022,7 +1035,11 @@
               <div class="exchange-at">@ 157.91</div>
             </div>
 
-            <button class="fav-btn active">
+            <button
+              class="fav-btn active"
+              title="favorites button"
+              aria-label="add or remove item from favorites"
+            >
               <img
                 src="img/icon-star-filled.svg"
                 alt=""
@@ -1036,7 +1053,11 @@
 
         <section
           class="m d:gap-2.5 flex flex-col justify-center gap-5 lg:flex-row lg:items-center"
+          aria-labelledby="historicalRates"
         >
+          <h2 id="historicalRates">
+            Historical changes for Sending currency to Recieving Currency
+          </h2>
           <div class="grid gap-2.5 md:flex md:w-full md:gap-4">
             <div
               class="bg-SURFACE-BASE border-SURFACE col-start-1 col-end-2 row-start-1 row-end-2 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
@@ -1107,15 +1128,14 @@
             </button>
             <button
               class="interval-btn"
-              aria-label="see chart for last one day"
-              aria-label="see charts for"
+              aria-label="see charts for last one year"
               title="one year interval"
             >
               1Y
             </button>
             <button
               class="interval-btn"
-              aria-label="see chart for last one day"
+              aria-label="see charts for last five years"
               title="five years interval"
             >
               5Y
@@ -1125,7 +1145,9 @@
 
         <section
           class="bg-SURFACE-BASE border-SURFACE flex w-full flex-col gap-5 rounded-[18px] border px-3 py-4 md:p-5"
+          aria-labelledby="loggedConv"
         >
+          <h2 id="loggedConv">Logged Conversions</h2>
           <div class="flex justify-between">
             <div class="text-[1rem] font-medium tracking-[1px]">USD/EUR</div>
             <div class="text-center tracking-[0.5px] opacity-70">
@@ -1148,7 +1170,7 @@
         </section>
 
         <section
-          class="text-SURFACbg-SURFACE-BASE border-SURFACE bg-SURFACE-BASE flex flex-col gap-5 rounded-2xl border px-4 py-5 md:p-5"
+          class="text-SURFACE-BASE border-SURFACE bg-SURFACE-BASE flex flex-col gap-5 rounded-2xl border px-4 py-5 md:p-5"
         >
           <div class="flex flex-col gap-2.5 md:flex-row md:justify-between">
             <div class="text-TEXT-PRIMARY font-medium tracking-[1px]">
@@ -1165,7 +1187,8 @@
               </div>
               <button
                 class="bg-SURFACE border-BORDER text-TEXT-MUTED text-[0.75rem ] hover:bg-SURFACE-ELEVATED focus:outline-DANGER flex items-center justify-center rounded-lg border px-3 py-2 tracking-[0.5px] hover:cursor-pointer focus:outline-1 focus:outline-offset-2"
-                aria-label="clear all logged pairs"
+                title="clear all logs"
+                aria-label="clear all logged conversions"
               >
                 CLEAR ALL
               </button>
@@ -1188,7 +1211,11 @@
                 <div class="receive-price">853.02</div>
               </div>
 
-              <button class="delete-btn">
+              <button
+                class="delete-btn"
+                title="remove item"
+                aria-label="remove logged conversion"
+              >
                 <img
                   src="img/icon-delete.svg"
                   alt=""
@@ -1213,7 +1240,11 @@
                 <div class="receive-price">853.02</div>
               </div>
 
-              <button class="delete-btn">
+              <button
+                class="delete-btn"
+                title="remove item"
+                aria-label="remove logged conversion"
+              >
                 <img
                   src="img/icon-delete.svg"
                   alt=""
@@ -1238,7 +1269,11 @@
                 <div class="receive-price">853.02</div>
               </div>
 
-              <button class="delete-btn">
+              <button
+                class="delete-btn"
+                title="remove item"
+                aria-label="remove logged conversion"
+              >
                 <img
                   src="img/icon-delete.svg"
                   alt=""
@@ -1263,7 +1298,11 @@
                 <div class="receive-price">853.02</div>
               </div>
 
-              <button class="delete-btn">
+              <button
+                class="delete-btn"
+                title="remove item"
+                aria-label="remove logged conversion"
+              >
                 <img
                   src="img/icon-delete.svg"
                   alt=""
@@ -1288,7 +1327,11 @@
                 <div class="receive-price">853.02</div>
               </div>
 
-              <button class="delete-btn">
+              <button
+                class="delete-btn"
+                title="remove item"
+                aria-label="remove logged conversion"
+              >
                 <img
                   src="img/icon-delete.svg"
                   alt=""
@@ -1313,7 +1356,11 @@
                 <div class="receive-price">853.02</div>
               </div>
 
-              <button class="delete-btn">
+              <button
+                class="delete-btn"
+                title="remove item"
+                aria-label="remove logged conversion"
+              >
                 <img
                   src="img/icon-delete.svg"
                   alt=""
@@ -1338,7 +1385,11 @@
                 <div class="receive-price">853.02</div>
               </div>
 
-              <button class="delete-btn">
+              <button
+                class="delete-btn"
+                title="remove item"
+                aria-label="remove logged conversion"
+              >
                 <img
                   src="img/icon-delete.svg"
                   alt=""
@@ -1353,7 +1404,9 @@
 
         <section
           class="bg-SURFACE-BASE border-SURFACE flex w-full flex-col gap-4 rounded-2xl border p-4 md:gap-5 md:p-5"
+          aria-labelledby="favPairs"
         >
+          <h2 id="favPairs">Favorite Pairs</h2>
           <div class="flex justify-between">
             <div class="text-[1rem] tracking-[1px]">PINNED PAIRS</div>
             <div class="text-[0.75rem] opacity-70">10 FAVORITES</div>
