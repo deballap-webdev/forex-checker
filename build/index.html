@@ -880,19 +880,35 @@
 
           <div class="rotate-90">></div>
         </button>
-        <nav class="border-SURFACE hidden gap-2 border-b md:flex">
-          <a href="" class="nav-link active">HISTORY</a>
-          <a href="" class="nav-link">COMPARE</a>
-          <a href="" class="nav-link"
-            >FAVOURITES
-            <div class="number">10</div></a
-          >
-          <a href="" class="nav-link"
-            >LOG
-            <div class="number">8</div></a
-          >
-        </nav>
+        <div>
+          <nav class="border-SURFACE hidden gap-2 border-b md:flex">
+            <a href="" class="nav-link active">HISTORY</a>
+            <a href="" class="nav-link">COMPARE</a>
+            <a href="" class="nav-link"
+              >FAVOURITES
+              <div class="number">10</div></a
+            >
+            <a href="" class="nav-link"
+              >LOG
+              <div class="number">8</div></a
+            >
+          </nav>
 
+          <section
+            id="emptyState"
+            class="flex flex-col items-center justify-center gap-4 py-10"
+          >
+            <h2 class="text-TEXT-SECONDARY text-[1.25rem] tracking-[-0.5px]">
+              No comparison avialable
+            </h2>
+            <p
+              class="text-TEXT-MUTED max-w-115 text-center text-[0.75rem] tracking-[1px]"
+            >
+              Enter an amount in SEND above to see what your currency is worth
+              in other currencies
+            </p>
+          </section>
+        </div>
         <section
           class="bg-SURFACE-BASE border-SURFACE flex flex-col gap-4 rounded-2xl p-4 md:p-5"
           aria-labelledby="compareCurrency"
@@ -1587,6 +1603,8 @@
           </div>
         </section>
       </div>
+
+      <p id="confirmation"></p>
     </main>
   </body>
 </html>

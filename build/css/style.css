@@ -290,6 +290,9 @@
   .w-full {
     width: 100%;
   }
+  .max-w-115 {
+    max-width: calc(var(--spacing) * 115);
+  }
   .max-w-275 {
     max-width: calc(var(--spacing) * 275);
   }
@@ -464,6 +467,9 @@
   }
   .py-8 {
     padding-block: calc(var(--spacing) * 8);
+  }
+  .py-10 {
+    padding-block: calc(var(--spacing) * 10);
   }
   .pr-1 {
     padding-right: var(--spacing);
