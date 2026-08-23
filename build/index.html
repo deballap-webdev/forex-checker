@@ -848,7 +848,7 @@
               class="flex w-full justify-around md:w-fit md:items-center md:justify-start md:gap-3"
             >
               <button
-                class="bg-PRIMARY text-BACKGROUND hover:border-PRIMARY focus:outline-PRIMARY flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-[0.75rem] font-medium hover:cursor-pointer hover:border focus:outline-1 focus:outline-offset-2"
+                class="bg-PRIMARY text-BACKGROUND focus:outline-PRIMARY flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-[0.75rem] font-medium hover:cursor-pointer hover:brightness-90 hover:filter focus:outline-1 focus:outline-offset-2"
                 aria-label="add or remove item from favorites"
               >
                 <img
@@ -885,13 +885,13 @@
             aria-label="main"
             class="border-SURFACE hidden gap-2 border-b md:flex"
           >
-            <a href="#historicalRates" class="nav-link active">HISTORY</a>
-            <a href="#compareCurrency" class="nav-link">COMPARE</a>
-            <a href="#favPairs" class="nav-link"
+            <a href="#history" class="nav-link active">HISTORY</a>
+            <a href="#compare" class="nav-link">COMPARE</a>
+            <a href="#favorites" class="nav-link"
               >FAVOURITES
               <div class="number">10</div></a
             >
-            <a href="#loggedConv" class="nav-link"
+            <a href="#log" class="nav-link"
               >LOG
               <div class="number">8</div></a
             >
@@ -899,20 +899,20 @@
 
           <nav
             aria-label="mobile"
-            class="bg-SURFACE-BASE border-SURFACE absolute top-12 z-20 flex w-full max-w-85.75 flex-col rounded-[10px] border p-2"
+            class="bg-SURFACE-BASE border-SURFACE absolute top-12 z-20 flex w-full flex-col rounded-[10px] border p-2"
           >
             <a
-              href="#historicalRates"
+              href="#history"
               class="flex h-10 w-full items-center rounded-[10px] px-2 py-2.5 text-[1rem] tracking-[1px]"
               >HISTORY</a
             >
             <a
-              href="#compareCurrency"
+              href="#compare"
               class="flex h-10 w-full items-center rounded-[10px] px-2 py-2.5 text-[1rem] tracking-[1px]"
               >COMPARE</a
             >
             <a
-              href="#favPairs"
+              href="#favorites"
               class="flex h-10 w-full items-center rounded-[10px] px-2 py-2.5"
               ><div class="w-full text-[1rem] tracking-[1px]">FAVORITES</div>
               <div
@@ -922,7 +922,7 @@
               </div></a
             >
             <a
-              href="#loggedConv"
+              href="#log"
               class="flex h-10 w-full items-center rounded-[10px] px-2 py-2.5 text-[1rem] tracking-[1px]"
               ><div class="w-full text-[1rem] tracking-[1px]">LOG</div>
               <div
@@ -951,6 +951,7 @@
         <section
           class="bg-SURFACE-BASE border-SURFACE flex flex-col gap-4 rounded-2xl p-4 md:p-5"
           aria-labelledby="compareCurrency"
+          id="compare"
         >
           <h2 class="absolute -top-100000 -left-100000" id="compareCurrency">
             Additional Exchange Rates For Sending Currency
@@ -1142,6 +1143,7 @@
         <section
           class="m d:gap-2.5 flex flex-col justify-center gap-5 lg:flex-row lg:items-center"
           aria-labelledby="historicalRates"
+          id="history"
         >
           <h2 class="absolute -top-100000 -left-100000" id="historicalRates">
             Historical changes for Sending currency to Recieving Currency
@@ -1258,6 +1260,7 @@
         <section
           class="text-SURFACE-BASE border-SURFACE bg-SURFACE-BASE flex flex-col gap-5 rounded-2xl border px-4 py-5 md:p-5"
           aria-labelledby="loggedConv"
+          id="log"
         >
           <h2 class="absolute -top-100000 -left-100000" id="loggedConv">
             Logged Conversions
@@ -1530,6 +1533,7 @@
         <section
           class="bg-SURFACE-BASE border-SURFACE flex w-full flex-col gap-4 rounded-2xl border p-4 md:gap-5 md:p-5"
           aria-labelledby="favPairs"
+          id="favorites"
         >
           <h2 class="absolute -top-100000 -left-100000" id="favPairs">
             Favorite Pairs
