@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
       rel="stylesheet"
     />
+    <script src="js/main.js" type="module"></script>
     <title>Foreign Exchange Checker</title>
   </head>
   <body class="bg-BACKGROUND text-TEXT-PRIMARY font-FF leading-[120%]">
@@ -884,6 +885,7 @@
           <nav
             aria-label="main"
             class="border-SURFACE hidden gap-2 border-b md:flex"
+            id="mainNav"
           >
             <a href="#history" class="nav-link active">HISTORY</a>
             <a href="#compare" class="nav-link">COMPARE</a>
@@ -899,7 +901,7 @@
 
           <nav
             aria-label="mobile"
-            class="bg-SURFACE-BASE border-SURFACE absolute top-12 z-20 flex w-full flex-col rounded-[10px] border p-2"
+            class="bg-SURFACE-BASE border-SURFACE absolute top-12 z-20 hidden w-full flex-col rounded-[10px] border p-2"
           >
             <a
               href="#history"
@@ -949,7 +951,7 @@
           </section>
         </div>
         <section
-          class="bg-SURFACE-BASE border-SURFACE flex flex-col gap-4 rounded-2xl p-4 md:p-5"
+          class="bg-SURFACE-BASE border-SURFACE navSection hidden flex-col gap-4 rounded-2xl p-4 md:p-5"
           aria-labelledby="compareCurrency"
           id="compare"
         >
@@ -1139,126 +1141,136 @@
             </button>
           </div>
         </section>
-
         <section
-          class="m d:gap-2.5 flex flex-col justify-center gap-5 lg:flex-row lg:items-center"
-          aria-labelledby="historicalRates"
+          class="navSection flex flex-col gap-4 md:gap-5"
           id="history"
+          aria-labelledby="historicalRates"
         >
-          <h2 class="absolute -top-100000 -left-100000" id="historicalRates">
-            Historical changes for Sending currency to Recieving Currency
-          </h2>
-          <div class="grid gap-2.5 md:flex md:w-full md:gap-4">
-            <div
-              class="bg-SURFACE-BASE border-SURFACE col-start-1 col-end-2 row-start-1 row-end-2 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
-            >
-              <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
-                OPEN
+          <div
+            class="flex flex-col justify-center gap-5 md:gap-2.5 lg:flex-row lg:items-center"
+          >
+            <h2 class="absolute -top-100000 -left-100000" id="historicalRates">
+              Historical changes for Sending currency to Recieving Currency
+            </h2>
+            <div class="grid gap-2.5 md:flex md:w-full md:gap-4">
+              <div
+                class="bg-SURFACE-BASE border-SURFACE col-start-1 col-end-2 row-start-1 row-end-2 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
+              >
+                <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
+                  OPEN
+                </div>
+                <div class="w-fill text-[1.25rem] tracking-[-0.5px]">
+                  0.8516
+                </div>
               </div>
-              <div class="w-fill text-[1.25rem] tracking-[-0.5px]">0.8516</div>
+              <div
+                class="bg-SURFACE-BASE border-SURFACE col-start-2 col-end-3 row-start-1 row-end-2 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
+              >
+                <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
+                  LAST
+                </div>
+                <div class="w-fill text-[1.25rem] tracking-[-0.5px]">
+                  0.8530
+                </div>
+              </div>
+              <div
+                class="bg-SURFACE-BASE border-SURFACE col-start-1 col-end-2 row-start-2 row-end-3 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
+              >
+                <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
+                  CHANGE
+                </div>
+                <div
+                  class="w-fill text-SUCCESS text-[1.25rem] tracking-[-0.5px]"
+                >
+                  +0.0014
+                </div>
+              </div>
+              <div
+                class="bg-SURFACE-BASE border-SURFACE col-start-2 col-end-3 row-start-2 row-end-3 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
+              >
+                <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
+                  % CHANGE
+                </div>
+                <div
+                  class="w-fill text-SUCCESS text-[1.25rem] tracking-[-0.5px]"
+                >
+                  ▲ +0.16%
+                </div>
+              </div>
             </div>
-            <div
-              class="bg-SURFACE-BASE border-SURFACE col-start-2 col-end-3 row-start-1 row-end-2 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
-            >
-              <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
-                LAST
-              </div>
-              <div class="w-fill text-[1.25rem] tracking-[-0.5px]">0.8530</div>
-            </div>
-            <div
-              class="bg-SURFACE-BASE border-SURFACE col-start-1 col-end-2 row-start-2 row-end-3 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
-            >
-              <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
-                CHANGE
-              </div>
-              <div class="w-fill text-SUCCESS text-[1.25rem] tracking-[-0.5px]">
-                +0.0014
-              </div>
-            </div>
-            <div
-              class="bg-SURFACE-BASE border-SURFACE col-start-2 col-end-3 row-start-2 row-end-3 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
-            >
-              <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
-                % CHANGE
-              </div>
-              <div class="w-fill text-SUCCESS text-[1.25rem] tracking-[-0.5px]">
-                ▲ +0.16%
-              </div>
+
+            <div class="interval-container">
+              <button
+                class="interval-btn"
+                aria-label="see charts for last one day"
+                title="one day interval"
+              >
+                1D
+              </button>
+              <button
+                class="interval-btn"
+                aria-label="see charts for last one week"
+                title="one week interval"
+              >
+                1W
+              </button>
+              <button
+                class="interval-btn active"
+                aria-label="see charts for last one month"
+                title="one month interval"
+              >
+                1M
+              </button>
+              <button
+                class="interval-btn"
+                aria-label="see charts for last three months"
+                title="three months interval"
+              >
+                3M
+              </button>
+              <button
+                class="interval-btn"
+                aria-label="see charts for last one year"
+                title="one year interval"
+              >
+                1Y
+              </button>
+              <button
+                class="interval-btn"
+                aria-label="see charts for last five years"
+                title="five years interval"
+              >
+                5Y
+              </button>
             </div>
           </div>
 
-          <div class="interval-container">
-            <button
-              class="interval-btn"
-              aria-label="see charts for last one day"
-              title="one day interval"
-            >
-              1D
-            </button>
-            <button
-              class="interval-btn"
-              aria-label="see charts for last one week"
-              title="one week interval"
-            >
-              1W
-            </button>
-            <button
-              class="interval-btn active"
-              aria-label="see charts for last one month"
-              title="one month interval"
-            >
-              1M
-            </button>
-            <button
-              class="interval-btn"
-              aria-label="see charts for last three months"
-              title="three months interval"
-            >
-              3M
-            </button>
-            <button
-              class="interval-btn"
-              aria-label="see charts for last one year"
-              title="one year interval"
-            >
-              1Y
-            </button>
-            <button
-              class="interval-btn"
-              aria-label="see charts for last five years"
-              title="five years interval"
-            >
-              5Y
-            </button>
+          <div
+            class="bg-SURFACE-BASE border-SURFACE flex w-full flex-col gap-5 rounded-[18px] border px-3 py-4 md:p-5"
+          >
+            <div class="flex justify-between">
+              <div class="text-[1rem] font-medium tracking-[1px]">USD/EUR</div>
+              <div class="text-center tracking-[0.5px] opacity-70">
+                0.8530 • MAY 14 16:00 CET
+              </div>
+            </div>
+            <div class="flex flex-row items-center gap-4">
+              <div class="flex h-68 flex-col justify-between">
+                <div class="text-TEXT-MUTED text-[0.625rem]">0.8612</div>
+                <div class="text-TEXT-MUTED text-[0.625rem]">0.8516</div>
+                <div class="text-TEXT-MUTED text-[0.625rem]">0.8421</div>
+              </div>
+              <div class="bg-PRIMARY-SUBTLE h-68 w-full"></div>
+            </div>
+            <div class="flex w-[calc(100%-52px)] justify-between self-end">
+              <div class="text-TEXT-MUTED text-[0.625rem]">Apr 14</div>
+              <div class="text-TEXT-MUTED text-[0.625rem]">Apr 28</div>
+              <div class="text-TEXT-MUTED text-[0.625rem]">May 14</div>
+            </div>
           </div>
         </section>
-
-        <div
-          class="bg-SURFACE-BASE border-SURFACE flex w-full flex-col gap-5 rounded-[18px] border px-3 py-4 md:p-5"
-        >
-          <div class="flex justify-between">
-            <div class="text-[1rem] font-medium tracking-[1px]">USD/EUR</div>
-            <div class="text-center tracking-[0.5px] opacity-70">
-              0.8530 • MAY 14 16:00 CET
-            </div>
-          </div>
-          <div class="flex flex-row items-center gap-4">
-            <div class="flex h-68 flex-col justify-between">
-              <div class="text-TEXT-MUTED text-[0.625rem]">0.8612</div>
-              <div class="text-TEXT-MUTED text-[0.625rem]">0.8516</div>
-              <div class="text-TEXT-MUTED text-[0.625rem]">0.8421</div>
-            </div>
-            <div class="bg-PRIMARY-SUBTLE h-68 w-full"></div>
-          </div>
-          <div class="flex w-[calc(100%-52px)] justify-between self-end">
-            <div class="text-TEXT-MUTED text-[0.625rem]">Apr 14</div>
-            <div class="text-TEXT-MUTED text-[0.625rem]">Apr 28</div>
-            <div class="text-TEXT-MUTED text-[0.625rem]">May 14</div>
-          </div>
-        </div>
-
         <section
-          class="text-SURFACE-BASE border-SURFACE bg-SURFACE-BASE flex flex-col gap-5 rounded-2xl border px-4 py-5 md:p-5"
+          class="text-SURFACE-BASE border-SURFACE bg-SURFACE-BASE navSection hidden flex-col gap-5 rounded-2xl border px-4 py-5 md:p-5"
           aria-labelledby="loggedConv"
           id="log"
         >
@@ -1288,7 +1300,7 @@
             </div>
           </div>
 
-          <div class="flex w-full flex-col gap-3">
+          <div class="flex w-full flex-col gap-3" id="logContainer">
             <div
               class="conv-log-item"
               tabindex="1"
@@ -1531,7 +1543,7 @@
         </section>
 
         <section
-          class="bg-SURFACE-BASE border-SURFACE flex w-full flex-col gap-4 rounded-2xl border p-4 md:gap-5 md:p-5"
+          class="bg-SURFACE-BASE border-SURFACE navSection hidden w-full flex-col gap-4 rounded-2xl border p-4 md:gap-5 md:p-5"
           aria-labelledby="favPairs"
           id="favorites"
         >
