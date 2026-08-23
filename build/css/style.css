@@ -197,6 +197,9 @@
   .top-0 {
     top: 0px;
   }
+  .top-12 {
+    top: calc(var(--spacing) * 12);
+  }
   .top-30 {
     top: calc(var(--spacing) * 30);
   }
@@ -290,6 +293,9 @@
   .w-full {
     width: 100%;
   }
+  .max-w-85\.75 {
+    max-width: calc(var(--spacing) * 85.75);
+  }
   .max-w-115 {
     max-width: calc(var(--spacing) * 115);
   }
@@ -361,6 +367,9 @@
   }
   .rounded-2xl {
     border-radius: var(--radius-2xl);
+  }
+  .rounded-\[10px\] {
+    border-radius: 10px;
   }
   .rounded-\[18px\] {
     border-radius: 18px;
@@ -456,6 +465,9 @@
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
   }
+  .py-2\.5 {
+    padding-block: calc(var(--spacing) * 2.5);
+  }
   .py-3 {
     padding-block: calc(var(--spacing) * 3);
   }
@@ -500,6 +512,9 @@
   }
   .text-\[2rem\] {
     font-size: 2rem;
+  }
+  .text-\[10px\] {
+    font-size: 10px;
   }
   .leading-\[120\%\] {
     --tw-leading: 120%;
