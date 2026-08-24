@@ -157,7 +157,7 @@
   }
 
   .name-full {
-    @apply text-TEXT-MUTED w-full text-[0.75rem] tracking-[0.5px];
+    @apply text-TEXT-MUTED w-full text-left text-[0.75rem] tracking-[0.5px];
   }
 }
 

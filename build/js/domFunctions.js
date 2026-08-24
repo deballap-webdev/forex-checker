@@ -1,4 +1,4 @@
-export const toggleNavSection = (event, navSectionArray, navLinkArray) => {
+export const toggleNavSection = (event, navSectionArray) => {
   const sectionId = event.target.closest("a").hash;
   if (!sectionId) return;
   for (let i = 0; i < navSectionArray.length; i++) {
@@ -10,7 +10,9 @@ export const toggleNavSection = (event, navSectionArray, navLinkArray) => {
       navSectionArray[i].classList.add("hidden");
     }
   }
+};
 
+export const underlineActiveNav = (event, navLinkArray) => {
   for (let i = 0; i < navLinkArray.length; i++) {
     navLinkArray[i] === event.target.closest("a")
       ? navLinkArray[i].classList.add("active")
@@ -24,4 +26,46 @@ export const applyDeleteHover = (deleteBtnArray, deleteBtn) => {
       ? (deleteBtn.querySelector("img").src = "img/icon-delete-filled.svg")
       : (deleteBtn.querySelector("img").src = "img/icon-delete.svg");
   }
+};
+
+export const dropDownDisplay = (event, elemToToggle) => {
+  const key = event.type;
+  const keyLookup = {
+    click: () => {
+      event.currentTarget
+        .querySelector('[data-dropDown="true"]')
+        .classList.toggle("rotate-180");
+      elemToToggle.classList.toggle("hidden");
+      elemToToggle.classList.toggle("flex");
+      event.target.ariaExpanded =
+        event.target.ariaExpanded === "true" ? "false" : "true";
+    },
+    keydown: () => {
+      if (event.key !== "Escape") return;
+      setTimeout(hideDropDown, 300, elemToToggle);
+      event.currentTarget.querySelector(".toggle").focus();
+    },
+    focusout: () => {
+      if (elemToToggle.contains(event.relatedTarget)) return;
+      setTimeout(hideDropDown, 300, elemToToggle, event.target);
+    },
+  };
+  const action = keyLookup[key];
+  if (!action) return;
+  action();
+};
+
+const hideDropDown = (elem, target) => {
+  target.querySelector('[data-dropDown="true"]').classList.remove("rotate-180");
+  elem.classList.add("hidden");
+  elem.classList.remove("flex");
+  target.ariaExpanded = "false";
+};
+
+export const toggleIntervalBtn = (activeBtn, intervalBtns) => {
+  intervalBtns.forEach((btn) => {
+    btn === activeBtn
+      ? btn.classList.add("active")
+      : btn.classList.remove("active");
+  });
 };

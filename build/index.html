@@ -99,6 +99,7 @@
                 </div>
                 <button
                   class="bg-SURFACE-ELEVATED border-BORDER hover:bg-BORDER focus:outline-PRIMARY flex items-center gap-2 rounded-lg border p-2.5 text-[0.875rem] hover:cursor-pointer focus:outline-1 focus:outline-offset-2"
+                  id="sendConv"
                 >
                   <img
                     src="img/flags/eu.webp"
@@ -106,11 +107,12 @@
                     height="100"
                     class="h-5 w-5 rounded-[50%]"
                     alt=""
-                  />EUR ▾
+                  />EUR <span data-dropDown="true">▾</span>
                 </button>
               </div>
               <div
                 class="bg-SURFACE border-BORDER absolute top-30 right-0 z-20 hidden max-h-114.5 w-full scrollbar-none flex-col gap-2.5 overflow-y-auto rounded-lg border p-2 lg:right-5 lg:w-94"
+                id="send"
               >
                 <div
                   class="border-TEXT-MUTED bg-SURFACE focus-within:border-PRIMARY hover:bg-SURFACE-ELEVATED sticky top-0 z-10 flex w-full items-center gap-2.5 rounded-md border p-3 focus-within:border focus-within:outline-0"
@@ -483,17 +485,19 @@
                 </div>
                 <button
                   class="bg-SURFACE-ELEVATED border-BORDER hover:bg-BORDER focus:outline-PRIMARY flex items-center gap-2 rounded-lg border p-2.5 text-[0.875rem] hover:cursor-pointer focus:outline-1 focus:outline-offset-2"
+                  id="receiveConv"
                 >
                   <img
-                    src="img/flags/eu.webp"
+                    src="img/flags/us.webp"
                     width="100"
                     height="100"
                     class="h-5 w-5 rounded-[50%]"
                     alt=""
-                  />EUR ▾
+                  />USD <span data-dropDown="true">▾</span>
                 </button>
                 <div
                   class="bg-SURFACE border-BORDER absolute top-30 right-0 z-20 hidden max-h-114.5 w-full scrollbar-none flex-col gap-2.5 overflow-y-auto rounded-lg border p-2 lg:right-5 lg:w-94"
+                  id="receive"
                 >
                   <div
                     class="border-TEXT-MUTED bg-SURFACE sticky top-0 z-10 flex w-full items-center gap-2.5 rounded-md border p-3"
@@ -901,6 +905,7 @@
 
           <nav
             aria-label="mobile"
+            id="mobileNav"
             class="bg-SURFACE-BASE border-SURFACE absolute top-12 z-20 hidden w-full flex-col rounded-[10px] border p-2"
           >
             <a
@@ -1199,7 +1204,7 @@
               </div>
             </div>
 
-            <div class="interval-container">
+            <div class="interval-container" id="intervalContainer">
               <button
                 class="interval-btn"
                 aria-label="see charts for last one day"
