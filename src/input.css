@@ -188,3 +188,11 @@
     }
   }
 }
+
+.favorited {
+  @apply text-BACKGROUND bg-PRIMARY hover:brightness-90 hover:filter;
+}
+
+.unfavorited {
+  @apply hover:bg-SURFACE border-BORDER-STRONG border;
+}

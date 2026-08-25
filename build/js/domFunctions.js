@@ -20,7 +20,7 @@ export const underlineActiveNav = (event, navLinkArray) => {
   }
 };
 
-export const applyDeleteHover = (deleteBtnArray, deleteBtn) => {
+export const applyDeleteHover = (event, deleteBtnArray, deleteBtn) => {
   if ([...deleteBtnArray].includes(deleteBtn)) {
     event.type === "mouseover"
       ? (deleteBtn.querySelector("img").src = "img/icon-delete-filled.svg")
@@ -68,4 +68,29 @@ export const toggleIntervalBtn = (activeBtn, intervalBtns) => {
       ? btn.classList.add("active")
       : btn.classList.remove("active");
   });
+};
+// still bad should have state to know favorites and work with that, this is just for posting sake
+export const favBtnDisplay = (event) => {
+  const favBtn = event.target.closest("button");
+  if (!favBtn) return;
+  if (!favBtn.classList.contains("fav-btn")) return;
+  favBtn.classList.toggle("active");
+  favBtn.querySelector("img").src = favBtn.classList.contains("active")
+    ? "img/icon-star-filled.svg"
+    : "img/icon-star.svg";
+};
+
+export const favConvBtnDisplay = (event) => {
+  const favConvBtn = event.currentTarget;
+  favConvBtn.classList.toggle("favorited");
+  favConvBtn.classList.toggle("unfavorited");
+  const favIcon = favConvBtn.querySelector("img");
+  console.log(favIcon);
+  if (favConvBtn.classList.contains("favorited")) {
+    favIcon.src = "img/star-solid-full.svg";
+    favConvBtn.textContent = "FAVOURITED";
+  } else {
+    favIcon.src = "img/icon-star.svg";
+    favConvBtn.textContent = "FAVOURITE";
+  }
 };

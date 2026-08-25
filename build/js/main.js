@@ -4,6 +4,8 @@ import {
   dropDownDisplay,
   toggleIntervalBtn,
   underlineActiveNav,
+  favBtnDisplay,
+  favConvBtnDisplay,
 } from "./domFunctions.js";
 
 const initApp = () => {
@@ -21,8 +23,12 @@ const initApp = () => {
   const sendInput = document.getElementById("sendInput");
   const receiveInput = document.getElementById("receiveInput");
   const mobileNavWrapper = document.getElementById("mobileNavWrapper");
-
+  const compareSection = document.getElementById("compare");
+  const favConvBtn = document.getElementById("favConv");
+  favConvBtn.addEventListener("click", favConvBtnDisplay);
+  compareSection.addEventListener("click", favBtnDisplay);
   mobileNavWrapper.addEventListener("click", handleMobileNav);
+
   sendWrapper.addEventListener("focusout", (event) => {
     dropDownDisplay(
       event,
@@ -73,7 +79,7 @@ const displaySections = (event) => {
 const addHoverEffect = (event) => {
   const deleteBtnArray = document.querySelectorAll(".delete-btn");
   if (!event.target.closest("button")) return;
-  applyDeleteHover(deleteBtnArray, event.target.closest("button"));
+  applyDeleteHover(event, deleteBtnArray, event.target.closest("button"));
 };
 
 const intervalBtnDisplay = (event) => {
@@ -132,7 +138,6 @@ const handleMobileNav = (event) => {
     }
     toggleNavSection(event, navSectionArray);
   }
-
   dropDownDisplay(event, mobileNav, mobileNavBtn);
 };
 
