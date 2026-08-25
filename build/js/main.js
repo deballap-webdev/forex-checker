@@ -108,16 +108,31 @@ const handleConvAreaClick = (event) => {
   action();
 };
 
+//This is very bad and temporary i'll actually store active section and number and other stuff in data storage rather than use dom as source of truth, and this should'nt  be in main.js anyways
 const handleMobileNav = (event) => {
   if (!event.target.closest("button") && !event.target.closest("a")) return;
+  const mobileNav = document.getElementById("mobileNav");
+  const mobileNavBtn = document.getElementById("mobileNavBtn");
   const key = event.target.closest("button") || event.target.closest("a");
   if (key === event.target.closest("a")) {
     const navSectionArray = document.querySelectorAll(".navSection");
     const navLinkArray = document.querySelectorAll(".nav-link");
+    document.getElementById("activeSection").textContent =
+      key.querySelector(".sectionName").textContent;
+    document.getElementById("numBox").textContent = key.querySelector(".number")
+      ? key.querySelector(".number").textContent
+      : "";
+
+    if (!document.getElementById("numBox").textContent.length) {
+      document.getElementById("numBox").classList.add("hidden");
+      document.getElementById("numBox").classList.remove("flex");
+    } else {
+      document.getElementById("numBox").classList.remove("hidden");
+      document.getElementById("numBox").classList.add("flex");
+    }
     toggleNavSection(event, navSectionArray);
   }
-  const mobileNav = document.getElementById("mobileNav");
-  const mobileNavBtn = document.getElementById("mobileNavBtn");
+
   dropDownDisplay(event, mobileNav, mobileNavBtn);
 };
 

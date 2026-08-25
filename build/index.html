@@ -902,15 +902,20 @@
             id="mobileNavBtn"
           >
             <div class="flex h-10 items-center justify-center gap-2">
-              COMPARE
+              <div id="activeSection">HISTORY</div>
+              <div
+                class="jsutify-center bg-PRIMARY-SUBTLE text-PRIMARY hidden h-5 w-5 items-center justify-center rounded-[50%] text-[0.625rem]"
+                id="numBox"
+              ></div>
             </div>
-
             <div data-dropDown="true">
               <span class="inline-block rotate-90">></span>
             </div>
           </button>
           <nav aria-label="mobile" id="mobileNav" class="mobileNav hidden">
-            <a href="#history" class="nav-link"> <div class="">HISTORY</div></a>
+            <a href="#history" class="nav-link">
+              <div class="sectionName">HISTORY</div></a
+            >
             <a href="#compare" class="nav-link"
               ><div class="sectionName">COMPARE</div></a
             >
