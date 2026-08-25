@@ -77,7 +77,11 @@
     <main
       class="mx-auto flex max-w-275 flex-col gap-10 px-4 py-8 md:px-6 md:py-12 lg:gap-8 lg:px-8"
     >
-      <section class="flex flex-col gap-4" aria-labelledby="convArea">
+      <section
+        class="flex flex-col gap-4"
+        aria-labelledby="convArea"
+        id="convArea"
+      >
         <h2 class="absolute -top-100000 -left-100000" id="convArea">
           Currency Conversion Area
         </h2>
@@ -87,7 +91,7 @@
             class="flex flex-col items-center justify-center gap-4 p-4 md:flex-row md:justify-start md:gap-6 md:p-5"
           >
             <div
-              class="bg-SURFACE border-SURFACE-ELEVATED relative flex w-full flex-col items-start justify-start gap-5 rounded-2xl border p-4"
+              class="bg-SURFACE border-SURFACE-ELEVATED flex w-full flex-col items-start justify-start gap-5 rounded-2xl border p-4"
             >
               <div class="text-TEXT-SECONDARY text-[0.875rem]">SEND</div>
               <div class="flex w-full justify-between">
@@ -97,364 +101,366 @@
                 >
                   1,000
                 </div>
-                <button
-                  class="bg-SURFACE-ELEVATED border-BORDER hover:bg-BORDER focus:outline-PRIMARY flex items-center gap-2 rounded-lg border p-2.5 text-[0.875rem] hover:cursor-pointer focus:outline-1 focus:outline-offset-2"
-                  id="sendConv"
-                >
-                  <img
-                    src="img/flags/eu.webp"
-                    width="100"
-                    height="100"
-                    class="h-5 w-5 rounded-[50%]"
-                    alt=""
-                  />EUR <span data-dropDown="true">▾</span>
-                </button>
-              </div>
-              <div
-                class="bg-SURFACE border-BORDER absolute top-30 right-0 z-20 hidden max-h-114.5 w-full scrollbar-none flex-col gap-2.5 overflow-y-auto rounded-lg border p-2 lg:right-5 lg:w-94"
-                id="send"
-              >
-                <div
-                  class="border-TEXT-MUTED bg-SURFACE focus-within:border-PRIMARY hover:bg-SURFACE-ELEVATED sticky top-0 z-10 flex w-full items-center gap-2.5 rounded-md border p-3 focus-within:border focus-within:outline-0"
-                >
-                  <img
-                    src="img/icon-search.svg"
-                    alt=""
-                    width="14"
-                    height="20"
-                  />
-                  <label
-                    class="absolute -top-100000 -left-100000"
-                    for="searchFIlterSend"
-                    >Search Sending Currency</label
+                <div class="relative" id="sendWrapper">
+                  <button
+                    class="bg-SURFACE-ELEVATED border-BORDER hover:bg-BORDER focus:outline-PRIMARY flex items-center gap-2 rounded-lg border p-2.5 text-[0.875rem] hover:cursor-pointer focus:outline-1 focus:outline-offset-2"
+                    id="sendBtn"
                   >
-                  <input
-                    type="search"
-                    id="searchFilterSend"
-                    name="searchFilter"
-                    placeholder="Search currencies"
-                    class="placeholder:text-TEXT-MUTED w-full placeholder:text-[0.75rem] placeholder:tracking-[0.5px] focus:outline-none"
-                  />
-                </div>
-                <div class="flex flex-col gap-1">
+                    <img
+                      src="img/flags/eu.webp"
+                      width="100"
+                      height="100"
+                      class="h-5 w-5 rounded-[50%]"
+                      alt=""
+                    />EUR <span data-dropDown="true">▾</span>
+                  </button>
                   <div
-                    class="border-b-SURFACE-ELEVATED flex items-center gap-2.5 border-b p-2"
+                    class="bg-SURFACE border-BORDER absolute top-15 right-0 z-20 hidden max-h-114.5 w-[calc(100vw-100px)] scrollbar-none flex-col gap-2.5 overflow-y-auto rounded-lg border p-2 lg:w-94"
+                    id="sendPicker"
                   >
                     <div
-                      class="text-TEXT-MUTED w-full text-[0.75rem] tracking-[0.5px]"
+                      class="border-TEXT-MUTED bg-SURFACE focus-within:border-PRIMARY hover:bg-SURFACE-ELEVATED sticky top-0 z-10 flex w-full items-center gap-2.5 rounded-md border p-3 focus-within:border focus-within:outline-0"
                     >
-                      POPULAR
+                      <img
+                        src="img/icon-search.svg"
+                        alt=""
+                        width="14"
+                        height="20"
+                      />
+                      <label
+                        class="absolute -top-100000 -left-100000"
+                        for="searchFIlterSend"
+                        >Search Sending Currency</label
+                      >
+                      <input
+                        type="search"
+                        id="searchFilterSend"
+                        name="searchFilter"
+                        placeholder="Search currencies"
+                        class="placeholder:text-TEXT-MUTED w-full placeholder:text-[0.75rem] placeholder:tracking-[0.5px] focus:outline-none"
+                      />
                     </div>
+                    <div class="flex flex-col gap-1">
+                      <div
+                        class="border-b-SURFACE-ELEVATED flex items-center gap-2.5 border-b p-2"
+                      >
+                        <div
+                          class="text-TEXT-MUTED w-full text-[0.75rem] tracking-[0.5px]"
+                        >
+                          POPULAR
+                        </div>
 
+                        <div
+                          class="text-TEXT-MUTED text-left text-[0.75rem] tracking-[0.5px]"
+                        >
+                          3
+                        </div>
+                      </div>
+                      <div>
+                        <button
+                          class="picker-item"
+                          aria-label="select currency as sending currency"
+                        >
+                          <img
+                            src="img/flags/us.webp"
+                            width="200"
+                            height="200"
+                            class="flag"
+                            alt=""
+                          />
+                          <div class="name-abbr">USD</div>
+                          <div class="name-full">US DOLLAR</div>
+                          <img
+                            src="img/icon-check.svg"
+                            alt=""
+                            width="12"
+                            height="12"
+                          />
+                        </button>
+                      </div>
+
+                      <div>
+                        <button
+                          class="picker-item"
+                          aria-label="select currency as sending currency"
+                        >
+                          <img
+                            src="img/flags/gb.webp"
+                            width="200"
+                            height="200"
+                            class="flag"
+                            alt=""
+                          />
+                          <div class="name-abbr">GBP</div>
+                          <div class="name-full">British Pound</div>
+                        </button>
+                      </div>
+
+                      <div>
+                        <button
+                          class="picker-item"
+                          aria-label="select currency as sending currency"
+                        >
+                          <img
+                            src="img/flags/eu.webp"
+                            width="200"
+                            height="200"
+                            class="flag"
+                            alt=""
+                          />
+                          <div class="name-abbr">EUR</div>
+                          <div class="name-full">Euro</div>
+                        </button>
+                      </div>
+                    </div>
                     <div
-                      class="text-TEXT-MUTED text-left text-[0.75rem] tracking-[0.5px]"
+                      class="border-b-SURFACE-ELEVATED text-TEXT-MUTED flex items-center gap-2.5 border-b p-2 text-[0.75rem] tracking-[0.5px]"
                     >
-                      3
+                      <div class="w-full">OTHER CURRENCIES</div>
+                      <div>52</div>
+                    </div>
+
+                    <div>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as sending currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
                     </div>
                   </div>
-                  <div>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as sending currency"
-                    >
-                      <img
-                        src="img/flags/us.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">USD</div>
-                      <div class="name-full">US DOLLAR</div>
-                      <img
-                        src="img/icon-check.svg"
-                        alt=""
-                        width="12"
-                        height="12"
-                      />
-                    </button>
-                  </div>
-
-                  <div>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as sending currency"
-                    >
-                      <img
-                        src="img/flags/gb.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">GBP</div>
-                      <div class="name-full">British Pound</div>
-                    </button>
-                  </div>
-
-                  <div>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as sending currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                  </div>
-                </div>
-                <div
-                  class="border-b-SURFACE-ELEVATED text-TEXT-MUTED flex items-center gap-2.5 border-b p-2 text-[0.75rem] tracking-[0.5px]"
-                >
-                  <div class="w-full">OTHER CURRENCIES</div>
-                  <div>52</div>
-                </div>
-
-                <div>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
-                  <button
-                    class="picker-item"
-                    aria-label="select currency as sending currency"
-                  >
-                    <img
-                      src="img/flags/eu.webp"
-                      width="200"
-                      height="200"
-                      class="flag"
-                      alt=""
-                    />
-                    <div class="name-abbr">EUR</div>
-                    <div class="name-full">Euro</div>
-                  </button>
                 </div>
               </div>
             </div>
@@ -483,98 +489,124 @@
                 >
                   853.07
                 </div>
-                <button
-                  class="bg-SURFACE-ELEVATED border-BORDER hover:bg-BORDER focus:outline-PRIMARY flex items-center gap-2 rounded-lg border p-2.5 text-[0.875rem] hover:cursor-pointer focus:outline-1 focus:outline-offset-2"
-                  id="receiveConv"
-                >
-                  <img
-                    src="img/flags/us.webp"
-                    width="100"
-                    height="100"
-                    class="h-5 w-5 rounded-[50%]"
-                    alt=""
-                  />USD <span data-dropDown="true">▾</span>
-                </button>
-                <div
-                  class="bg-SURFACE border-BORDER absolute top-30 right-0 z-20 hidden max-h-114.5 w-full scrollbar-none flex-col gap-2.5 overflow-y-auto rounded-lg border p-2 lg:right-5 lg:w-94"
-                  id="receive"
-                >
-                  <div
-                    class="border-TEXT-MUTED bg-SURFACE sticky top-0 z-10 flex w-full items-center gap-2.5 rounded-md border p-3"
+                <div class="relative" id="receiveWrapper">
+                  <button
+                    class="bg-SURFACE-ELEVATED border-BORDER hover:bg-BORDER focus:outline-PRIMARY flex items-center gap-2 rounded-lg border p-2.5 text-[0.875rem] hover:cursor-pointer focus:outline-1 focus:outline-offset-2"
+                    id="receiveBtn"
                   >
                     <img
-                      src="img/icon-search.svg"
+                      src="img/flags/us.webp"
+                      width="100"
+                      height="100"
+                      class="h-5 w-5 rounded-[50%]"
                       alt=""
-                      width="14"
-                      height="20"
-                    />
-                    <label
-                      class="absolute -top-100000 -left-100000"
-                      for="searchFilterReceive"
-                      >Search Receiving Currency</label
-                    >
-                    <input
-                      type="search"
-                      id="searchFilterReceive"
-                      name="searchFilter"
-                      placeholder="Search currencies"
-                      class="placeholder:text-TEXT-MUTED w-full placeholder:text-[0.75rem] placeholder:tracking-[0.5px] focus:outline-none"
-                    />
-                  </div>
-                  <div class="flex flex-col gap-1">
+                    />USD <span data-dropDown="true">▾</span>
+                  </button>
+
+                  <div
+                    class="bg-SURFACE border-BORDER absolute top-15 right-0 z-20 hidden max-h-114.5 w-[calc(100vw-100px)] scrollbar-none flex-col gap-2.5 overflow-y-auto rounded-lg border p-2 lg:w-94"
+                    id="receivePicker"
+                  >
                     <div
-                      class="border-b-SURFACE-ELEVATED flex items-center gap-2.5 border-b p-2"
+                      class="border-TEXT-MUTED bg-SURFACE sticky top-0 z-10 flex w-full items-center gap-2.5 rounded-md border p-3"
                     >
-                      <div
-                        class="text-TEXT-MUTED w-full text-[0.75rem] tracking-[0.5px]"
+                      <img
+                        src="img/icon-search.svg"
+                        alt=""
+                        width="14"
+                        height="20"
+                      />
+                      <label
+                        class="absolute -top-100000 -left-100000"
+                        for="searchFilterReceive"
+                        >Search Receiving Currency</label
                       >
-                        POPULAR
+                      <input
+                        type="search"
+                        id="searchFilterReceive"
+                        name="searchFilter"
+                        placeholder="Search currencies"
+                        class="placeholder:text-TEXT-MUTED w-full placeholder:text-[0.75rem] placeholder:tracking-[0.5px] focus:outline-none"
+                      />
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <div
+                        class="border-b-SURFACE-ELEVATED flex items-center gap-2.5 border-b p-2"
+                      >
+                        <div
+                          class="text-TEXT-MUTED w-full text-[0.75rem] tracking-[0.5px]"
+                        >
+                          POPULAR
+                        </div>
+
+                        <div
+                          class="text-TEXT-MUTED text-left text-[0.75rem] tracking-[0.5px]"
+                        >
+                          3
+                        </div>
+                      </div>
+                      <div>
+                        <button
+                          class="picker-item"
+                          aria-label="select currency as recieving currency"
+                        >
+                          <img
+                            src="img/flags/us.webp"
+                            width="200"
+                            height="200"
+                            class="flag"
+                            alt=""
+                          />
+                          <div class="name-abbr">USD</div>
+                          <div class="name-full">US DOLLAR</div>
+                          <img
+                            src="img/icon-check.svg"
+                            alt=""
+                            width="12"
+                            height="12"
+                          />
+                        </button>
                       </div>
 
-                      <div
-                        class="text-TEXT-MUTED text-left text-[0.75rem] tracking-[0.5px]"
-                      >
-                        3
+                      <div>
+                        <button
+                          class="picker-item"
+                          aria-label="select currency as receiving currency"
+                        >
+                          <img
+                            src="img/flags/gb.webp"
+                            width="200"
+                            height="200"
+                            class="flag"
+                            alt=""
+                          />
+                          <div class="name-abbr">GBP</div>
+                          <div class="name-full">British Pound</div>
+                        </button>
+                      </div>
+
+                      <div>
+                        <button
+                          class="picker-item"
+                          aria-label="select currency as receiving currency"
+                        >
+                          <img
+                            src="img/flags/eu.webp"
+                            width="200"
+                            height="200"
+                            class="flag"
+                            alt=""
+                          />
+                          <div class="name-abbr">EUR</div>
+                          <div class="name-full">Euro</div>
+                        </button>
                       </div>
                     </div>
-                    <div>
-                      <button
-                        class="picker-item"
-                        aria-label="select currency as recieving currency"
-                      >
-                        <img
-                          src="img/flags/us.webp"
-                          width="200"
-                          height="200"
-                          class="flag"
-                          alt=""
-                        />
-                        <div class="name-abbr">USD</div>
-                        <div class="name-full">US DOLLAR</div>
-                        <img
-                          src="img/icon-check.svg"
-                          alt=""
-                          width="12"
-                          height="12"
-                        />
-                      </button>
-                    </div>
-
-                    <div>
-                      <button
-                        class="picker-item"
-                        aria-label="select currency as receiving currency"
-                      >
-                        <img
-                          src="img/flags/gb.webp"
-                          width="200"
-                          height="200"
-                          class="flag"
-                          alt=""
-                        />
-                        <div class="name-abbr">GBP</div>
-                        <div class="name-full">British Pound</div>
-                      </button>
+                    <div
+                      class="border-b-SURFACE-ELEVATED text-TEXT-MUTED flex items-center gap-2.5 border-b p-2 text-[0.75rem] tracking-[0.5px]"
+                    >
+                      <div class="w-full">OTHER CURRENCIES</div>
+                      <div>52</div>
                     </div>
 
                     <div>
@@ -592,254 +624,231 @@
                         <div class="name-abbr">EUR</div>
                         <div class="name-full">Euro</div>
                       </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as receiving currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as receiving currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as receiving currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as receiving currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as receiving currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as receiving currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as receiving currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as receiving currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as receiving currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as receiving currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as receiving currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as receiving currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as receiving currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as receiving currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as receiving currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
+                      <button
+                        class="picker-item"
+                        aria-label="select currency as receiving currency"
+                      >
+                        <img
+                          src="img/flags/eu.webp"
+                          width="200"
+                          height="200"
+                          class="flag"
+                          alt=""
+                        />
+                        <div class="name-abbr">EUR</div>
+                        <div class="name-full">Euro</div>
+                      </button>
                     </div>
-                  </div>
-                  <div
-                    class="border-b-SURFACE-ELEVATED text-TEXT-MUTED flex items-center gap-2.5 border-b p-2 text-[0.75rem] tracking-[0.5px]"
-                  >
-                    <div class="w-full">OTHER CURRENCIES</div>
-                    <div>52</div>
-                  </div>
-
-                  <div>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
-                    <button
-                      class="picker-item"
-                      aria-label="select currency as receiving currency"
-                    >
-                      <img
-                        src="img/flags/eu.webp"
-                        width="200"
-                        height="200"
-                        class="flag"
-                        alt=""
-                      />
-                      <div class="name-abbr">EUR</div>
-                      <div class="name-full">Euro</div>
-                    </button>
                   </div>
                 </div>
               </div>

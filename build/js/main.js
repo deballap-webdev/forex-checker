@@ -10,29 +10,35 @@ const initApp = () => {
   const mainNav = document.getElementById("mainNav");
   mainNav.addEventListener("click", displaySections);
   const logContainer = document.getElementById("logContainer");
-  const sendCurrencyBtn = document.getElementById("sendConv");
-  const receiveCurrencyBtn = document.getElementById("receiveConv");
+  const sendCurrencyBtn = document.getElementById("sendBtn");
+  const receiveCurrencyBtn = document.getElementById("receiveBtn");
   const mobileNav = document.getElementById("mobileNav");
   const intervalContainer = document.getElementById("intervalContainer");
+  const convArea = document.getElementById("convArea");
+  const sendWrapper = document.getElementById("sendWrapper");
+  const receiveWrapper = document.getElementById("receiveWrapper");
 
-  sendCurrencyBtn.addEventListener("click", (event) => {
-    dropDownDisplay(event, document.getElementById("send"));
+  sendWrapper.addEventListener("focusout", (event) => {
+    dropDownDisplay(
+      event,
+      document.getElementById("sendPicker"),
+      sendCurrencyBtn,
+    );
   });
 
-  sendCurrencyBtn.addEventListener("focusout", (event) => {
-    dropDownDisplay(event, document.getElementById("send"));
+  receiveWrapper.addEventListener("focusout", (event) => {
+    dropDownDisplay(
+      event,
+      document.getElementById("receivePicker"),
+      receiveCurrencyBtn,
+    );
   });
+
+  sendWrapper.addEventListener("click", handleConvAreaClick);
+  receiveWrapper.addEventListener("click", handleConvAreaClick);
 
   sendCurrencyBtn.addEventListener("keydown", (event) => {
     dropDownDisplay(event, document.getElementById("send"));
-  });
-
-  receiveCurrencyBtn.addEventListener("click", (event) => {
-    dropDownDisplay(event, document.getElementById("receive"));
-  });
-
-  receiveCurrencyBtn.addEventListener("focusout", (event) => {
-    dropDownDisplay(event, document.getElementById("receive"));
   });
 
   receiveCurrencyBtn.addEventListener("keydown", (event) => {
@@ -62,6 +68,33 @@ const intervalBtnDisplay = (event) => {
   const intervalBtn = event.target.closest("button");
   if (!intervalBtn) return;
   toggleIntervalBtn(intervalBtn, document.querySelectorAll(".interval-btn"));
+};
+
+const handleConvAreaClick = (event) => {
+  if (!event.target.closest("button")) return;
+  console.log("hi");
+  const sendCurrencyBtn = document.getElementById("sendBtn");
+  const receiveCurrencyBtn = document.getElementById("receiveBtn");
+  const key = event.target.closest("button").id;
+  const keyLookup = {
+    sendBtn: () => {
+      dropDownDisplay(
+        event,
+        document.getElementById("sendPicker"),
+        sendCurrencyBtn,
+      );
+    },
+    receiveBtn: () => {
+      dropDownDisplay(
+        event,
+        document.getElementById("receivePicker"),
+        receiveCurrencyBtn,
+      );
+    },
+  };
+  const action = keyLookup[key];
+  if (!action) return;
+  action();
 };
 
 document.addEventListener("DOMContentLoaded", initApp);

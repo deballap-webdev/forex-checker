@@ -28,7 +28,7 @@ export const applyDeleteHover = (deleteBtnArray, deleteBtn) => {
   }
 };
 
-export const dropDownDisplay = (event, elemToToggle) => {
+export const dropDownDisplay = (event, elemToToggle, btn) => {
   const key = event.type;
   const keyLookup = {
     click: () => {
@@ -47,7 +47,8 @@ export const dropDownDisplay = (event, elemToToggle) => {
     },
     focusout: () => {
       if (elemToToggle.contains(event.relatedTarget)) return;
-      setTimeout(hideDropDown, 300, elemToToggle, event.target);
+      setTimeout(hideDropDown, 300, elemToToggle, btn);
+      event.currentTarget.ariaExpanded = "false";
     },
   };
   const action = keyLookup[key];
@@ -55,11 +56,10 @@ export const dropDownDisplay = (event, elemToToggle) => {
   action();
 };
 
-const hideDropDown = (elem, target) => {
-  target.querySelector('[data-dropDown="true"]').classList.remove("rotate-180");
-  elem.classList.add("hidden");
-  elem.classList.remove("flex");
-  target.ariaExpanded = "false";
+const hideDropDown = (elemToToggle, btn) => {
+  btn.querySelector('[data-dropDown="true"]').classList.remove("rotate-180");
+  elemToToggle.classList.add("hidden");
+  elemToToggle.classList.remove("flex");
 };
 
 export const toggleIntervalBtn = (activeBtn, intervalBtns) => {
