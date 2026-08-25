@@ -296,14 +296,8 @@
   .w-5 {
     width: calc(var(--spacing) * 5);
   }
-  .w-10 {
-    width: calc(var(--spacing) * 10);
-  }
   .w-12 {
     width: calc(var(--spacing) * 12);
-  }
-  .w-30 {
-    width: calc(var(--spacing) * 30);
   }
   .w-40 {
     width: calc(var(--spacing) * 40);
@@ -316,6 +310,9 @@
   }
   .w-full {
     width: 100%;
+  }
+  .max-w-42 {
+    max-width: calc(var(--spacing) * 42);
   }
   .max-w-115 {
     max-width: calc(var(--spacing) * 115);
@@ -757,8 +754,14 @@
     }
   }
   @media (width >= 64rem) {
+    .lg\:w-67\.5 {
+      width: calc(var(--spacing) * 67.5);
+    }
     .lg\:w-94 {
       width: calc(var(--spacing) * 94);
+    }
+    .lg\:max-w-67\.5 {
+      max-width: calc(var(--spacing) * 67.5);
     }
     .lg\:flex-row {
       flex-direction: row;

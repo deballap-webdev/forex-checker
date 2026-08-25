@@ -21,15 +21,8 @@ const initApp = () => {
   const mobileNavBtn = document.getElementById("mobileNavBtn");
   const sendInput = document.getElementById("sendInput");
   const receiveInput = document.getElementById("receiveInput");
-  const sendMirror = createMirror(sendInput);
-  const receiveMirror = createMirror(receiveInput);
   mobileNav.addEventListener("click", handleMobileNav);
-  sendInput.addEventListener("input", (event) => {
-    resizeInput(event, sendMirror);
-  });
-  receiveInput.addEventListener("input", (event) => {
-    resizeInput(event, receiveMirror);
-  });
+
   sendWrapper.addEventListener("focusout", (event) => {
     dropDownDisplay(
       event,
@@ -69,12 +62,8 @@ const initApp = () => {
   logContainer.addEventListener("mouseout", addHoverEffect);
 };
 
-const resizeInput = (event, mirror) => {
-  mirror.textContent = event.target.value;
-  event.target.style.width = `${mirror.offsetWidth + 10}px`;
-};
-
 const displaySections = (event) => {
+  if (!event.target.closest("a")) return;
   const navSectionArray = document.querySelectorAll(".navSection");
   const navLinkArray = document.querySelectorAll(".nav-link");
   toggleNavSection(event, navSectionArray);
