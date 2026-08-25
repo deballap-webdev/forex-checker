@@ -4,7 +4,6 @@ import {
   dropDownDisplay,
   toggleIntervalBtn,
   underlineActiveNav,
-  createMirror,
 } from "./domFunctions.js";
 
 const initApp = () => {
@@ -21,8 +20,9 @@ const initApp = () => {
   const mobileNavBtn = document.getElementById("mobileNavBtn");
   const sendInput = document.getElementById("sendInput");
   const receiveInput = document.getElementById("receiveInput");
-  mobileNav.addEventListener("click", handleMobileNav);
+  const mobileNavWrapper = document.getElementById("mobileNavWrapper");
 
+  mobileNavWrapper.addEventListener("click", handleMobileNav);
   sendWrapper.addEventListener("focusout", (event) => {
     dropDownDisplay(
       event,
@@ -108,6 +108,17 @@ const handleConvAreaClick = (event) => {
   action();
 };
 
-const handleMobileNav = () => {};
+const handleMobileNav = (event) => {
+  if (!event.target.closest("button") && !event.target.closest("a")) return;
+  const key = event.target.closest("button") || event.target.closest("a");
+  if (key === event.target.closest("a")) {
+    const navSectionArray = document.querySelectorAll(".navSection");
+    const navLinkArray = document.querySelectorAll(".nav-link");
+    toggleNavSection(event, navSectionArray);
+  }
+  const mobileNav = document.getElementById("mobileNav");
+  const mobileNavBtn = document.getElementById("mobileNavBtn");
+  dropDownDisplay(event, mobileNav, mobileNavBtn);
+};
 
 document.addEventListener("DOMContentLoaded", initApp);

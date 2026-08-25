@@ -69,13 +69,3 @@ export const toggleIntervalBtn = (activeBtn, intervalBtns) => {
       : btn.classList.remove("active");
   });
 };
-
-export const createMirror = (input) => {
-  const mirror = document.createElement("span");
-  mirror.style.position = "absolute";
-  mirror.style.visibility = "hidden";
-  mirror.style.whiteSpace = "pre";
-  mirror.style.font = getComputedStyle(input).font;
-  document.body.appendChild(mirror);
-  return mirror;
-};

@@ -895,21 +895,37 @@
         </div>
       </section>
 
-      <div class="relative flex flex-col gap-4">
-        <button
-          class="bg-SURFACE-BASE flex items-center justify-between rounded-lg px-3 text-[1rem] md:hidden"
-          id="mobileNavBtn"
-        >
-          <div class="flex h-10 items-center justify-center gap-2">COMPARE</div>
-
-          <div class="rotate-90">></div>
-        </button>
-        <div>
-          <nav
-            aria-label="main"
-            class="border-SURFACE hidden gap-2 border-b md:flex"
-            id="mainNav"
+      <div class="flex flex-col gap-4">
+        <div class="relative flex flex-col md:hidden" id="mobileNavWrapper">
+          <button
+            class="bg-SURFACE-BASE flex items-center justify-between rounded-lg px-3 text-[1rem]"
+            id="mobileNavBtn"
           >
+            <div class="flex h-10 items-center justify-center gap-2">
+              COMPARE
+            </div>
+
+            <div data-dropDown="true">
+              <span class="inline-block rotate-90">></span>
+            </div>
+          </button>
+          <nav aria-label="mobile" id="mobileNav" class="mobileNav hidden">
+            <a href="#history" class="nav-link"> <div class="">HISTORY</div></a>
+            <a href="#compare" class="nav-link"
+              ><div class="sectionName">COMPARE</div></a
+            >
+            <a href="#favorites" class="nav-link"
+              ><div class="sectionName w-full">FAVORITES</div>
+              <div class="number">10</div></a
+            >
+            <a href="#log" class="nav-link"
+              ><div class="sectionName w-full">LOG</div>
+              <div class="number">8</div></a
+            >
+          </nav>
+        </div>
+        <div>
+          <nav aria-label="main" class="mainNav" id="mainNav">
             <a href="#history" class="nav-link active">HISTORY</a>
             <a href="#compare" class="nav-link">COMPARE</a>
             <a href="#favorites" class="nav-link"
@@ -919,43 +935,6 @@
             <a href="#log" class="nav-link"
               >LOG
               <div class="number">8</div></a
-            >
-          </nav>
-
-          <nav
-            aria-label="mobile"
-            id="mobileNav"
-            class="bg-SURFACE-BASE border-SURFACE absolute top-12 z-20 hidden w-full flex-col rounded-[10px] border p-2"
-          >
-            <a
-              href="#history"
-              class="flex h-10 w-full items-center rounded-[10px] px-2 py-2.5 text-[1rem] tracking-[1px]"
-              >HISTORY</a
-            >
-            <a
-              href="#compare"
-              class="flex h-10 w-full items-center rounded-[10px] px-2 py-2.5 text-[1rem] tracking-[1px]"
-              >COMPARE</a
-            >
-            <a
-              href="#favorites"
-              class="flex h-10 w-full items-center rounded-[10px] px-2 py-2.5"
-              ><div class="w-full text-[1rem] tracking-[1px]">FAVORITES</div>
-              <div
-                class="text-PRIMARY bg-PRIMARY-SUBTLE flex h-5 w-5 items-center justify-center rounded-[50%] text-[10px]"
-              >
-                10
-              </div></a
-            >
-            <a
-              href="#log"
-              class="flex h-10 w-full items-center rounded-[10px] px-2 py-2.5 text-[1rem] tracking-[1px]"
-              ><div class="w-full text-[1rem] tracking-[1px]">LOG</div>
-              <div
-                class="text-PRIMARY bg-PRIMARY-SUBTLE flex h-5 w-5 items-center justify-center rounded-[50%] text-[10px]"
-              >
-                8
-              </div></a
             >
           </nav>
 
@@ -1575,7 +1554,7 @@
             Favorite Pairs
           </h2>
           <div class="flex justify-between">
-            <div class="text-[1rem] tracking-[1px]">PINNED PAIRS</div>
+            <div class="sectionName">PINNED PAIRS</div>
             <div class="text-[0.75rem] opacity-70">10 FAVORITES</div>
           </div>
           <div class="flex flex-col gap-3">

@@ -161,7 +161,8 @@
   }
 }
 
-nav {
+.mainNav {
+  @apply border-SURFACE hidden gap-2 border-b md:flex;
   .active {
     @apply border-b-PRIMARY border-b;
   }
@@ -170,6 +171,20 @@ nav {
     @apply focus:outline-PRIMARY flex h-10 items-center justify-center gap-2 p-4 text-[1rem] tracking-[1px] focus:rounded-lg focus:outline-2;
     .number {
       @apply bg-PRIMARY-SUBTLE text-PRIMARY flex h-5 w-5 items-center justify-center rounded-[50%] text-[0.625rem] leading-[100%];
+    }
+  }
+}
+
+.mobileNav {
+  @apply bg-SURFACE-BASE border-SURFACE absolute top-12 z-20 w-full flex-col rounded-[10px] border p-2;
+
+  .nav-link {
+    @apply hover:bg-SURFACE focus:outline-PRIMARY flex h-10 w-full items-center rounded-[10px] px-2 py-2.5 focus:outline-1;
+    .sectionName {
+      @apply text-[1rem] tracking-[1px];
+    }
+    .number {
+      @apply text-PRIMARY bg-PRIMARY-SUBTLE flex h-5 w-5 items-center justify-center rounded-[50%] text-[10px];
     }
   }
 }
