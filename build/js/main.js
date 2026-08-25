@@ -6,6 +6,7 @@ import {
   underlineActiveNav,
   favBtnDisplay,
   favConvBtnDisplay,
+  logConvBtnDisplay,
 } from "./domFunctions.js";
 
 const initApp = () => {
@@ -28,6 +29,25 @@ const initApp = () => {
   favConvBtn.addEventListener("click", favConvBtnDisplay);
   compareSection.addEventListener("click", favBtnDisplay);
   mobileNavWrapper.addEventListener("click", handleMobileNav);
+  mobileNavWrapper.addEventListener("focusout", (event) => {
+    dropDownDisplay(
+      event,
+      document.getElementById("mobileNav"),
+      document.getElementById("mobileNavBtn"),
+    );
+  });
+
+  mobileNavWrapper.addEventListener("keydown", (event) => {
+    dropDownDisplay(
+      event,
+      document.getElementById("mobileNav"),
+      document.getElementById("mobileNavBtn"),
+    );
+  });
+
+  const logConvBtn = document.getElementById("logConv", (event) => {});
+  logConvBtn.addEventListener("mousedown", logConvBtnDisplay);
+  logConvBtn.addEventListener("mouseup", logConvBtnDisplay);
 
   sendWrapper.addEventListener("focusout", (event) => {
     dropDownDisplay(

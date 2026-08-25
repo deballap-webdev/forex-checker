@@ -85,12 +85,26 @@ export const favConvBtnDisplay = (event) => {
   favConvBtn.classList.toggle("favorited");
   favConvBtn.classList.toggle("unfavorited");
   const favIcon = favConvBtn.querySelector("img");
-  console.log(favIcon);
   if (favConvBtn.classList.contains("favorited")) {
     favIcon.src = "img/star-solid-full.svg";
-    favConvBtn.textContent = "FAVOURITED";
+    favConvBtn.querySelector("#fav-label").textContent = "FAVOURITED";
   } else {
     favIcon.src = "img/icon-star.svg";
-    favConvBtn.textContent = "FAVOURITE";
+    favConvBtn.querySelector("#fav-label").textContent = "FAVOURITE";
+  }
+};
+
+export const logConvBtnDisplay = (event) => {
+  if (event.type === "mousedown") {
+    const img = document.createElement("img");
+    img.id = "check";
+    img.src = "img/checkmark.png";
+    img.width = "512";
+    img.height = "512";
+    img.classList.add("w-4", "h-4");
+    event.currentTarget.textContent = "LOGGED";
+    event.currentTarget.append(img);
+  } else {
+    event.currentTarget.textContent = "LOG CONVERSION";
   }
 };
