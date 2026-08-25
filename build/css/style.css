@@ -191,14 +191,14 @@
   .sticky {
     position: sticky;
   }
+  .-top-10000 {
+    top: calc(var(--spacing) * -10000);
+  }
   .-top-100000 {
     top: calc(var(--spacing) * -100000);
   }
   .top-0 {
     top: 0px;
-  }
-  .top-10 {
-    top: calc(var(--spacing) * 10);
   }
   .top-12 {
     top: calc(var(--spacing) * 12);
@@ -206,11 +206,11 @@
   .top-15 {
     top: calc(var(--spacing) * 15);
   }
-  .top-30 {
-    top: calc(var(--spacing) * 30);
-  }
   .right-0 {
     right: 0px;
+  }
+  .-left-10000 {
+    left: calc(var(--spacing) * -10000);
   }
   .-left-100000 {
     left: calc(var(--spacing) * -100000);
@@ -296,14 +296,20 @@
   .w-5 {
     width: calc(var(--spacing) * 5);
   }
+  .w-10 {
+    width: calc(var(--spacing) * 10);
+  }
   .w-12 {
     width: calc(var(--spacing) * 12);
   }
+  .w-30 {
+    width: calc(var(--spacing) * 30);
+  }
+  .w-40 {
+    width: calc(var(--spacing) * 40);
+  }
   .w-\[calc\(100\%-52px\)\] {
     width: calc(100% - 52px);
-  }
-  .w-\[calc\(100vw-60px\)\] {
-    width: calc(100vw - 60px);
   }
   .w-\[calc\(100vw-100px\)\] {
     width: calc(100vw - 100px);
@@ -751,9 +757,6 @@
     }
   }
   @media (width >= 64rem) {
-    .lg\:right-5 {
-      right: calc(var(--spacing) * 5);
-    }
     .lg\:w-94 {
       width: calc(var(--spacing) * 94);
     }

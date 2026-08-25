@@ -95,12 +95,15 @@
             >
               <div class="text-TEXT-SECONDARY text-[0.875rem]">SEND</div>
               <div class="flex w-full justify-between">
-                <div
-                  class="hover:decoration-TEXT-MUTED focus:outline-PRIMARY flex items-center rounded-lg pr-1 text-[2rem] font-bold hover:underline hover:decoration-1 focus:outline-2 lg:text-[2.5rem]"
-                  tabindex="1"
+                <label for="sendInput" class="absolute -top-10000 -left-10000"
+                  >Enter Sending Currency Amount</label
                 >
-                  1,000
-                </div>
+                <input
+                  class="hover:decoration-TEXT-MUTED focus:outline-PRIMARY flex w-40 items-center rounded-lg pr-1 text-[2rem] font-bold hover:underline hover:decoration-1 focus:outline-2 lg:text-[2.5rem]"
+                  value="1,000"
+                  id="sendInput"
+                  name="sendInput"
+                />
                 <div class="relative" id="sendWrapper">
                   <button
                     class="bg-SURFACE-ELEVATED border-BORDER hover:bg-BORDER focus:outline-PRIMARY flex items-center gap-2 rounded-lg border p-2.5 text-[0.875rem] hover:cursor-pointer focus:outline-1 focus:outline-offset-2"
@@ -483,12 +486,18 @@
             >
               <div class="text-TEXT-SECONDARY text-[0.875rem]">RECIEVE</div>
               <div class="flex w-full justify-between">
-                <div
-                  class="hover:decoration-TEXT-MUTED text-PRIMARY focus:outline-PRIMARY flex items-center rounded-lg pr-1 text-[2rem] font-bold hover:underline hover:decoration-1 focus:outline-2 lg:text-[2.5rem]"
-                  tabindex="1"
+                <label
+                  for="receiveInput"
+                  class="absolute -top-10000 -left-10000"
+                  >Enter Receiving Currency Amount</label
                 >
-                  853.07
-                </div>
+                <input
+                  class="hover:decoration-TEXT-MUTED text-PRIMARY focus:outline-PRIMARY flex w-40 items-center rounded-lg pr-1 text-[2rem] font-bold hover:underline hover:decoration-1 focus:outline-2 lg:text-[2.5rem]"
+                  value="853.07"
+                  id="receiveInput"
+                  name="receiveInput"
+                />
+
                 <div class="relative" id="receiveWrapper">
                   <button
                     class="bg-SURFACE-ELEVATED border-BORDER hover:bg-BORDER focus:outline-PRIMARY flex items-center gap-2 rounded-lg border p-2.5 text-[0.875rem] hover:cursor-pointer focus:outline-1 focus:outline-offset-2"
@@ -889,6 +898,7 @@
       <div class="relative flex flex-col gap-4">
         <button
           class="bg-SURFACE-BASE flex items-center justify-between rounded-lg px-3 text-[1rem] md:hidden"
+          id="mobileNavBtn"
         >
           <div class="flex h-10 items-center justify-center gap-2">COMPARE</div>
 

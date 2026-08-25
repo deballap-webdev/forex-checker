@@ -42,8 +42,8 @@ export const dropDownDisplay = (event, elemToToggle, btn) => {
     },
     keydown: () => {
       if (event.key !== "Escape") return;
-      setTimeout(hideDropDown, 300, elemToToggle);
-      event.currentTarget.querySelector(".toggle").focus();
+      setTimeout(hideDropDown, 300, elemToToggle, btn);
+      btn.focus();
     },
     focusout: () => {
       if (elemToToggle.contains(event.relatedTarget)) return;
@@ -68,4 +68,14 @@ export const toggleIntervalBtn = (activeBtn, intervalBtns) => {
       ? btn.classList.add("active")
       : btn.classList.remove("active");
   });
+};
+
+export const createMirror = (input) => {
+  const mirror = document.createElement("span");
+  mirror.style.position = "absolute";
+  mirror.style.visibility = "hidden";
+  mirror.style.whiteSpace = "pre";
+  mirror.style.font = getComputedStyle(input).font;
+  document.body.appendChild(mirror);
+  return mirror;
 };

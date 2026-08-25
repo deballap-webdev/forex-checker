@@ -4,6 +4,7 @@ import {
   dropDownDisplay,
   toggleIntervalBtn,
   underlineActiveNav,
+  createMirror,
 } from "./domFunctions.js";
 
 const initApp = () => {
@@ -17,7 +18,18 @@ const initApp = () => {
   const convArea = document.getElementById("convArea");
   const sendWrapper = document.getElementById("sendWrapper");
   const receiveWrapper = document.getElementById("receiveWrapper");
-
+  const mobileNavBtn = document.getElementById("mobileNavBtn");
+  const sendInput = document.getElementById("sendInput");
+  const receiveInput = document.getElementById("receiveInput");
+  const sendMirror = createMirror(sendInput);
+  const receiveMirror = createMirror(receiveInput);
+  mobileNav.addEventListener("click", handleMobileNav);
+  sendInput.addEventListener("input", (event) => {
+    resizeInput(event, sendMirror);
+  });
+  receiveInput.addEventListener("input", (event) => {
+    resizeInput(event, receiveMirror);
+  });
   sendWrapper.addEventListener("focusout", (event) => {
     dropDownDisplay(
       event,
@@ -34,21 +46,32 @@ const initApp = () => {
     );
   });
 
+  receiveWrapper.addEventListener("keydown", (event) => {
+    dropDownDisplay(
+      event,
+      document.getElementById("receivePicker"),
+      receiveCurrencyBtn,
+    );
+  });
+
+  sendWrapper.addEventListener("keydown", (event) => {
+    dropDownDisplay(
+      event,
+      document.getElementById("receivePicker"),
+      receiveCurrencyBtn,
+    );
+  });
+
   sendWrapper.addEventListener("click", handleConvAreaClick);
   receiveWrapper.addEventListener("click", handleConvAreaClick);
-
-  sendCurrencyBtn.addEventListener("keydown", (event) => {
-    dropDownDisplay(event, document.getElementById("send"));
-  });
-
-  receiveCurrencyBtn.addEventListener("keydown", (event) => {
-    dropDownDisplay(event, document.getElementById("receive"));
-  });
-
   intervalContainer.addEventListener("click", intervalBtnDisplay);
-
   logContainer.addEventListener("mouseover", addHoverEffect);
   logContainer.addEventListener("mouseout", addHoverEffect);
+};
+
+const resizeInput = (event, mirror) => {
+  mirror.textContent = event.target.value;
+  event.target.style.width = `${mirror.offsetWidth + 10}px`;
 };
 
 const displaySections = (event) => {
@@ -72,7 +95,6 @@ const intervalBtnDisplay = (event) => {
 
 const handleConvAreaClick = (event) => {
   if (!event.target.closest("button")) return;
-  console.log("hi");
   const sendCurrencyBtn = document.getElementById("sendBtn");
   const receiveCurrencyBtn = document.getElementById("receiveBtn");
   const key = event.target.closest("button").id;
@@ -96,5 +118,7 @@ const handleConvAreaClick = (event) => {
   if (!action) return;
   action();
 };
+
+const handleMobileNav = () => {};
 
 document.addEventListener("DOMContentLoaded", initApp);
