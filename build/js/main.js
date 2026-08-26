@@ -9,9 +9,10 @@ import {
   logConvBtnDisplay,
 } from "./domFunctions.js";
 
-import AppState from "./appState.js";
+import { AppState, ExchangeData, FavPair, LoggedConv } from "./State.js";
 
 const appState = new AppState();
+const exchangeData = new ExchangeData();
 
 const initApp = () => {
   const mainNav = document.getElementById("mainNav");
@@ -98,6 +99,10 @@ const displaySections = (event) => {
   const navLinkArray = document.querySelectorAll(".nav-link");
   toggleNavSection(event, navSectionArray);
   underlineActiveNav(event, navLinkArray);
+  const appStateObj = {
+    activeSection: event.target.closest("a").hash.slice(1).toUpperCase(),
+  };
+  appState.setAppState(appStateObj);
 };
 
 const addHoverEffect = (event) => {
@@ -147,11 +152,18 @@ const handleMobileNav = (event) => {
   if (key === event.target.closest("a")) {
     const navSectionArray = document.querySelectorAll(".navSection");
     const navLinkArray = document.querySelectorAll(".nav-link");
+    const appStateObj = {
+      activeSection: event.target.closest("a").hash.slice(1).toUpperCase(),
+    };
+    appState.setAppState(appStateObj);
     document.getElementById("activeSection").textContent =
-      key.querySelector(".sectionName").textContent;
-    document.getElementById("numBox").textContent = key.querySelector(".number")
-      ? key.querySelector(".number").textContent
-      : "";
+      appState.getActiveSection();
+    document.getElementById("numBox").textContent =
+      appState.getActiveSection() === "FAVORITES"
+        ? exchangeData.getFavorite().length
+        : appState.getActiveSection() === "LOG"
+          ? exchangeData.getLog().length
+          : "";
 
     if (!document.getElementById("numBox").textContent.length) {
       document.getElementById("numBox").classList.add("hidden");
@@ -164,7 +176,5 @@ const handleMobileNav = (event) => {
   }
   dropDownDisplay(event, mobileNav, mobileNavBtn);
 };
-
-fetchCurrencyData();
 
 document.addEventListener("DOMContentLoaded", initApp);

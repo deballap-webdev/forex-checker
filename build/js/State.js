@@ -1,7 +1,7 @@
 export class ExchangeData {
   #currentBase;
   #currentQuote;
-  #favourite;
+  #favorite;
   #log;
   #interval;
   constructor() {
@@ -12,11 +12,11 @@ export class ExchangeData {
     this.#log = [];
   }
 
-  getCurerntBase() {
+  getCurrentBase() {
     return this.#currentBase;
   }
 
-  getCurerntQuote() {
+  getCurrentQuote() {
     return this.#currentQuote;
   }
 
@@ -32,17 +32,13 @@ export class ExchangeData {
     return this.#log;
   }
 
-  getInterval() {
-    return this.#interval;
-  }
-
   clearLog() {
     const log = this.#log;
     log.splice(0, log.length);
   }
 
   clearFavorite() {
-    const favorite = this.#favourite;
+    const favorite = this.#favorite;
     favorite.splice(0, favorite.length);
   }
 
@@ -77,7 +73,7 @@ export class ExchangeData {
 }
 
 const removeItemFromArray = (array, itemId) => {
-  for (let i = 1; i < array.length; i++) {
+  for (let i = 0; i < array.length; i++) {
     if (array[i].getId() === itemId) {
       array.splice(i, 1);
       break;

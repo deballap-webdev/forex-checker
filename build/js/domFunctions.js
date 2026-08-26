@@ -87,7 +87,7 @@ export const favConvBtnDisplay = (event) => {
   const favIcon = favConvBtn.querySelector("img");
   if (favConvBtn.classList.contains("favorited")) {
     favIcon.src = "img/star-solid-full.svg";
-    favConvBtn.querySelector("#fav-label").textContent = "FAVOURITED";
+    favConvBtn.querySelector("#fav-label").textContent = "FAVORITED";
   } else {
     favIcon.src = "img/icon-star.svg";
     favConvBtn.querySelector("#fav-label").textContent = "FAVOURITE";
@@ -102,9 +102,17 @@ export const logConvBtnDisplay = (event) => {
     img.width = "512";
     img.height = "512";
     img.classList.add("w-4", "h-4");
+    event.currentTarget.classList.add("bg-PRIMARY", "text-SURFACE", "w-31.75");
+    event.currentTarget.classList.remove("hover:bg-PRIMARY-SUBTLE");
     event.currentTarget.textContent = "LOGGED";
     event.currentTarget.append(img);
   } else {
-    event.currentTarget.textContent = "LOG CONVERSION";
+    setTimeout(() => {
+      event.target.closest("button").textContent = "LOG CONVERSION";
+      event.target
+        .closest("button")
+        .classList.remove("bg-PRIMARY", "text-SURFACE", "w-31.75");
+      event.target.closest("button").classList.add("hover:bg-PRIMARY-SUBTLE");
+    }, 500);
   }
 };
