@@ -13,6 +13,65 @@ import { AppState, ExchangeData, FavPair, LoggedConv } from "./State.js";
 
 const appState = new AppState();
 const exchangeData = new ExchangeData();
+const availableCurrencies = [
+  "USD",
+  "EUR",
+  "GBP",
+  "JPY",
+  "AUD",
+  "CAD",
+  "CHF",
+  "CNY",
+  "NZD",
+  "HKD",
+  "SGD",
+  "SEK",
+  "NOK",
+  "DKK",
+  "KRW",
+  "INR",
+  "BRL",
+  "ZAR",
+  "MXN",
+  "IDR",
+  "TRY",
+  "SAR",
+  "AED",
+  "THB",
+  "MYR",
+  "PHP",
+  "PLN",
+  "ILS",
+  "ARS",
+  "CLP",
+  "COP",
+  "EGP",
+  "NGN",
+  "PKR",
+  "VND",
+  "TWD",
+  "CZK",
+  "HUF",
+  "RON",
+  "BGN",
+  "ISK",
+  "HRK",
+  "UAH",
+  "KWD",
+  "QAR",
+  "OMR",
+  "BHD",
+  "KZT",
+  "MAD",
+  "PEN",
+  "UYU",
+  "CRC",
+  "JOD",
+  "LBP",
+  "RUB",
+];
+
+const popularCurrencies = ["USD", "EUR", "JPY", "GBP", "CNY"];
 
 const initApp = () => {
   const mainNav = document.getElementById("mainNav");
@@ -91,7 +150,11 @@ const initApp = () => {
   intervalContainer.addEventListener("click", intervalBtnDisplay);
   logContainer.addEventListener("mouseover", addHoverEffect);
   logContainer.addEventListener("mouseout", addHoverEffect);
+
+  loadThePage();
 };
+
+const loadThePage = () => {};
 
 const displaySections = (event) => {
   if (!event.target.closest("a")) return;
