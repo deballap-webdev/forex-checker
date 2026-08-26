@@ -299,26 +299,11 @@
   .w-12 {
     width: calc(var(--spacing) * 12);
   }
-  .w-30 {
-    width: calc(var(--spacing) * 30);
-  }
   .w-31 {
     width: calc(var(--spacing) * 31);
   }
   .w-31\.75 {
     width: calc(var(--spacing) * 31.75);
-  }
-  .w-32 {
-    width: calc(var(--spacing) * 32);
-  }
-  .w-35 {
-    width: calc(var(--spacing) * 35);
-  }
-  .w-40 {
-    width: calc(var(--spacing) * 40);
-  }
-  .w-60 {
-    width: calc(var(--spacing) * 60);
   }
   .w-\[calc\(100\%-52px\)\] {
     width: calc(100% - 52px);
@@ -483,9 +468,6 @@
   .bg-SURFACE-ELEVATED {
     background-color: var(--color-SURFACE-ELEVATED);
   }
-  .fill-BACKGROUND {
-    fill: var(--color-BACKGROUND);
-  }
   .p-2 {
     padding: calc(var(--spacing) * 2);
   }
@@ -528,8 +510,14 @@
   .py-10 {
     padding-block: calc(var(--spacing) * 10);
   }
+  .pt-2 {
+    padding-top: calc(var(--spacing) * 2);
+  }
   .pr-1 {
     padding-right: var(--spacing);
+  }
+  .pb-2 {
+    padding-bottom: calc(var(--spacing) * 2);
   }
   .text-center {
     text-align: center;
@@ -689,15 +677,6 @@
   .focus\:outline-none:focus {
     --tw-outline-style: none;
     outline-style: none;
-  }
-  .active\:w-31\.75:active {
-    width: calc(var(--spacing) * 31.75);
-  }
-  .active\:bg-PRIMARY:active {
-    background-color: var(--color-PRIMARY);
-  }
-  .active\:text-SURFACE:active {
-    color: var(--color-SURFACE);
   }
   @media (width >= 48rem) {
     .md\:flex {

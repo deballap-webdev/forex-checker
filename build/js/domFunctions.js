@@ -116,3 +116,35 @@ export const logConvBtnDisplay = (event) => {
     }, 500);
   }
 };
+
+export const updateMobileNavBtn = (navObj) => {
+  const { appState, exchangeData, navLink, navLinkArray, navSectionArray } =
+    navObj;
+  document.getElementById("activeSection").textContent =
+    appState.getActiveSection();
+  document.getElementById("numBox").textContent =
+    appState.getActiveSection() === "FAVORITES"
+      ? exchangeData.getFavorite().length
+      : appState.getActiveSection() === "LOG"
+        ? exchangeData.getLog().length
+        : "";
+
+  if (!document.getElementById("numBox").textContent.length) {
+    document.getElementById("numBox").classList.add("hidden");
+    document.getElementById("numBox").classList.remove("flex");
+  } else {
+    document.getElementById("numBox").classList.remove("hidden");
+    document.getElementById("numBox").classList.add("flex");
+  }
+};
+
+export const buildPicker = (availableCurrencies, otherCurrencies) => {
+  const recievePicker = document.getElementById("receivePicker");
+  const sendPicker = document.getElementById("sendPicker");
+};
+
+const clearElem = (elem) => {
+  while (elem.lastElementChild) {
+    elem.remove(lastElementChild);
+  }
+};

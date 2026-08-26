@@ -7,71 +7,20 @@ import {
   favBtnDisplay,
   favConvBtnDisplay,
   logConvBtnDisplay,
+  updateMobileNavBtn,
+  buildPicker,
 } from "./domFunctions.js";
 
 import { AppState, ExchangeData, FavPair, LoggedConv } from "./State.js";
 
+import {
+  getRatesData,
+  popularCurrencies,
+  otherCurrencies,
+} from "./dataFunctions.js";
+
 const appState = new AppState();
 const exchangeData = new ExchangeData();
-const availableCurrencies = [
-  "USD",
-  "EUR",
-  "GBP",
-  "JPY",
-  "AUD",
-  "CAD",
-  "CHF",
-  "CNY",
-  "NZD",
-  "HKD",
-  "SGD",
-  "SEK",
-  "NOK",
-  "DKK",
-  "KRW",
-  "INR",
-  "BRL",
-  "ZAR",
-  "MXN",
-  "IDR",
-  "TRY",
-  "SAR",
-  "AED",
-  "THB",
-  "MYR",
-  "PHP",
-  "PLN",
-  "ILS",
-  "ARS",
-  "CLP",
-  "COP",
-  "EGP",
-  "NGN",
-  "PKR",
-  "VND",
-  "TWD",
-  "CZK",
-  "HUF",
-  "RON",
-  "BGN",
-  "ISK",
-  "HRK",
-  "UAH",
-  "KWD",
-  "QAR",
-  "OMR",
-  "BHD",
-  "KZT",
-  "MAD",
-  "PEN",
-  "UYU",
-  "CRC",
-  "JOD",
-  "LBP",
-  "RUB",
-];
-
-const popularCurrencies = ["USD", "EUR", "JPY", "GBP", "CNY"];
 
 const initApp = () => {
   const mainNav = document.getElementById("mainNav");
@@ -140,8 +89,8 @@ const initApp = () => {
   sendWrapper.addEventListener("keydown", (event) => {
     dropDownDisplay(
       event,
-      document.getElementById("receivePicker"),
-      receiveCurrencyBtn,
+      document.getElementById("sendPicker"),
+      sendCurrencyBtn,
     );
   });
 
@@ -154,7 +103,11 @@ const initApp = () => {
   loadThePage();
 };
 
-const loadThePage = () => {};
+const loadThePage = async () => {
+  const ratesData = await getRatesData(exchangeData.getCurrentBase());
+  console.log(ratesData);
+  buildPicker(popularCurrencies, otherCurrencies);
+};
 
 const displaySections = (event) => {
   if (!event.target.closest("a")) return;
@@ -212,6 +165,7 @@ const handleMobileNav = (event) => {
   const mobileNav = document.getElementById("mobileNav");
   const mobileNavBtn = document.getElementById("mobileNavBtn");
   const key = event.target.closest("button") || event.target.closest("a");
+
   if (key === event.target.closest("a")) {
     const navSectionArray = document.querySelectorAll(".navSection");
     const navLinkArray = document.querySelectorAll(".nav-link");
@@ -219,22 +173,16 @@ const handleMobileNav = (event) => {
       activeSection: event.target.closest("a").hash.slice(1).toUpperCase(),
     };
     appState.setAppState(appStateObj);
-    document.getElementById("activeSection").textContent =
-      appState.getActiveSection();
-    document.getElementById("numBox").textContent =
-      appState.getActiveSection() === "FAVORITES"
-        ? exchangeData.getFavorite().length
-        : appState.getActiveSection() === "LOG"
-          ? exchangeData.getLog().length
-          : "";
 
-    if (!document.getElementById("numBox").textContent.length) {
-      document.getElementById("numBox").classList.add("hidden");
-      document.getElementById("numBox").classList.remove("flex");
-    } else {
-      document.getElementById("numBox").classList.remove("hidden");
-      document.getElementById("numBox").classList.add("flex");
-    }
+    const navObj = {
+      navLink: event.target.closest("a"),
+      navLinkArray: document.querySelectorAll(".nav-link"),
+      navSectionArray: document.querySelectorAll(".navSection"),
+      appState: appState,
+      exchangeData: exchangeData,
+    };
+    updateMobileNavBtn(navObj);
+
     toggleNavSection(event, navSectionArray);
   }
   dropDownDisplay(event, mobileNav, mobileNavBtn);

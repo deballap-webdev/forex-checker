@@ -118,31 +118,34 @@
                     />EUR <span data-dropDown="true">▾</span>
                   </button>
                   <div
-                    class="bg-SURFACE border-BORDER absolute top-15 right-0 z-20 hidden max-h-114.5 w-[calc(100vw-100px)] scrollbar-none flex-col gap-2.5 overflow-y-auto rounded-lg border p-2 lg:w-94"
+                    class="bg-SURFACE border-BORDER absolute top-15 right-0 z-20 hidden max-h-114.5 w-[calc(100vw-100px)] scrollbar-none flex-col gap-2.5 overflow-y-auto rounded-lg border px-2 pb-2 lg:w-94"
                     id="sendPicker"
                   >
-                    <div
-                      class="border-TEXT-MUTED bg-SURFACE focus-within:border-PRIMARY hover:bg-SURFACE-ELEVATED sticky top-0 z-10 flex w-full items-center gap-2.5 rounded-md border p-3 focus-within:border focus-within:outline-0"
-                    >
-                      <img
-                        src="img/icon-search.svg"
-                        alt=""
-                        width="14"
-                        height="20"
-                      />
-                      <label
-                        class="absolute -top-100000 -left-100000"
-                        for="searchFIlterSend"
-                        >Search Sending Currency</label
+                    <div class="bg-SURFACE sticky top-0 z-10 pt-2">
+                      <div
+                        class="border-TEXT-MUTED bg-SURFACE focus-within:border-PRIMARY hover:bg-SURFACE-ELEVATED flex w-full items-center gap-2.5 rounded-md border p-3 focus-within:border focus-within:outline-0"
                       >
-                      <input
-                        type="search"
-                        id="searchFilterSend"
-                        name="searchFilter"
-                        placeholder="Search currencies"
-                        class="placeholder:text-TEXT-MUTED w-full placeholder:text-[0.75rem] placeholder:tracking-[0.5px] focus:outline-none"
-                      />
+                        <img
+                          src="img/icon-search.svg"
+                          alt=""
+                          width="14"
+                          height="20"
+                        />
+                        <label
+                          class="absolute -top-100000 -left-100000"
+                          for="searchFIlterSend"
+                          >Search Sending Currency</label
+                        >
+                        <input
+                          type="search"
+                          id="searchFilterSend"
+                          name="searchFilter"
+                          placeholder="Search currencies"
+                          class="placeholder:text-TEXT-MUTED w-full placeholder:text-[0.75rem] placeholder:tracking-[0.5px] focus:outline-none"
+                        />
+                      </div>
                     </div>
+
                     <div class="flex flex-col gap-1">
                       <div
                         class="border-b-SURFACE-ELEVATED flex items-center gap-2.5 border-b p-2"
