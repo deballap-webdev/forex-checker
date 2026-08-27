@@ -105,7 +105,6 @@ const initApp = () => {
 
 const loadThePage = async () => {
   const ratesData = await getRatesData(exchangeData.getCurrentBase());
-  console.log(ratesData);
   buildPicker(popularCurrencies, otherCurrencies);
 };
 

@@ -634,6 +634,13 @@
     outline-style: var(--tw-outline-style);
     outline-width: 0px;
   }
+  .focus-within\:outline-1:focus-within {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
+  .focus-within\:outline-PRIMARY:focus-within {
+    outline-color: var(--color-PRIMARY);
+  }
   @media (hover: hover) {
     .hover\:cursor-pointer:hover {
       cursor: pointer;

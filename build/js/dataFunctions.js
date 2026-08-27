@@ -3,16 +3,17 @@ export const getRatesData = async (base) => {
   availableCurrencies.forEach((currency) => {
     codeArray.push(currency.code);
   });
+
   const availableCurrenciesCodeString = codeArray.join(",");
-  try {
+  /*  try {
     const currencyStream = await fetch(
-      `https://api.frankfurter.dev/v2/rates?base=${base}&$quotes=${availableCurrenciesCodeString}`,
+      `https://api.frankfurter.dev/v2/rates?base=${base}&quotes=${availableCurrenciesCodeString}`,
     );
     const currencyJson = await currencyStream.json();
     return currencyJson;
   } catch (err) {
     console.log(err.stack);
-  }
+  } */
 };
 
 const availableCurrencies = [

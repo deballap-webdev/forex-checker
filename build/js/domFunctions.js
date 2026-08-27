@@ -138,13 +138,76 @@ export const updateMobileNavBtn = (navObj) => {
   }
 };
 
-export const buildPicker = (availableCurrencies, otherCurrencies) => {
+export const buildPicker = (popularCurrencies, otherCurrencies) => {
   const recievePicker = document.getElementById("receivePicker");
   const sendPicker = document.getElementById("sendPicker");
+  const popularNum = document.getElementById("popularNum");
+  const popular = document.getElementById("popular");
+  clearElem(popular);
+
+  popularCurrencies.forEach((currency) => {
+    console.log(currency);
+    const pickerItem = createPickerItem(currency, "base");
+    popular.append(pickerItem);
+  });
+
+  otherCurrencies.forEach((currency) => {});
+
+  popularNum.textContent = popularCurrencies.length;
 };
 
 const clearElem = (elem) => {
   while (elem.lastElementChild) {
-    elem.remove(lastElementChild);
+    elem.lastElementChild.remove();
   }
+};
+
+const createPickerItem = (currencyObj, type) => {
+  //const popularDivsArray = [];
+  const nameArray = currencyObj.name.split(" ");
+  nameArray.splice(nameArray.length - 1, 1);
+  const countryName = nameArray.length ? nameArray.join(" ") : "European";
+  const iconObj = {
+    src: `img/flags/${currencyObj.code.toLowerCase().slice(0, 2)}.webp`,
+    width: "200",
+    height: "200",
+    altText: `${countryName} flag`,
+    className: "flag",
+  };
+  const flag = buildIcon(iconObj);
+  const nameAbbr = createElem("div", ["name-abbr"], currencyObj.code);
+  const nameFull = createElem("div", ["name-full"], currencyObj.name);
+  const chilldrenArray = [flag, nameAbbr, nameFull];
+  const pickerButton = createCard("button", ["picker-item"], chilldrenArray);
+  pickerButton.ariaLabel = `select ${currencyObj.name} as ${type} currency`;
+  return pickerButton;
+};
+
+const createElem = (elemType, classArray, textContent, id) => {
+  const elem = document.createElement(elemType);
+  if (classArray)
+    classArray.forEach((className) => elem.classList.add(className));
+  if (textContent) elem.textContent = textContent;
+  if (id) elem.id = id;
+  return elem;
+};
+
+const createCard = (elemType, classArray, chilldrenArray) => {
+  const card = createElem(elemType, classArray);
+  classArray.forEach((className) => card.classList.add(className));
+  chilldrenArray.forEach((child) => {
+    card.append(child);
+  });
+  return card;
+};
+
+const buildIcon = (iconObj) => {
+  const { src, width, height, altText, className } = iconObj;
+  const icon = document.createElement("img");
+  icon.src = src;
+  icon.width = width;
+  icon.height = height;
+  icon.alt = altText;
+  if (className) icon.className = className;
+  return icon;
 };
