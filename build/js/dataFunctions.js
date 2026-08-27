@@ -87,3 +87,30 @@ export const otherCurrencies = availableCurrencies.filter((currency) => {
     .map((currency) => currency.code)
     .includes(currency.code);
 });
+
+export const filterCurrencies = (entryText) => {
+  const searchText = cleanText(entryText).toLowerCase();
+  const filteredCurrencies = availableCurrencies.filter(
+    (currency) =>
+      currency.code.toLowerCase().includes(searchText) ||
+      currency.name.toLowerCase().includes(searchText),
+  );
+  return {
+    popular: filteredCurrencies.filter((currency) => {
+      return popularCurrencies
+        .map((currency) => currency.code)
+        .includes(currency.code);
+    }),
+
+    other: filteredCurrencies.filter((currency) => {
+      return !popularCurrencies
+        .map((currency) => currency.code)
+        .includes(currency.code);
+    }),
+  };
+};
+
+const cleanText = (text) => {
+  const regex = / {2,}/g;
+  return text.replaceAll(regex, " ").trim();
+};

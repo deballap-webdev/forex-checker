@@ -9,6 +9,7 @@ import {
   logConvBtnDisplay,
   updateMobileNavBtn,
   buildPicker,
+  buildPickerItems,
 } from "./domFunctions.js";
 
 import { AppState, ExchangeData, FavPair, LoggedConv } from "./State.js";
@@ -17,6 +18,7 @@ import {
   getRatesData,
   popularCurrencies,
   otherCurrencies,
+  filterCurrencies,
 } from "./dataFunctions.js";
 
 const appState = new AppState();
@@ -70,6 +72,8 @@ const initApp = () => {
     );
   });
 
+  sendWrapper.addEventListener("input", handleFilter);
+
   receiveWrapper.addEventListener("focusout", (event) => {
     dropDownDisplay(
       event,
@@ -81,8 +85,8 @@ const initApp = () => {
   receiveWrapper.addEventListener("keydown", (event) => {
     dropDownDisplay(
       event,
-      document.getElementById("sendPicker"),
-      sendCurrencyBtn,
+      document.getElementById("receivePicker"),
+      receiveCurrencyBtn,
     );
   });
 
@@ -158,13 +162,27 @@ const handleConvAreaClick = (event) => {
   action();
 };
 
+const handleFilter = (event) => {
+  const text = event.target.value;
+  const filteredCurrencies = filterCurrencies(text);
+  const picker =
+    event.currentTarget.id === receiveWrapper
+      ? document.getElementById("sendPicker")
+      : document.getElementById("receivePicker");
+  console.log(filteredCurrencies.popular);
+  buildPickerItems(
+    picker,
+    filteredCurrencies.popular,
+    filteredCurrencies.other,
+  );
+};
+
 //This is very bad and temporary i'll actually store active section and number and other stuff in data storage rather than use dom as source of truth, and this should'nt  be in main.js anyways
 const handleMobileNav = (event) => {
   if (!event.target.closest("button") && !event.target.closest("a")) return;
   const mobileNav = document.getElementById("mobileNav");
   const mobileNavBtn = document.getElementById("mobileNavBtn");
   const key = event.target.closest("button") || event.target.closest("a");
-
   if (key === event.target.closest("a")) {
     const navSectionArray = document.querySelectorAll(".navSection");
     const navLinkArray = document.querySelectorAll(".nav-link");
@@ -172,7 +190,6 @@ const handleMobileNav = (event) => {
       activeSection: event.target.closest("a").hash.slice(1).toUpperCase(),
     };
     appState.setAppState(appStateObj);
-
     const navObj = {
       navLink: event.target.closest("a"),
       navLinkArray: document.querySelectorAll(".nav-link"),
@@ -181,7 +198,6 @@ const handleMobileNav = (event) => {
       exchangeData: exchangeData,
     };
     updateMobileNavBtn(navObj);
-
     toggleNavSection(event, navSectionArray);
   }
   dropDownDisplay(event, mobileNav, mobileNavBtn);

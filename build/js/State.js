@@ -88,14 +88,13 @@ export class FavPair {
   constructor() {
     this.#base = null;
     this.#quote = null;
-    this.#id = null;
+    this.id = `${this.#base} ${this.#quote}`;
   }
 
   setFavPair(favPairObj) {
     const { base, quote, id } = favPairObj;
     this.#base = base;
     this.#quote = quote;
-    this.#id = id;
   }
 
   getBase() {
@@ -104,10 +103,6 @@ export class FavPair {
 
   getQuote() {
     return this.#quote;
-  }
-
-  getId() {
-    return this.#id;
   }
 }
 

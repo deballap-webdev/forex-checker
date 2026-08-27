@@ -141,26 +141,35 @@ export const updateMobileNavBtn = (navObj) => {
 export const buildPicker = (popularCurrencies, otherCurrencies) => {
   const recievePicker = document.getElementById("receivePicker");
   const sendPicker = document.getElementById("sendPicker");
-  const popularNum = document.getElementById("popularNum");
-  const popular = document.getElementById("popular");
-  const otherNum = document.getElementById("otherNum");
-  const other = document.getElementById("other");
+  buildPickerItems(sendPicker, popularCurrencies, otherCurrencies, "base");
+  buildPickerItems(recievePicker, popularCurrencies, otherCurrencies, "quote");
+};
+
+export const buildPickerItems = (
+  elem,
+  popularCurrencies,
+  otherCurrencies,
+  type,
+) => {
+  const popularNum = elem.querySelector(".popularNum");
+  const popular = elem.querySelector(".popular");
+  const otherNum = elem.querySelector(".otherNum");
+  const other = elem.querySelector(".other");
   clearElem(popular);
   clearElem(other);
-  console.log(other);
 
   popularCurrencies.forEach((currency) => {
-    const pickerItem = createPickerItem(currency, "base");
+    const pickerItem = createPickerItem(currency, type);
     popular.append(pickerItem);
   });
 
   otherCurrencies.forEach((currency) => {
-    const pickerItem = createPickerItem(currency, "base");
+    const pickerItem = createPickerItem(currency, type);
     other.append(pickerItem);
   });
-
   popularNum.textContent = popularCurrencies.length;
   otherNum.textContent = otherCurrencies.length;
+  console.log(popularNum.textContent);
 };
 
 const clearElem = (elem) => {
