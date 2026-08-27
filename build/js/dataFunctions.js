@@ -44,7 +44,7 @@ const availableCurrencies = [
   { code: "MYR", name: "Malaysian Ringgit" },
   { code: "PHP", name: "Philippine Peso" },
   { code: "PLN", name: "Polish Zloty" },
-  { code: "ILS", name: "Israeli New Shekel" },
+  { code: "BDT", name: "Bangladeshi Taka" },
   { code: "ARS", name: "Argentine Peso" },
   { code: "CLP", name: "Chilean Peso" },
   { code: "COP", name: "Colombian Peso" },
@@ -64,11 +64,11 @@ const availableCurrencies = [
   { code: "QAR", name: "Qatari Riyal" },
   { code: "OMR", name: "Omani Rial" },
   { code: "BHD", name: "Bahraini Dinar" },
-  { code: "KZT", name: "Kazakhstani Tenge" },
+  { code: "NPR", name: "Nepalese Rupee" },
   { code: "MAD", name: "Moroccan Dirham" },
   { code: "PEN", name: "Peruvian Sol" },
-  { code: "UYU", name: "Uruguayan Peso" },
-  { code: "CRC", name: "Costa Rican Colón" },
+  { code: "HNL", name: "Honduran Lempira" },
+  { code: "HTG", name: "Haitian Gourde" },
   { code: "JOD", name: "Jordanian Dinar" },
   { code: "LBP", name: "Lebanese Pound" },
   { code: "RUB", name: "Russian Ruble" },
@@ -82,6 +82,8 @@ export const popularCurrencies = [
   { code: "CNY", name: "Chinese Yuan" },
 ];
 
-export const otherCurrencies = availableCurrencies.filter(
-  (currency) => popularCurrencies.indexOf(currency) === -1,
-);
+export const otherCurrencies = availableCurrencies.filter((currency) => {
+  return !popularCurrencies
+    .map((currency) => currency.code)
+    .includes(currency.code);
+});

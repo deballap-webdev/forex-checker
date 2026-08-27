@@ -21,7 +21,7 @@ import {
 
 const appState = new AppState();
 const exchangeData = new ExchangeData();
-
+const kill = "eiheieje";
 const initApp = () => {
   const mainNav = document.getElementById("mainNav");
   mainNav.addEventListener("click", displaySections);

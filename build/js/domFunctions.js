@@ -143,17 +143,24 @@ export const buildPicker = (popularCurrencies, otherCurrencies) => {
   const sendPicker = document.getElementById("sendPicker");
   const popularNum = document.getElementById("popularNum");
   const popular = document.getElementById("popular");
+  const otherNum = document.getElementById("otherNum");
+  const other = document.getElementById("other");
   clearElem(popular);
+  clearElem(other);
+  console.log(other);
 
   popularCurrencies.forEach((currency) => {
-    console.log(currency);
     const pickerItem = createPickerItem(currency, "base");
     popular.append(pickerItem);
   });
 
-  otherCurrencies.forEach((currency) => {});
+  otherCurrencies.forEach((currency) => {
+    const pickerItem = createPickerItem(currency, "base");
+    other.append(pickerItem);
+  });
 
   popularNum.textContent = popularCurrencies.length;
+  otherNum.textContent = otherCurrencies.length;
 };
 
 const clearElem = (elem) => {
