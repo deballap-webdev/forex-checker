@@ -5,8 +5,8 @@ export class ExchangeData {
   #log;
   #interval;
   constructor() {
-    this.#currentBase = "USD";
-    this.#currentQuote = "EUR";
+    this.#currentBase = { code: "USD", name: "United States Dollar" };
+    this.#currentQuote = { code: "EUR", name: "Euro" };
     this.#favorite = [];
     this.#interval = "1M";
     this.#log = [];

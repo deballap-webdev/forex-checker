@@ -33,7 +33,7 @@ export const dropDownDisplay = (event, elemToToggle, btn) => {
   const keyLookup = {
     click: () => {
       event.currentTarget
-        .querySelector('[data-dropDown="true"]')
+        .querySelector('[data-dropdown="true"]')
         .classList.toggle("rotate-180");
       elemToToggle.classList.toggle("hidden");
       elemToToggle.classList.toggle("flex");
@@ -57,7 +57,7 @@ export const dropDownDisplay = (event, elemToToggle, btn) => {
 };
 
 const hideDropDown = (elemToToggle, btn) => {
-  btn.querySelector('[data-dropDown="true"]').classList.remove("rotate-180");
+  btn.querySelector('[data-dropdown="true"]').classList.remove("rotate-180");
   elemToToggle.classList.add("hidden");
   elemToToggle.classList.remove("flex");
 };
@@ -169,26 +169,47 @@ export const buildPickerItems = (
   });
   popularNum.textContent = popularCurrencies.length;
   otherNum.textContent = otherCurrencies.length;
-  console.log(popularNum.textContent);
 };
 
 const clearElem = (elem) => {
-  while (elem.lastElementChild) {
-    elem.lastElementChild.remove();
+  while (elem.lastChild) {
+    elem.lastChild.remove();
   }
 };
 
+export const updatePickerBtn = (btnId, currentCurrency) => {
+  const nameArray = currentCurrency.name.split(" ");
+  nameArray.splice(nameArray.length - 1, 1);
+  const countryName = nameArray.length ? nameArray.join(" ") : "European";
+  const pickerBtn = document.getElementById(btnId);
+  clearElem(pickerBtn);
+  const iconObj = {
+    src: `img/flags/${currentCurrency.code.toLowerCase().slice(0, 2)}.webp`,
+    width: "100",
+    height: "100",
+    altText: `${countryName} flag`,
+    classArray: ["h-5", "w-5", "rounded-[50%]"],
+  };
+  const btnText = document.createTextNode(`${currentCurrency.code}`);
+  const span = createElem("span", [], "▾");
+  span.dataset.dropdown = "true";
+  const icon = buildIcon(iconObj);
+  const currentCurrencyArray = [icon, btnText, span];
+  currentCurrencyArray.forEach((item) => {
+    pickerBtn.append(item);
+  });
+};
+
 const createPickerItem = (currencyObj, type) => {
-  //const popularDivsArray = [];
   const nameArray = currencyObj.name.split(" ");
   nameArray.splice(nameArray.length - 1, 1);
   const countryName = nameArray.length ? nameArray.join(" ") : "European";
   const iconObj = {
     src: `img/flags/${currencyObj.code.toLowerCase().slice(0, 2)}.webp`,
-    width: "200",
-    height: "200",
+    width: "100",
+    height: "100",
     altText: `${countryName} flag`,
-    className: "flag",
+    classArray: ["flag"],
   };
   const flag = buildIcon(iconObj);
   const nameAbbr = createElem("div", ["name-abbr"], currencyObj.code);
@@ -218,12 +239,15 @@ const createCard = (elemType, classArray, chilldrenArray) => {
 };
 
 const buildIcon = (iconObj) => {
-  const { src, width, height, altText, className } = iconObj;
+  const { src, width, height, altText, classArray } = iconObj;
   const icon = document.createElement("img");
   icon.src = src;
   icon.width = width;
   icon.height = height;
   icon.alt = altText;
-  if (className) icon.className = className;
+  if (classArray)
+    classArray.forEach((className) => {
+      icon.classList.add(className);
+    });
   return icon;
 };

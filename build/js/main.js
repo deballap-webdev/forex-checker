@@ -10,6 +10,7 @@ import {
   updateMobileNavBtn,
   buildPicker,
   buildPickerItems,
+  updatePickerBtn,
 } from "./domFunctions.js";
 
 import { AppState, ExchangeData, FavPair, LoggedConv } from "./State.js";
@@ -73,7 +74,7 @@ const initApp = () => {
   });
 
   sendWrapper.addEventListener("input", handleFilter);
-
+  receiveWrapper.addEventListener("input", handleFilter);
   receiveWrapper.addEventListener("focusout", (event) => {
     dropDownDisplay(
       event,
@@ -108,8 +109,10 @@ const initApp = () => {
 };
 
 const loadThePage = async () => {
-  const ratesData = await getRatesData(exchangeData.getCurrentBase());
+  const ratesData = await getRatesData(exchangeData.getCurrentBase().code);
   buildPicker(popularCurrencies, otherCurrencies);
+  updatePickerBtn("sendBtn", exchangeData.getCurrentBase());
+  updatePickerBtn("receiveBtn", exchangeData.getCurrentQuote());
 };
 
 const displaySections = (event) => {
@@ -166,14 +169,16 @@ const handleFilter = (event) => {
   const text = event.target.value;
   const filteredCurrencies = filterCurrencies(text);
   const picker =
-    event.currentTarget.id === receiveWrapper
-      ? document.getElementById("sendPicker")
-      : document.getElementById("receivePicker");
-  console.log(filteredCurrencies.popular);
+    event.currentTarget.id === "receiveWrapper"
+      ? document.getElementById("receivePicker")
+      : document.getElementById("sendPicker");
+
+  const type = event.currentTarget.id === "receiveWrapper" ? "quote" : "base";
   buildPickerItems(
     picker,
     filteredCurrencies.popular,
     filteredCurrencies.other,
+    type,
   );
 };
 
