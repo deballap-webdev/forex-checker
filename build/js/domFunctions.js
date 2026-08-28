@@ -138,6 +138,12 @@ export const updateMobileNavBtn = (navObj) => {
   }
 };
 
+export const displayEmptyState = (heading, body) => {
+  const emptyState = document.getElementById("emptyState");
+  emptyState.querySelector("#header").textContent = heading;
+  emptyState.querySelector("#body").textContent = body;
+};
+
 export const updateInputDisplay = (input, value) => {
   input.value = value;
 };

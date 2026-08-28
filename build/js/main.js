@@ -132,7 +132,7 @@ const convertAndDisplay = (inputType, convInput, value) => {
   }).rate;
   const convertedValue = convertCurrency(rate, value, inputType);
   if (isNaN(convertedValue)) return;
-  updateInputDisplay(convInput, convertedValue.toFixed(4));
+  updateInputDisplay(convInput, parseFloat(convertedValue.toFixed(4)));
 };
 
 const updateCurrentCurrency = (event) => {
