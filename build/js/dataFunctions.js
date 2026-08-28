@@ -5,7 +5,7 @@ export const getRatesData = async (base) => {
   });
 
   const availableCurrenciesCodeString = codeArray.join(",");
-  /*  try {
+  try {
     const currencyStream = await fetch(
       `https://api.frankfurter.dev/v2/rates?base=${base}&quotes=${availableCurrenciesCodeString}`,
     );
@@ -13,8 +13,14 @@ export const getRatesData = async (base) => {
     return currencyJson;
   } catch (err) {
     console.log(err.stack);
-  } */
+  }
 };
+
+export const setRatesData = (ratesData) => {
+  sessionStorage.setItem("myRates", JSON.stringify(ratesData));
+};
+
+export const getCachedRates = () => sessionStorage.getItem("myRates");
 
 const availableCurrencies = [
   { code: "USD", name: "United States Dollar" },

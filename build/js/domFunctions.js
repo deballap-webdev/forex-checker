@@ -117,6 +117,10 @@ export const logConvBtnDisplay = (event) => {
   }
 };
 
+export const convert = (rate, value, inputType) => {
+  return inputType === "send" ? value * inputType : value / inputType;
+};
+
 export const updateMobileNavBtn = (navObj) => {
   const { appState, exchangeData, navLink, navLinkArray, navSectionArray } =
     navObj;
@@ -161,6 +165,10 @@ export const buildPicker = (
   };
   buildPickerItems(sendObj);
   buildPickerItems(receiveObj);
+};
+export const updateRateDisplay = (rateObj) => {
+  const rateDisplay = document.getElementById("rateDisplay");
+  rateDisplay.textContent = `${rateObj.base} = ${rateObj.rate} ${rateObj.quote}`;
 };
 
 export const buildPickerItems = (pickerObj) => {

@@ -11,6 +11,7 @@ import {
   buildPicker,
   buildPickerItems,
   updatePickerBtn,
+  updateRateDisplay,
 } from "./domFunctions.js";
 
 import { AppState, ExchangeData, FavPair, LoggedConv } from "./State.js";
@@ -20,11 +21,12 @@ import {
   popularCurrencies,
   otherCurrencies,
   filterCurrencies,
+  setRatesData,
+  getCachedRates,
 } from "./dataFunctions.js";
 
 const appState = new AppState();
 const exchangeData = new ExchangeData();
-const kill = "eiheieje";
 const initApp = () => {
   const mainNav = document.getElementById("mainNav");
   mainNav.addEventListener("click", displaySections);
@@ -126,19 +128,15 @@ const updateCurrentCurrency = (event) => {
     pickerItem.querySelector(".name-abbr").textContent,
   );
 
-  if (event.currentTarget.id === "sendWrapper") {
-    exchangeData.setExhangeData({
-      currentBase: filteredCurrencies.all[0],
-    });
+  event.currentTarget.id === "sendWrapper"
+    ? exchangeData.setExhangeData({
+        currentBase: filteredCurrencies.all[0],
+      })
+    : exchangeData.setExhangeData({
+        currentQuote: filteredCurrencies.all[0],
+      });
 
-    updatePickerBtn("sendBtn", exchangeData.getCurrentBase());
-  } else {
-    exchangeData.setExhangeData({
-      currentQuote: filteredCurrencies.all[0],
-    });
-    updatePickerBtn("receiveBtn", exchangeData.getCurrentQuote());
-  }
-  buildPicker(popularCurrencies, otherCurrencies, exchangeData);
+  loadThePage();
 };
 
 const swapCurrencies = (event) => {
@@ -146,16 +144,31 @@ const swapCurrencies = (event) => {
     currentQuote: exchangeData.getCurrentBase(),
     currentBase: exchangeData.getCurrentQuote(),
   });
-  updatePickerBtn("receiveBtn", exchangeData.getCurrentQuote());
-  updatePickerBtn("sendBtn", exchangeData.getCurrentBase());
-  buildPicker(popularCurrencies, otherCurrencies, exchangeData);
+  loadThePage();
 };
 
 const loadThePage = async () => {
-  const ratesData = await getRatesData(exchangeData.getCurrentBase().code);
+  if (!(
+    getCachedRates() &&
+    typeof getCachedRates !== "string" &&
+    JSON.parse(getCachedRates())[0].base === exchangeData.getCurrentBase().code
+  )) {
+    const ratesData = await getRatesData(exchangeData.getCurrentBase().code);
+    setRatesData(ratesData);
+  } /* else if (
+  
+  ) {
+    const ratesData = await getRatesData(exchangeData.getCurrentBase().code);
+    setRatesData(ratesData);
+  } */
+  const ratesData = JSON.parse(getCachedRates());
   buildPicker(popularCurrencies, otherCurrencies, exchangeData);
   updatePickerBtn("sendBtn", exchangeData.getCurrentBase());
   updatePickerBtn("receiveBtn", exchangeData.getCurrentQuote());
+  const ratesObj = ratesData.find((data) => {
+    return data.quote === exchangeData.getCurrentQuote().code;
+  });
+  updateRateDisplay(ratesObj);
 };
 
 const displaySections = (event) => {
