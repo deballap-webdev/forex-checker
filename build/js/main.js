@@ -110,7 +110,7 @@ const initApp = () => {
 
 const loadThePage = async () => {
   const ratesData = await getRatesData(exchangeData.getCurrentBase().code);
-  buildPicker(popularCurrencies, otherCurrencies);
+  buildPicker(popularCurrencies, otherCurrencies, exchangeData);
   updatePickerBtn("sendBtn", exchangeData.getCurrentBase());
   updatePickerBtn("receiveBtn", exchangeData.getCurrentQuote());
 };

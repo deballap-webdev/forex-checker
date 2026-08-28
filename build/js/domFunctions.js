@@ -138,19 +138,34 @@ export const updateMobileNavBtn = (navObj) => {
   }
 };
 
-export const buildPicker = (popularCurrencies, otherCurrencies) => {
-  const recievePicker = document.getElementById("receivePicker");
-  const sendPicker = document.getElementById("sendPicker");
-  buildPickerItems(sendPicker, popularCurrencies, otherCurrencies, "base");
-  buildPickerItems(recievePicker, popularCurrencies, otherCurrencies, "quote");
-};
-
-export const buildPickerItems = (
-  elem,
+export const buildPicker = (
   popularCurrencies,
   otherCurrencies,
-  type,
+  exchangeData,
 ) => {
+  const recievePicker = document.getElementById("receivePicker");
+  const sendPicker = document.getElementById("sendPicker");
+  const sendObj = {
+    elem: sendPicker,
+    popularCurrencies: popularCurrencies,
+    otherCurrencies: otherCurrencies,
+    type: "base",
+    exchangeData: exchangeData,
+  };
+  const receiveObj = {
+    elem: recievePicker,
+    popularCurrencies: popularCurrencies,
+    otherCurrencies: otherCurrencies,
+    type: "quote",
+    exchangeData: exchangeData,
+  };
+  buildPickerItems(sendObj);
+  buildPickerItems(receiveObj);
+};
+
+export const buildPickerItems = (pickerObj) => {
+  const { elem, popularCurrencies, otherCurrencies, type, exchangeData } =
+    pickerObj;
   const popularNum = elem.querySelector(".popularNum");
   const popular = elem.querySelector(".popular");
   const otherNum = elem.querySelector(".otherNum");
@@ -159,12 +174,12 @@ export const buildPickerItems = (
   clearElem(other);
 
   popularCurrencies.forEach((currency) => {
-    const pickerItem = createPickerItem(currency, type);
+    const pickerItem = createPickerItem(currency, type, exchangeData);
     popular.append(pickerItem);
   });
 
   otherCurrencies.forEach((currency) => {
-    const pickerItem = createPickerItem(currency, type);
+    const pickerItem = createPickerItem(currency, type, exchangeData);
     other.append(pickerItem);
   });
   popularNum.textContent = popularCurrencies.length;
@@ -200,7 +215,7 @@ export const updatePickerBtn = (btnId, currentCurrency) => {
   });
 };
 
-const createPickerItem = (currencyObj, type) => {
+const createPickerItem = (currencyObj, type, exchangeData) => {
   const nameArray = currencyObj.name.split(" ");
   nameArray.splice(nameArray.length - 1, 1);
   const countryName = nameArray.length ? nameArray.join(" ") : "European";
@@ -211,11 +226,26 @@ const createPickerItem = (currencyObj, type) => {
     altText: `${countryName} flag`,
     classArray: ["flag"],
   };
+  const checkObj = {
+    src: `img/icon-check.svg`,
+    width: "12",
+    height: "12",
+    altText: "checkmark",
+  };
+  const checkmark = buildIcon(checkObj);
   const flag = buildIcon(iconObj);
   const nameAbbr = createElem("div", ["name-abbr"], currencyObj.code);
   const nameFull = createElem("div", ["name-full"], currencyObj.name);
   const chilldrenArray = [flag, nameAbbr, nameFull];
   const pickerButton = createCard("button", ["picker-item"], chilldrenArray);
+  const currentCurrency =
+    type.toLowerCase().trim() === "base"
+      ? exchangeData.getCurrentBase()
+      : exchangeData.getCurrentQuote();
+  currencyObj.code === currentCurrency.code
+    ? pickerButton.append(checkmark)
+    : pickerButton.remove(checkmark);
+
   pickerButton.ariaLabel = `select ${currencyObj.name} as ${type} currency`;
   return pickerButton;
 };
