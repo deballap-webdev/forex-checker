@@ -107,6 +107,8 @@ export const filterCurrencies = (entryText) => {
         .map((currency) => currency.code)
         .includes(currency.code);
     }),
+
+    all: filteredCurrencies,
   };
 };
 

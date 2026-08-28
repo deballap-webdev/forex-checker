@@ -42,6 +42,8 @@ const initApp = () => {
   const mobileNavWrapper = document.getElementById("mobileNavWrapper");
   const compareSection = document.getElementById("compare");
   const favConvBtn = document.getElementById("favConv");
+  const swapBtn = document.getElementById("swapBtn");
+  swapBtn.addEventListener("click", swapCurrencies);
   favConvBtn.addEventListener("click", favConvBtnDisplay);
   compareSection.addEventListener("click", favBtnDisplay);
   mobileNavWrapper.addEventListener("click", handleMobileNav);
@@ -99,13 +101,54 @@ const initApp = () => {
     );
   });
 
-  sendWrapper.addEventListener("click", handleConvAreaClick);
-  receiveWrapper.addEventListener("click", handleConvAreaClick);
+  sendWrapper.addEventListener("click", (event) => {
+    toggleDropDownDisplay(event);
+    updateCurrentCurrency(event);
+  });
+
+  receiveWrapper.addEventListener("click", (event) => {
+    toggleDropDownDisplay(event);
+    updateCurrentCurrency(event);
+  });
   intervalContainer.addEventListener("click", intervalBtnDisplay);
   logContainer.addEventListener("mouseover", addHoverEffect);
   logContainer.addEventListener("mouseout", addHoverEffect);
 
   loadThePage();
+};
+
+const updateCurrentCurrency = (event) => {
+  if (event.type !== "click") return;
+  const pickerItem = event.target.closest("button");
+  if (!pickerItem) return;
+  if (!pickerItem.classList.contains("picker-item")) return;
+  const filteredCurrencies = filterCurrencies(
+    pickerItem.querySelector(".name-abbr").textContent,
+  );
+
+  if (event.currentTarget.id === "sendWrapper") {
+    exchangeData.setExhangeData({
+      currentBase: filteredCurrencies.all[0],
+    });
+
+    updatePickerBtn("sendBtn", exchangeData.getCurrentBase());
+  } else {
+    exchangeData.setExhangeData({
+      currentQuote: filteredCurrencies.all[0],
+    });
+    updatePickerBtn("receiveBtn", exchangeData.getCurrentQuote());
+  }
+  buildPicker(popularCurrencies, otherCurrencies, exchangeData);
+};
+
+const swapCurrencies = (event) => {
+  exchangeData.setExhangeData({
+    currentQuote: exchangeData.getCurrentBase(),
+    currentBase: exchangeData.getCurrentQuote(),
+  });
+  updatePickerBtn("receiveBtn", exchangeData.getCurrentQuote());
+  updatePickerBtn("sendBtn", exchangeData.getCurrentBase());
+  buildPicker(popularCurrencies, otherCurrencies, exchangeData);
 };
 
 const loadThePage = async () => {
@@ -139,7 +182,7 @@ const intervalBtnDisplay = (event) => {
   toggleIntervalBtn(intervalBtn, document.querySelectorAll(".interval-btn"));
 };
 
-const handleConvAreaClick = (event) => {
+const toggleDropDownDisplay = (event) => {
   if (!event.target.closest("button")) return;
   const sendCurrencyBtn = document.getElementById("sendBtn");
   const receiveCurrencyBtn = document.getElementById("receiveBtn");
@@ -174,12 +217,14 @@ const handleFilter = (event) => {
       : document.getElementById("sendPicker");
 
   const type = event.currentTarget.id === "receiveWrapper" ? "quote" : "base";
-  buildPickerItems(
-    picker,
-    filteredCurrencies.popular,
-    filteredCurrencies.other,
-    type,
-  );
+  const pickerObj = {
+    elem: picker,
+    popularCurrencies: filteredCurrencies.popular,
+    otherCurrencies: filteredCurrencies.other,
+    type: type,
+    exchangeData: exchangeData,
+  };
+  buildPickerItems(pickerObj);
 };
 
 //This is very bad and temporary i'll actually store active section and number and other stuff in data storage rather than use dom as source of truth, and this should'nt  be in main.js anyways
