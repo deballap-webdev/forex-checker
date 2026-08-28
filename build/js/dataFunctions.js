@@ -88,6 +88,17 @@ export const popularCurrencies = [
   { code: "CNY", name: "Chinese Yuan" },
 ];
 
+export const convertCurrency = (rate, entryValue, inputType) => {
+  const value = santizeNum(entryValue);
+  if (!value) return;
+  return inputType === "send" ? value * rate : value / rate;
+};
+
+const santizeNum = (num) => {
+  const regex = /[ ,]/g;
+  const cleanNum = Number(num.replaceAll(regex, ""));
+  if (!isNaN(cleanNum)) return cleanNum;
+};
 export const otherCurrencies = availableCurrencies.filter((currency) => {
   return !popularCurrencies
     .map((currency) => currency.code)

@@ -12,6 +12,7 @@ import {
   buildPickerItems,
   updatePickerBtn,
   updateRateDisplay,
+  updateInputDisplay,
 } from "./domFunctions.js";
 
 import { AppState, ExchangeData, FavPair, LoggedConv } from "./State.js";
@@ -23,6 +24,7 @@ import {
   filterCurrencies,
   setRatesData,
   getCachedRates,
+  convertCurrency,
 } from "./dataFunctions.js";
 
 const appState = new AppState();
@@ -45,6 +47,12 @@ const initApp = () => {
   const compareSection = document.getElementById("compare");
   const favConvBtn = document.getElementById("favConv");
   const swapBtn = document.getElementById("swapBtn");
+  sendInput.addEventListener("input", (event) => {
+    convertAndDisplay("send", receiveInput, sendInput.value);
+  });
+  receiveInput.addEventListener("input", (event) => {
+    convertAndDisplay("receive", sendInput, receiveInput.value);
+  });
   swapBtn.addEventListener("click", swapCurrencies);
   favConvBtn.addEventListener("click", favConvBtnDisplay);
   compareSection.addEventListener("click", favBtnDisplay);
@@ -115,8 +123,16 @@ const initApp = () => {
   intervalContainer.addEventListener("click", intervalBtnDisplay);
   logContainer.addEventListener("mouseover", addHoverEffect);
   logContainer.addEventListener("mouseout", addHoverEffect);
-
   loadThePage();
+};
+
+const convertAndDisplay = (inputType, convInput, value) => {
+  const rate = JSON.parse(getCachedRates()).find((data) => {
+    return data.quote === exchangeData.getCurrentQuote().code;
+  }).rate;
+  const convertedValue = convertCurrency(rate, value, inputType);
+  if (isNaN(convertedValue)) return;
+  updateInputDisplay(convInput, convertedValue.toFixed(4));
 };
 
 const updateCurrentCurrency = (event) => {
@@ -128,13 +144,15 @@ const updateCurrentCurrency = (event) => {
     pickerItem.querySelector(".name-abbr").textContent,
   );
 
-  event.currentTarget.id === "sendWrapper"
-    ? exchangeData.setExhangeData({
-        currentBase: filteredCurrencies.all[0],
-      })
-    : exchangeData.setExhangeData({
-        currentQuote: filteredCurrencies.all[0],
-      });
+  if (event.currentTarget.id === "sendWrapper") {
+    exchangeData.setExhangeData({
+      currentBase: filteredCurrencies.all[0],
+    });
+  } else {
+    exchangeData.setExhangeData({
+      currentQuote: filteredCurrencies.all[0],
+    });
+  }
 
   loadThePage();
 };
@@ -155,12 +173,9 @@ const loadThePage = async () => {
   )) {
     const ratesData = await getRatesData(exchangeData.getCurrentBase().code);
     setRatesData(ratesData);
-  } /* else if (
-  
-  ) {
-    const ratesData = await getRatesData(exchangeData.getCurrentBase().code);
-    setRatesData(ratesData);
-  } */
+  }
+  const sendInput = document.getElementById("sendInput");
+  const receiveInput = document.getElementById("receiveInput");
   const ratesData = JSON.parse(getCachedRates());
   buildPicker(popularCurrencies, otherCurrencies, exchangeData);
   updatePickerBtn("sendBtn", exchangeData.getCurrentBase());
@@ -169,6 +184,8 @@ const loadThePage = async () => {
     return data.quote === exchangeData.getCurrentQuote().code;
   });
   updateRateDisplay(ratesObj);
+  convertAndDisplay("send", receiveInput, sendInput.value);
+  convertAndDisplay("receive", sendInput, receiveInput.value);
 };
 
 const displaySections = (event) => {

@@ -117,10 +117,6 @@ export const logConvBtnDisplay = (event) => {
   }
 };
 
-export const convert = (rate, value, inputType) => {
-  return inputType === "send" ? value * inputType : value / inputType;
-};
-
 export const updateMobileNavBtn = (navObj) => {
   const { appState, exchangeData, navLink, navLinkArray, navSectionArray } =
     navObj;
@@ -142,6 +138,9 @@ export const updateMobileNavBtn = (navObj) => {
   }
 };
 
+export const updateInputDisplay = (input, value) => {
+  input.value = value;
+};
 export const buildPicker = (
   popularCurrencies,
   otherCurrencies,
