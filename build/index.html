@@ -118,7 +118,7 @@
                     />EUR <span data-dropDown="true">▾</span> -->
                   </button>
                   <div
-                    class="bg-SURFACE border-BORDER absolute top-15 right-0 z-20 hidden max-h-114.5 w-[calc(100vw-100px)] scrollbar-none flex-col gap-2.5 overflow-y-auto rounded-lg border px-2 pb-2 lg:w-94"
+                    class="bg-SURFACE border-BORDER absolute top-15 right-0 z-20 hidden max-h-114.5 w-[calc(100vw-100px)] scrollbar-none flex-col gap-2.5 overflow-y-auto rounded-lg border px-2 pb-2 md:w-80 lg:w-94"
                     id="sendPicker"
                   >
                     <div class="bg-SURFACE sticky top-0 z-10 pt-2">
@@ -429,9 +429,232 @@
               <div class="number">8</div></a
             >
           </nav>
+        </div>
+        <section
+          class="bg-SURFACE-BASE border-SURFACE navSection hidden flex-col gap-4 rounded-2xl p-4 md:p-5"
+          aria-labelledby="compareCurrency"
+          id="compare"
+        >
+          <div
+            id="emptyState__compare"
+            class="bg-BACKGROUND hidden flex-col items-center justify-center gap-4 rounded-lg py-10"
+          >
+            <h2
+              class="text-TEXT-SECONDARY text-[1.25rem] tracking-[-0.5px]"
+              id="header"
+            >
+              No comparison avialable
+            </h2>
+            <p
+              class="text-TEXT-MUTED max-w-115 text-center text-[0.75rem] tracking-[1px]"
+              id="body"
+            >
+              Enter an amount in SEND above to see what your currency is worth
+              in other currencies
+            </p>
+          </div>
+          <div id="notEmpty__compare" class="flex-col gap-4">
+            <h2 class="absolute -top-100000 -left-100000" id="compareCurrency">
+              Additional Exchange Rates For
+              <span id="compare__base"></span> Currency
+            </h2>
+            <div
+              class="flex w-full flex-col gap-2.5 md:flex-row md:justify-between"
+            >
+              <div class="flex items-center gap-3">
+                <div class="text-TEXT-MUTED text-[0.875rem]">
+                  MULTI-CURRENCY
+                </div>
+                <div class="text-[1rem]" id="compare__amount"></div>
+              </div>
+              <div
+                class="text-TEXT-MUTED text-[0.75rem]"
+                id="compare__pairs"
+              ></div>
+            </div>
+            <div id="compareContainer" class="flex flex-col gap-4">
+              <div
+                class="compare-currency"
+                tabindex="1"
+                title="load currency into converter"
+                aria-label="load currency into converter as recieving currency"
+              >
+                <img
+                  src="img/flags/gb.webp"
+                  width="200"
+                  height="200"
+                  class="flag"
+                />
+                <div class="pair-container">
+                  <div class="name-abbr">GBP</div>
+                  <div class="name-full">British Pound</div>
+                </div>
+                <div class="exchange-container">
+                  <div class="value">736.65</div>
+                  <div class="exchange-rate">@ 0.7366</div>
+                </div>
 
-          <section
-            id="emptyState"
+                <button
+                  class="fav-btn active"
+                  title="favorites button"
+                  aria-label="add or remove item from favorites"
+                >
+                  <img
+                    src="img/icon-star-filled.svg"
+                    alt=""
+                    width="16"
+                    height="16"
+                    class="h-4 w-4"
+                  />
+                </button>
+              </div>
+
+              <div
+                class="compare-currency"
+                tabindex="1"
+                title="load currency into converter"
+                aria-label="load currency into converter as recieving currency"
+              >
+                <img
+                  src="img/flags/jp.webp"
+                  width="200"
+                  height="200"
+                  class="flag"
+                />
+                <div class="pair-container">
+                  <div class="name-abbr">JPY</div>
+                  <div class="name-full">Japanese Yen</div>
+                </div>
+                <div class="exchange-container">
+                  <div class="value">157,910</div>
+                  <div class="exchange-rate">@ 157.91</div>
+                </div>
+
+                <button class="fav-btn active">
+                  <img
+                    src="img/icon-star-filled.svg"
+                    alt=""
+                    width="16"
+                    height="16"
+                    class="h-4 w-4"
+                  />
+                </button>
+              </div>
+              <div
+                class="compare-currency"
+                tabindex="1"
+                title="load currency into converter"
+                aria-label="load currency into converter as recieving currency"
+              >
+                <img
+                  src="img/flags/jp.webp"
+                  width="200"
+                  height="200"
+                  class="flag"
+                />
+                <div class="pair-container">
+                  <div class="name-abbr">JPY</div>
+                  <div class="name-full">Japanese Yen</div>
+                </div>
+                <div class="exchange-container">
+                  <div class="value">157,910</div>
+                  <div class="exchange-rate">@ 157.91</div>
+                </div>
+
+                <button
+                  class="fav-btn"
+                  title="favorite button"
+                  aria-label="add or remove item from favorites"
+                >
+                  <img
+                    src="img/icon-star.svg"
+                    alt=""
+                    width="16"
+                    height="16"
+                    class="h-4 w-4"
+                  />
+                </button>
+              </div>
+              <div
+                class="compare-currency"
+                tabindex="1"
+                title="load currency into converter"
+                aria-label="load currency into converter as recieving currency"
+              >
+                <img
+                  src="img/flags/jp.webp"
+                  width="200"
+                  height="200"
+                  class="flag"
+                />
+                <div class="pair-container">
+                  <div class="name-abbr">JPY</div>
+                  <div class="name-full">Japanese Yen</div>
+                </div>
+                <div class="exchange-container">
+                  <div class="value">157,910</div>
+                  <div class="exchange-rate">@ 157.91</div>
+                </div>
+
+                <button
+                  class="fav-btn"
+                  title="favorite button"
+                  aria-label="add or remove item from favorites"
+                >
+                  <img
+                    src="img/icon-star.svg"
+                    alt=""
+                    width="16"
+                    height="16"
+                    class="h-4 w-4"
+                  />
+                </button>
+              </div>
+              <div
+                class="compare-currency"
+                tabindex="1"
+                title="load currency into converter"
+                aria-label="load currency into converter as recieving currency"
+              >
+                <img
+                  src="img/flags/jp.webp"
+                  width="200"
+                  height="200"
+                  class="flag"
+                />
+                <div class="pair-container">
+                  <div class="name-abbr">JPY</div>
+                  <div class="name-full">Japanese Yen</div>
+                </div>
+                <div class="exchange-container">
+                  <div class="value">157,910</div>
+                  <div class="exchange-rate">@ 157.91</div>
+                </div>
+
+                <button
+                  class="fav-btn active"
+                  title="favorites button"
+                  aria-label="add or remove item from favorites"
+                >
+                  <img
+                    src="img/icon-star-filled.svg"
+                    alt=""
+                    width="16"
+                    height="16"
+                    class="h-4 w-4"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="navSection flex flex-col gap-4 md:gap-5"
+          id="history"
+          aria-labelledby="historicalRates"
+        >
+          <div
+            id="emptyState__history"
             class="hidden flex-col items-center justify-center gap-4 py-10"
           >
             <h2
@@ -447,325 +670,134 @@
               Enter an amount in SEND above to see what your currency is worth
               in other currencies
             </p>
-          </section>
-        </div>
-        <section
-          class="bg-SURFACE-BASE border-SURFACE navSection hidden flex-col gap-4 rounded-2xl p-4 md:p-5"
-          aria-labelledby="compareCurrency"
-          id="compare"
-        >
-          <h2 class="absolute -top-100000 -left-100000" id="compareCurrency">
-            Additional Exchange Rates For
-            <span id="compare__base"></span> Currency
-          </h2>
-          <div
-            class="flex w-full flex-col gap-2.5 md:flex-row md:justify-between"
-          >
-            <div class="flex items-center gap-3">
-              <div class="text-TEXT-MUTED text-[0.875rem]">MULTI-CURRENCY</div>
-              <div class="text-[1rem]">1,000 FROM USD</div>
-            </div>
-            <div class="text-TEXT-MUTED text-[0.75rem]">8 PAIRS</div>
           </div>
-
-          <div
-            class="compare-currency"
-            tabindex="1"
-            title="load currency into converter"
-            aria-label="load currency into converter as recieving currency"
-          >
-            <img
-              src="img/flags/gb.webp"
-              width="200"
-              height="200"
-              class="flag"
-            />
-            <div class="pair-container">
-              <div class="name-abbr">GBP</div>
-              <div class="name-full">British Pound</div>
-            </div>
-            <div class="exchange-container">
-              <div class="value">736.65</div>
-              <div class="exchange-rate">@ 0.7366</div>
-            </div>
-
-            <button
-              class="fav-btn active"
-              title="favorites button"
-              aria-label="add or remove item from favorites"
+          <div id="notEmpty__history" class="flex flex-col gap-4">
+            <div
+              class="flex flex-col justify-center gap-5 md:gap-2.5 lg:flex-row lg:items-center"
             >
-              <img
-                src="img/icon-star-filled.svg"
-                alt=""
-                width="16"
-                height="16"
-                class="h-4 w-4"
-              />
-            </button>
-          </div>
-
-          <div
-            class="compare-currency"
-            tabindex="1"
-            title="load currency into converter"
-            aria-label="load currency into converter as recieving currency"
-          >
-            <img
-              src="img/flags/jp.webp"
-              width="200"
-              height="200"
-              class="flag"
-            />
-            <div class="pair-container">
-              <div class="name-abbr">JPY</div>
-              <div class="name-full">Japanese Yen</div>
-            </div>
-            <div class="exchange-container">
-              <div class="value">157,910</div>
-              <div class="exchange-rate">@ 157.91</div>
-            </div>
-
-            <button class="fav-btn active">
-              <img
-                src="img/icon-star-filled.svg"
-                alt=""
-                width="16"
-                height="16"
-                class="h-4 w-4"
-              />
-            </button>
-          </div>
-          <div
-            class="compare-currency"
-            tabindex="1"
-            title="load currency into converter"
-            aria-label="load currency into converter as recieving currency"
-          >
-            <img
-              src="img/flags/jp.webp"
-              width="200"
-              height="200"
-              class="flag"
-            />
-            <div class="pair-container">
-              <div class="name-abbr">JPY</div>
-              <div class="name-full">Japanese Yen</div>
-            </div>
-            <div class="exchange-container">
-              <div class="value">157,910</div>
-              <div class="exchange-rate">@ 157.91</div>
-            </div>
-
-            <button
-              class="fav-btn"
-              title="favorite button"
-              aria-label="add or remove item from favorites"
-            >
-              <img
-                src="img/icon-star.svg"
-                alt=""
-                width="16"
-                height="16"
-                class="h-4 w-4"
-              />
-            </button>
-          </div>
-          <div
-            class="compare-currency"
-            tabindex="1"
-            title="load currency into converter"
-            aria-label="load currency into converter as recieving currency"
-          >
-            <img
-              src="img/flags/jp.webp"
-              width="200"
-              height="200"
-              class="flag"
-            />
-            <div class="pair-container">
-              <div class="name-abbr">JPY</div>
-              <div class="name-full">Japanese Yen</div>
-            </div>
-            <div class="exchange-container">
-              <div class="value">157,910</div>
-              <div class="exchange-rate">@ 157.91</div>
-            </div>
-
-            <button
-              class="fav-btn"
-              title="favorite button"
-              aria-label="add or remove item from favorites"
-            >
-              <img
-                src="img/icon-star.svg"
-                alt=""
-                width="16"
-                height="16"
-                class="h-4 w-4"
-              />
-            </button>
-          </div>
-          <div
-            class="compare-currency"
-            tabindex="1"
-            title="load currency into converter"
-            aria-label="load currency into converter as recieving currency"
-          >
-            <img
-              src="img/flags/jp.webp"
-              width="200"
-              height="200"
-              class="flag"
-            />
-            <div class="pair-container">
-              <div class="name-abbr">JPY</div>
-              <div class="name-full">Japanese Yen</div>
-            </div>
-            <div class="exchange-container">
-              <div class="value">157,910</div>
-              <div class="exchange-rate">@ 157.91</div>
-            </div>
-
-            <button
-              class="fav-btn active"
-              title="favorites button"
-              aria-label="add or remove item from favorites"
-            >
-              <img
-                src="img/icon-star-filled.svg"
-                alt=""
-                width="16"
-                height="16"
-                class="h-4 w-4"
-              />
-            </button>
-          </div>
-        </section>
-        <section
-          class="navSection flex flex-col gap-4 md:gap-5"
-          id="history"
-          aria-labelledby="historicalRates"
-        >
-          <div
-            class="flex flex-col justify-center gap-5 md:gap-2.5 lg:flex-row lg:items-center"
-          >
-            <h2 class="absolute -top-100000 -left-100000" id="historicalRates">
-              Historical changes for Sending currency to Recieving Currency
-            </h2>
-            <div class="grid gap-2.5 md:flex md:w-full md:gap-4">
-              <div
-                class="bg-SURFACE-BASE border-SURFACE col-start-1 col-end-2 row-start-1 row-end-2 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
+              <h2
+                class="absolute -top-100000 -left-100000"
+                id="historicalRates"
               >
-                <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
-                  OPEN
-                </div>
-                <div class="w-fill text-[1.25rem] tracking-[-0.5px]">
-                  0.8516
-                </div>
-              </div>
-              <div
-                class="bg-SURFACE-BASE border-SURFACE col-start-2 col-end-3 row-start-1 row-end-2 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
-              >
-                <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
-                  LAST
-                </div>
-                <div class="w-fill text-[1.25rem] tracking-[-0.5px]">
-                  0.8530
-                </div>
-              </div>
-              <div
-                class="bg-SURFACE-BASE border-SURFACE col-start-1 col-end-2 row-start-2 row-end-3 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
-              >
-                <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
-                  CHANGE
+                Historical changes for Sending currency to Recieving Currency
+              </h2>
+              <div class="grid gap-2.5 md:flex md:w-full md:gap-4">
+                <div
+                  class="bg-SURFACE-BASE border-SURFACE col-start-1 col-end-2 row-start-1 row-end-2 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
+                >
+                  <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
+                    OPEN
+                  </div>
+                  <div class="w-fill text-[1.25rem] tracking-[-0.5px]">
+                    0.8516
+                  </div>
                 </div>
                 <div
-                  class="w-fill text-SUCCESS text-[1.25rem] tracking-[-0.5px]"
+                  class="bg-SURFACE-BASE border-SURFACE col-start-2 col-end-3 row-start-1 row-end-2 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
                 >
-                  +0.0014
-                </div>
-              </div>
-              <div
-                class="bg-SURFACE-BASE border-SURFACE col-start-2 col-end-3 row-start-2 row-end-3 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
-              >
-                <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
-                  % CHANGE
+                  <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
+                    LAST
+                  </div>
+                  <div class="w-fill text-[1.25rem] tracking-[-0.5px]">
+                    0.8530
+                  </div>
                 </div>
                 <div
-                  class="w-fill text-SUCCESS text-[1.25rem] tracking-[-0.5px]"
+                  class="bg-SURFACE-BASE border-SURFACE col-start-1 col-end-2 row-start-2 row-end-3 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
                 >
-                  ▲ +0.16%
+                  <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
+                    CHANGE
+                  </div>
+                  <div
+                    class="w-fill text-SUCCESS text-[1.25rem] tracking-[-0.5px]"
+                  >
+                    +0.0014
+                  </div>
+                </div>
+                <div
+                  class="bg-SURFACE-BASE border-SURFACE col-start-2 col-end-3 row-start-2 row-end-3 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
+                >
+                  <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
+                    % CHANGE
+                  </div>
+                  <div
+                    class="w-fill text-SUCCESS text-[1.25rem] tracking-[-0.5px]"
+                  >
+                    ▲ +0.16%
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="interval-container" id="intervalContainer">
-              <button
-                class="interval-btn"
-                aria-label="see charts for last one day"
-                title="one day interval"
-              >
-                1D
-              </button>
-              <button
-                class="interval-btn"
-                aria-label="see charts for last one week"
-                title="one week interval"
-              >
-                1W
-              </button>
-              <button
-                class="interval-btn active"
-                aria-label="see charts for last one month"
-                title="one month interval"
-              >
-                1M
-              </button>
-              <button
-                class="interval-btn"
-                aria-label="see charts for last three months"
-                title="three months interval"
-              >
-                3M
-              </button>
-              <button
-                class="interval-btn"
-                aria-label="see charts for last one year"
-                title="one year interval"
-              >
-                1Y
-              </button>
-              <button
-                class="interval-btn"
-                aria-label="see charts for last five years"
-                title="five years interval"
-              >
-                5Y
-              </button>
-            </div>
-          </div>
-
-          <div
-            class="bg-SURFACE-BASE border-SURFACE flex w-full flex-col gap-5 rounded-[18px] border px-3 py-4 md:p-5"
-          >
-            <div class="flex justify-between">
-              <div class="text-[1rem] font-medium tracking-[1px]">USD/EUR</div>
-              <div class="text-center tracking-[0.5px] opacity-70">
-                0.8530 • MAY 14 16:00 CET
+              <div class="interval-container" id="intervalContainer">
+                <button
+                  class="interval-btn"
+                  aria-label="see charts for last one day"
+                  title="one day interval"
+                >
+                  1D
+                </button>
+                <button
+                  class="interval-btn"
+                  aria-label="see charts for last one week"
+                  title="one week interval"
+                >
+                  1W
+                </button>
+                <button
+                  class="interval-btn active"
+                  aria-label="see charts for last one month"
+                  title="one month interval"
+                >
+                  1M
+                </button>
+                <button
+                  class="interval-btn"
+                  aria-label="see charts for last three months"
+                  title="three months interval"
+                >
+                  3M
+                </button>
+                <button
+                  class="interval-btn"
+                  aria-label="see charts for last one year"
+                  title="one year interval"
+                >
+                  1Y
+                </button>
+                <button
+                  class="interval-btn"
+                  aria-label="see charts for last five years"
+                  title="five years interval"
+                >
+                  5Y
+                </button>
               </div>
             </div>
-            <div class="flex flex-row items-center gap-4">
-              <div class="flex h-68 flex-col justify-between">
-                <div class="text-TEXT-MUTED text-[0.625rem]">0.8612</div>
-                <div class="text-TEXT-MUTED text-[0.625rem]">0.8516</div>
-                <div class="text-TEXT-MUTED text-[0.625rem]">0.8421</div>
+
+            <div
+              class="bg-SURFACE-BASE border-SURFACE flex w-full flex-col gap-5 rounded-[18px] border px-3 py-4 md:p-5"
+            >
+              <div class="flex justify-between">
+                <div class="text-[1rem] font-medium tracking-[1px]">
+                  USD/EUR
+                </div>
+                <div class="text-center tracking-[0.5px] opacity-70">
+                  0.8530 • MAY 14 16:00 CET
+                </div>
               </div>
-              <div class="bg-PRIMARY-SUBTLE h-68 w-full"></div>
-            </div>
-            <div class="flex w-[calc(100%-52px)] justify-between self-end">
-              <div class="text-TEXT-MUTED text-[0.625rem]">Apr 14</div>
-              <div class="text-TEXT-MUTED text-[0.625rem]">Apr 28</div>
-              <div class="text-TEXT-MUTED text-[0.625rem]">May 14</div>
+              <div class="flex flex-row items-center gap-4">
+                <div class="flex h-68 flex-col justify-between">
+                  <div class="text-TEXT-MUTED text-[0.625rem]">0.8612</div>
+                  <div class="text-TEXT-MUTED text-[0.625rem]">0.8516</div>
+                  <div class="text-TEXT-MUTED text-[0.625rem]">0.8421</div>
+                </div>
+                <div class="bg-PRIMARY-SUBTLE h-68 w-full"></div>
+              </div>
+              <div class="flex w-[calc(100%-52px)] justify-between self-end">
+                <div class="text-TEXT-MUTED text-[0.625rem]">Apr 14</div>
+                <div class="text-TEXT-MUTED text-[0.625rem]">Apr 28</div>
+                <div class="text-TEXT-MUTED text-[0.625rem]">May 14</div>
+              </div>
             </div>
           </div>
         </section>
@@ -774,270 +806,290 @@
           aria-labelledby="loggedConv"
           id="log"
         >
-          <h2 class="absolute -top-100000 -left-100000" id="loggedConv">
-            Logged Conversions
-          </h2>
-          <div class="flex flex-col gap-2.5 md:flex-row md:justify-between">
-            <div class="text-TEXT-PRIMARY font-medium tracking-[1px]">
-              CONVERSION LOG
-            </div>
-
-            <div
-              class="m:gap-4 flex w-full items-center justify-between md:w-fit md:justify-end md:gap-4"
+          <div
+            id="emptyState__log"
+            class="hidden flex-col items-center justify-center gap-4 py-10"
+          >
+            <h2
+              class="text-TEXT-SECONDARY text-[1.25rem] tracking-[-0.5px]"
+              id="header"
             >
-              <div
-                class="text-TEXT-PRIMARY text-[0.75rem] tracking-[0.5px] opacity-70"
-              >
-                8 LOGGED
-              </div>
-              <button
-                class="bg-SURFACE border-BORDER text-TEXT-MUTED text-[0.75rem ] hover:bg-SURFACE-ELEVATED focus:outline-DANGER flex items-center justify-center rounded-lg border px-3 py-2 tracking-[0.5px] hover:cursor-pointer focus:outline-1 focus:outline-offset-2"
-                title="clear all logs"
-                aria-label="clear all logged conversions"
-              >
-                CLEAR ALL
-              </button>
-            </div>
+              No comparison avialable
+            </h2>
+            <p
+              class="text-TEXT-MUTED max-w-115 text-center text-[0.75rem] tracking-[1px]"
+              id="body"
+            >
+              Enter an amount in SEND above to see what your currency is worth
+              in other currencies
+            </p>
           </div>
-
-          <div class="flex w-full flex-col gap-3" id="logContainer">
-            <div
-              class="conv-log-item"
-              tabindex="1"
-              title="load pair into converter"
-              aria-label="load pair into converter to see current rates for this pair"
-            >
-              <div class="date-currency-wrapper">
-                <div class="date">20M</div>
-                <div class="flex w-full items-center gap-2">
-                  <div class="currency">USD</div>
-                  <img src="img/icon-arrow-right.svg" alt="" />
-                  <div class="currency">EUR</div>
-                </div>
+          <div id="notEmpty__log" class="flex flex-col gap-4">
+            <h2 class="absolute -top-100000 -left-100000" id="loggedConv">
+              Logged Conversions
+            </h2>
+            <div class="flex flex-col gap-2.5 md:flex-row md:justify-between">
+              <div class="text-TEXT-PRIMARY font-medium tracking-[1px]">
+                CONVERSION LOG
               </div>
 
-              <div class="price-container">
-                <div class="send-price">1,000.00</div>
-                <div class="receive-price">853.02</div>
-              </div>
-
-              <button
-                class="delete-btn"
-                title="remove item"
-                aria-label="remove logged conversion"
+              <div
+                class="m:gap-4 flex w-full items-center justify-between md:w-fit md:justify-end md:gap-4"
               >
-                <img
-                  src="img/icon-delete.svg"
-                  alt=""
-                  width="16"
-                  height="16"
-                  class="h-4 w-4"
-                />
-              </button>
+                <div
+                  class="text-TEXT-PRIMARY text-[0.75rem] tracking-[0.5px] opacity-70"
+                >
+                  8 LOGGED
+                </div>
+                <button
+                  class="bg-SURFACE border-BORDER text-TEXT-MUTED text-[0.75rem ] hover:bg-SURFACE-ELEVATED focus:outline-DANGER flex items-center justify-center rounded-lg border px-3 py-2 tracking-[0.5px] hover:cursor-pointer focus:outline-1 focus:outline-offset-2"
+                  title="clear all logs"
+                  aria-label="clear all logged conversions"
+                >
+                  CLEAR ALL
+                </button>
+              </div>
             </div>
-            <div
-              class="conv-log-item"
-              tabindex="1"
-              title="load pair into converter"
-              aria-label="load pair into converter to see current rates for this pair"
-            >
-              <div class="date-currency-wrapper">
-                <div class="date">20M</div>
-                <div class="flex w-full items-center gap-2">
-                  <div class="currency">USD</div>
-                  <img src="img/icon-arrow-right.svg" alt="" />
-                  <div class="currency">EUR</div>
-                </div>
-              </div>
 
-              <div class="price-container">
-                <div class="send-price">1,000.00</div>
-                <div class="receive-price">853.02</div>
-              </div>
-
-              <button
-                class="delete-btn"
-                title="remove item"
-                aria-label="remove logged conversion"
+            <div class="flex w-full flex-col gap-3" id="logContainer">
+              <div
+                class="conv-log-item"
+                tabindex="1"
+                title="load pair into converter"
+                aria-label="load pair into converter to see current rates for this pair"
               >
-                <img
-                  src="img/icon-delete.svg"
-                  alt=""
-                  width="16"
-                  height="16"
-                  class="h-4 w-4"
-                />
-              </button>
-            </div>
-            <div
-              class="conv-log-item"
-              tabindex="1"
-              title="load pair into converter"
-              aria-label="load pair into converter to see current rates for this pair"
-            >
-              <div class="date-currency-wrapper">
-                <div class="date">20M</div>
-                <div class="flex w-full items-center gap-2">
-                  <div class="currency">USD</div>
-                  <img src="img/icon-arrow-right.svg" alt="" />
-                  <div class="currency">EUR</div>
+                <div class="date-currency-wrapper">
+                  <div class="date">20M</div>
+                  <div class="flex w-full items-center gap-2">
+                    <div class="currency">USD</div>
+                    <img src="img/icon-arrow-right.svg" alt="" />
+                    <div class="currency">EUR</div>
+                  </div>
                 </div>
-              </div>
 
-              <div class="price-container">
-                <div class="send-price">1,000.00</div>
-                <div class="receive-price">853.02</div>
-              </div>
-
-              <button
-                class="delete-btn"
-                title="remove item"
-                aria-label="remove logged conversion"
-              >
-                <img
-                  src="img/icon-delete.svg"
-                  alt=""
-                  width="16"
-                  height="16"
-                  class="h-4 w-4"
-                />
-              </button>
-            </div>
-            <div
-              class="conv-log-item"
-              tabindex="1"
-              title="load pair into converter"
-              aria-label="load pair into converter to see current rates for this pair"
-            >
-              <div class="date-currency-wrapper">
-                <div class="date">20M</div>
-                <div class="flex w-full items-center gap-2">
-                  <div class="currency">USD</div>
-                  <img src="img/icon-arrow-right.svg" alt="" />
-                  <div class="currency">EUR</div>
+                <div class="price-container">
+                  <div class="send-price">1,000.00</div>
+                  <div class="receive-price">853.02</div>
                 </div>
-              </div>
 
-              <div class="price-container">
-                <div class="send-price">1,000.00</div>
-                <div class="receive-price">853.02</div>
+                <button
+                  class="delete-btn"
+                  title="remove item"
+                  aria-label="remove logged conversion"
+                >
+                  <img
+                    src="img/icon-delete.svg"
+                    alt=""
+                    width="16"
+                    height="16"
+                    class="h-4 w-4"
+                  />
+                </button>
               </div>
-
-              <button
-                class="delete-btn"
-                title="remove item"
-                aria-label="remove logged conversion"
+              <div
+                class="conv-log-item"
+                tabindex="1"
+                title="load pair into converter"
+                aria-label="load pair into converter to see current rates for this pair"
               >
-                <img
-                  src="img/icon-delete.svg"
-                  alt=""
-                  width="16"
-                  height="16"
-                  class="h-4 w-4"
-                />
-              </button>
-            </div>
-            <div
-              class="conv-log-item"
-              tabindex="1"
-              title="load pair into converter"
-              aria-label="load pair into converter to see current rates for this pair"
-            >
-              <div class="date-currency-wrapper">
-                <div class="date">20M</div>
-                <div class="flex w-full items-center gap-2">
-                  <div class="currency">USD</div>
-                  <img src="img/icon-arrow-right.svg" alt="" />
-                  <div class="currency">EUR</div>
+                <div class="date-currency-wrapper">
+                  <div class="date">20M</div>
+                  <div class="flex w-full items-center gap-2">
+                    <div class="currency">USD</div>
+                    <img src="img/icon-arrow-right.svg" alt="" />
+                    <div class="currency">EUR</div>
+                  </div>
                 </div>
-              </div>
 
-              <div class="price-container">
-                <div class="send-price">1,000.00</div>
-                <div class="receive-price">853.02</div>
-              </div>
-
-              <button
-                class="delete-btn"
-                title="remove item"
-                aria-label="remove logged conversion"
-              >
-                <img
-                  src="img/icon-delete.svg"
-                  alt=""
-                  width="16"
-                  height="16"
-                  class="h-4 w-4"
-                />
-              </button>
-            </div>
-            <div
-              class="conv-log-item"
-              tabindex="1"
-              title="load pair into converter"
-              aria-label="load pair into converter to see current rates for this pair"
-            >
-              <div class="date-currency-wrapper">
-                <div class="date">20M</div>
-                <div class="flex w-full items-center gap-2">
-                  <div class="currency">USD</div>
-                  <img src="img/icon-arrow-right.svg" alt="" />
-                  <div class="currency">EUR</div>
+                <div class="price-container">
+                  <div class="send-price">1,000.00</div>
+                  <div class="receive-price">853.02</div>
                 </div>
-              </div>
 
-              <div class="price-container">
-                <div class="send-price">1,000.00</div>
-                <div class="receive-price">853.02</div>
+                <button
+                  class="delete-btn"
+                  title="remove item"
+                  aria-label="remove logged conversion"
+                >
+                  <img
+                    src="img/icon-delete.svg"
+                    alt=""
+                    width="16"
+                    height="16"
+                    class="h-4 w-4"
+                  />
+                </button>
               </div>
-
-              <button
-                class="delete-btn"
-                title="remove item"
-                aria-label="remove logged conversion"
+              <div
+                class="conv-log-item"
+                tabindex="1"
+                title="load pair into converter"
+                aria-label="load pair into converter to see current rates for this pair"
               >
-                <img
-                  src="img/icon-delete.svg"
-                  alt=""
-                  width="16"
-                  height="16"
-                  class="h-4 w-4"
-                />
-              </button>
-            </div>
-            <div
-              class="conv-log-item"
-              tabindex="1"
-              title="load pair into converter"
-              aria-label="load pair into converter to see current rates for this pair"
-            >
-              <div class="date-currency-wrapper">
-                <div class="date">20M</div>
-                <div class="flex w-full items-center gap-2">
-                  <div class="currency">USD</div>
-                  <img src="img/icon-arrow-right.svg" alt="" />
-                  <div class="currency">EUR</div>
+                <div class="date-currency-wrapper">
+                  <div class="date">20M</div>
+                  <div class="flex w-full items-center gap-2">
+                    <div class="currency">USD</div>
+                    <img src="img/icon-arrow-right.svg" alt="" />
+                    <div class="currency">EUR</div>
+                  </div>
                 </div>
-              </div>
 
-              <div class="price-container">
-                <div class="send-price">1,000.00</div>
-                <div class="receive-price">853.02</div>
-              </div>
+                <div class="price-container">
+                  <div class="send-price">1,000.00</div>
+                  <div class="receive-price">853.02</div>
+                </div>
 
-              <button
-                class="delete-btn"
-                title="remove item"
-                aria-label="remove logged conversion"
+                <button
+                  class="delete-btn"
+                  title="remove item"
+                  aria-label="remove logged conversion"
+                >
+                  <img
+                    src="img/icon-delete.svg"
+                    alt=""
+                    width="16"
+                    height="16"
+                    class="h-4 w-4"
+                  />
+                </button>
+              </div>
+              <div
+                class="conv-log-item"
+                tabindex="1"
+                title="load pair into converter"
+                aria-label="load pair into converter to see current rates for this pair"
               >
-                <img
-                  src="img/icon-delete.svg"
-                  alt=""
-                  width="16"
-                  height="16"
-                  class="h-4 w-4"
-                />
-              </button>
+                <div class="date-currency-wrapper">
+                  <div class="date">20M</div>
+                  <div class="flex w-full items-center gap-2">
+                    <div class="currency">USD</div>
+                    <img src="img/icon-arrow-right.svg" alt="" />
+                    <div class="currency">EUR</div>
+                  </div>
+                </div>
+
+                <div class="price-container">
+                  <div class="send-price">1,000.00</div>
+                  <div class="receive-price">853.02</div>
+                </div>
+
+                <button
+                  class="delete-btn"
+                  title="remove item"
+                  aria-label="remove logged conversion"
+                >
+                  <img
+                    src="img/icon-delete.svg"
+                    alt=""
+                    width="16"
+                    height="16"
+                    class="h-4 w-4"
+                  />
+                </button>
+              </div>
+              <div
+                class="conv-log-item"
+                tabindex="1"
+                title="load pair into converter"
+                aria-label="load pair into converter to see current rates for this pair"
+              >
+                <div class="date-currency-wrapper">
+                  <div class="date">20M</div>
+                  <div class="flex w-full items-center gap-2">
+                    <div class="currency">USD</div>
+                    <img src="img/icon-arrow-right.svg" alt="" />
+                    <div class="currency">EUR</div>
+                  </div>
+                </div>
+
+                <div class="price-container">
+                  <div class="send-price">1,000.00</div>
+                  <div class="receive-price">853.02</div>
+                </div>
+
+                <button
+                  class="delete-btn"
+                  title="remove item"
+                  aria-label="remove logged conversion"
+                >
+                  <img
+                    src="img/icon-delete.svg"
+                    alt=""
+                    width="16"
+                    height="16"
+                    class="h-4 w-4"
+                  />
+                </button>
+              </div>
+              <div
+                class="conv-log-item"
+                tabindex="1"
+                title="load pair into converter"
+                aria-label="load pair into converter to see current rates for this pair"
+              >
+                <div class="date-currency-wrapper">
+                  <div class="date">20M</div>
+                  <div class="flex w-full items-center gap-2">
+                    <div class="currency">USD</div>
+                    <img src="img/icon-arrow-right.svg" alt="" />
+                    <div class="currency">EUR</div>
+                  </div>
+                </div>
+
+                <div class="price-container">
+                  <div class="send-price">1,000.00</div>
+                  <div class="receive-price">853.02</div>
+                </div>
+
+                <button
+                  class="delete-btn"
+                  title="remove item"
+                  aria-label="remove logged conversion"
+                >
+                  <img
+                    src="img/icon-delete.svg"
+                    alt=""
+                    width="16"
+                    height="16"
+                    class="h-4 w-4"
+                  />
+                </button>
+              </div>
+              <div
+                class="conv-log-item"
+                tabindex="1"
+                title="load pair into converter"
+                aria-label="load pair into converter to see current rates for this pair"
+              >
+                <div class="date-currency-wrapper">
+                  <div class="date">20M</div>
+                  <div class="flex w-full items-center gap-2">
+                    <div class="currency">USD</div>
+                    <img src="img/icon-arrow-right.svg" alt="" />
+                    <div class="currency">EUR</div>
+                  </div>
+                </div>
+
+                <div class="price-container">
+                  <div class="send-price">1,000.00</div>
+                  <div class="receive-price">853.02</div>
+                </div>
+
+                <button
+                  class="delete-btn"
+                  title="remove item"
+                  aria-label="remove logged conversion"
+                >
+                  <img
+                    src="img/icon-delete.svg"
+                    alt=""
+                    width="16"
+                    height="16"
+                    class="h-4 w-4"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </section>
@@ -1047,113 +1099,133 @@
           aria-labelledby="favPairs"
           id="favorites"
         >
-          <h2 class="absolute -top-100000 -left-100000" id="favPairs">
-            Favorite Pairs
-          </h2>
-          <div class="flex justify-between">
-            <div class="sectionName">PINNED PAIRS</div>
-            <div class="text-[0.75rem] opacity-70">10 FAVORITES</div>
+          <div
+            id="emptyState__favorites"
+            class="hidden flex-col items-center justify-center gap-4 py-10"
+          >
+            <h2
+              class="text-TEXT-SECONDARY text-[1.25rem] tracking-[-0.5px]"
+              id="header"
+            >
+              No comparison avialable
+            </h2>
+            <p
+              class="text-TEXT-MUTED max-w-115 text-center text-[0.75rem] tracking-[1px]"
+              id="body"
+            >
+              Enter an amount in SEND above to see what your currency is worth
+              in other currencies
+            </p>
           </div>
-          <div class="flex flex-col gap-3">
-            <div
-              class="fav-item"
-              tabindex="1"
-              title="load pair into converter"
-              aria-label="load favorite pair into converter"
-            >
-              <div class="pair-container">
-                <div class="currency">USD</div>
-                <img src="img/icon-arrow-right.svg" alt="" />
-                <div class="currency">EUR</div>
-              </div>
-
-              <div class="rate-change-container">
-                <div class="exch-rate">0.8530</div>
-                <div class="percent-change up">▲ +0.16%</div>
-              </div>
-
-              <button
-                class="fav-btn"
-                title="favorite button"
-                aria-label="add or remove item from favorites"
-              >
-                <img src="img/icon-star-filled.svg " alt="" />
-              </button>
+          <div id="notEmpty__favorites" class="flex flex-col gap-4">
+            <h2 class="absolute -top-100000 -left-100000" id="favPairs">
+              Favorite Pairs
+            </h2>
+            <div class="flex justify-between">
+              <div class="sectionName">PINNED PAIRS</div>
+              <div class="text-[0.75rem] opacity-70">10 FAVORITES</div>
             </div>
-            <div
-              class="fav-item"
-              tabindex="1"
-              title="load pair into converter"
-              aria-label="load favorite pair into converter"
-            >
-              <div class="pair-container">
-                <div class="currency">USD</div>
-                <img src="img/icon-arrow-right.svg" alt="" />
-                <div class="currency">EUR</div>
-              </div>
-
-              <div class="rate-change-container">
-                <div class="exch-rate">0.8530</div>
-                <div class="percent-change up">▲ +0.16%</div>
-              </div>
-
-              <button
-                class="fav-btn"
-                title="favorite button"
-                aria-label="add or remove item from favorites"
+            <div class="flex flex-col gap-3">
+              <div
+                class="fav-item"
+                tabindex="1"
+                title="load pair into converter"
+                aria-label="load favorite pair into converter"
               >
-                <img src="img/icon-star-filled.svg " alt="" />
-              </button>
-            </div>
-            <div
-              class="fav-item"
-              tabindex="1"
-              title="load pair into converter"
-              aria-label="load favorite pair into converter"
-            >
-              <div class="pair-container">
-                <div class="currency">CHF</div>
-                <img src="img/icon-arrow-right.svg" alt="" />
-                <div class="currency">NZD</div>
-              </div>
+                <div class="pair-container">
+                  <div class="currency">USD</div>
+                  <img src="img/icon-arrow-right.svg" alt="" />
+                  <div class="currency">EUR</div>
+                </div>
 
-              <div class="rate-change-container">
-                <div class="exch-rate">0.5890</div>
-                <div class="percent-change down">▼ -0.89%</div>
-              </div>
+                <div class="rate-change-container">
+                  <div class="exch-rate">0.8530</div>
+                  <div class="percent-change up">▲ +0.16%</div>
+                </div>
 
-              <button
-                class="fav-btn"
-                title="favorite button"
-                aria-label="add or remove item from favorites"
+                <button
+                  class="fav-btn"
+                  title="favorite button"
+                  aria-label="add or remove item from favorites"
+                >
+                  <img src="img/icon-star-filled.svg " alt="" />
+                </button>
+              </div>
+              <div
+                class="fav-item"
+                tabindex="1"
+                title="load pair into converter"
+                aria-label="load favorite pair into converter"
               >
-                <img src="img/icon-star-filled.svg " alt="" />
-              </button>
-            </div>
-            <div
-              class="fav-item"
-              tabindex="1"
-              title="load pair into converter"
-              aria-label="load favorite pair into converter"
-            >
-              <div class="pair-container">
-                <div class="currency">USD</div>
-                <img src="img/icon-arrow-right.svg" alt="" />
-                <div class="currency">JPY</div>
-              </div>
+                <div class="pair-container">
+                  <div class="currency">USD</div>
+                  <img src="img/icon-arrow-right.svg" alt="" />
+                  <div class="currency">EUR</div>
+                </div>
 
-              <div class="rate-change-container">
-                <div class="exch-rate">0.9860</div>
-                <div class="percent-change down">▼ -3.16%</div>
-              </div>
+                <div class="rate-change-container">
+                  <div class="exch-rate">0.8530</div>
+                  <div class="percent-change up">▲ +0.16%</div>
+                </div>
 
-              <button
-                class="fav-btn"
-                title="favorite button"
-                aria-label="add or remove item from favorites"
+                <button
+                  class="fav-btn"
+                  title="favorite button"
+                  aria-label="add or remove item from favorites"
+                >
+                  <img src="img/icon-star-filled.svg " alt="" />
+                </button>
+              </div>
+              <div
+                class="fav-item"
+                tabindex="1"
+                title="load pair into converter"
+                aria-label="load favorite pair into converter"
               >
-                <img src="img/icon-star-filled.svg " alt="" />
-              </button>
+                <div class="pair-container">
+                  <div class="currency">CHF</div>
+                  <img src="img/icon-arrow-right.svg" alt="" />
+                  <div class="currency">NZD</div>
+                </div>
+
+                <div class="rate-change-container">
+                  <div class="exch-rate">0.5890</div>
+                  <div class="percent-change down">▼ -0.89%</div>
+                </div>
+
+                <button
+                  class="fav-btn"
+                  title="favorite button"
+                  aria-label="add or remove item from favorites"
+                >
+                  <img src="img/icon-star-filled.svg " alt="" />
+                </button>
+              </div>
+              <div
+                class="fav-item"
+                tabindex="1"
+                title="load pair into converter"
+                aria-label="load favorite pair into converter"
+              >
+                <div class="pair-container">
+                  <div class="currency">USD</div>
+                  <img src="img/icon-arrow-right.svg" alt="" />
+                  <div class="currency">JPY</div>
+                </div>
+
+                <div class="rate-change-container">
+                  <div class="exch-rate">0.9860</div>
+                  <div class="percent-change down">▼ -3.16%</div>
+                </div>
+
+                <button
+                  class="fav-btn"
+                  title="favorite button"
+                  aria-label="add or remove item from favorites"
+                >
+                  <img src="img/icon-star-filled.svg " alt="" />
+                </button>
+              </div>
             </div>
           </div>
         </section>

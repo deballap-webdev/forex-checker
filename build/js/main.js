@@ -13,12 +13,16 @@ import {
   updatePickerBtn,
   updateRateDisplay,
   updateInputDisplay,
+  displayEmptyState,
+  hide,
+  buildCompareSection,
 } from "./domFunctions.js";
 
 import { AppState, ExchangeData, FavPair, LoggedConv } from "./State.js";
 
 import {
   getRatesData,
+  availableCurrencies,
   popularCurrencies,
   otherCurrencies,
   filterCurrencies,
@@ -132,7 +136,17 @@ const convertAndDisplay = (inputType, convInput, value) => {
   }).rate;
   const convertedValue = convertCurrency(rate, value, inputType);
   if (isNaN(convertedValue)) return;
+  const ratesData = JSON.parse(getCachedRates());
   updateInputDisplay(convInput, parseFloat(convertedValue.toFixed(4)));
+  const baseValue = document.getElementById("sendInput").value;
+
+  const compareObj = {
+    baseValue: baseValue,
+    exchangeData: exchangeData,
+    availableCurrencies: availableCurrencies,
+    ratesData: ratesData,
+  };
+  buildCompareSection(compareObj);
 };
 
 const updateCurrentCurrency = (event) => {
@@ -153,7 +167,6 @@ const updateCurrentCurrency = (event) => {
       currentQuote: filteredCurrencies.all[0],
     });
   }
-
   loadThePage();
 };
 
@@ -166,7 +179,7 @@ const swapCurrencies = (event) => {
 };
 
 const loadThePage = async () => {
-  if (getCachedRates() === "undefined") {
+  if (getCachedRates() === "undefined" || !getCachedRates()) {
     const ratesData = await getRatesData(exchangeData.getCurrentBase().code);
     setRatesData(ratesData);
   } else if (
@@ -186,7 +199,6 @@ const loadThePage = async () => {
     return data.quote === exchangeData.getCurrentQuote().code;
   });
   updateRateDisplay(ratesObj);
-  console.log(ratesObj);
   convertAndDisplay("send", receiveInput, sendInput.value);
   convertAndDisplay("receive", sendInput, receiveInput.value);
 };

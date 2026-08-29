@@ -138,12 +138,7 @@ export const updateMobileNavBtn = (navObj) => {
   }
 };
 
-export const buildCompareItems = (
-  forexData,
-  currency,
-  amount,
-  exchangeData,
-) => {
+const buildCompareItem = (forexObj, currency, amount, exchangeData) => {
   const flagObj = {
     src: `img/flags/${currency.code.toLowerCase().slice(0, 2)}.webp`,
     width: "200",
@@ -155,10 +150,10 @@ export const buildCompareItems = (
   const code = createElem("div", ["name-abbr"], currency.code);
   const name = createElem("div", ["name-full"], currency.name);
   const value = createElem("div", ["value"], amount);
-  const rate = createElem("div", ["exchange-rate"], `@${forexData.rate}`);
+  const rate = createElem("div", ["exchange-rate"], `@${forexObj.rate}`);
   const src = exchangeData
     .getFavorite()
-    .find((fav) => fav.getId() === `${exchangeData.base} ${forexData.quote}`)
+    .find((fav) => fav.getId() === `${exchangeData.base} ${forexObj.quote}`)
     ? "img/icon-star-filled.svg"
     : "img/icon-star.svg";
   const favIcon = buildIcon({
@@ -194,10 +189,72 @@ export const buildCompareItems = (
   return compareCurrency;
 };
 
+export const buildCompareSection = (compareObj) => {
+  const { baseValue, exchangeData, availableCurrencies, ratesData } =
+    compareObj;
+  let number = 0;
+  const notEmpty = document.getElementById("notEmpty__compare");
+  const emptyState = document.getElementById("emptyState__compare");
+  const amountDisplay = document.getElementById("compare__amount");
+  const baseScreenReader = document.getElementById("compare__base");
+  const pairNumber = document.getElementById("compare__pairs");
+
+  baseScreenReader.textContent = exchangeData.getCurrentBase().name;
+  amountDisplay.textContent = `${baseValue} FROM ${exchangeData.getCurrentBase().code}`;
+  const compareContainer = document.getElementById("compareContainer");
+  clearElem(compareContainer);
+  if (!baseValue || baseValue === "0") {
+    hide(notEmpty);
+    show(emptyState);
+    return;
+  } else {
+    hide(emptyState);
+    show(notEmpty);
+  }
+  availableCurrencies.forEach((currency) => {
+    if (
+      currency.code !== exchangeData.getCurrentBase().code &&
+      currency.code !== exchangeData.getCurrentQuote().code
+    ) {
+      const forexObj = ratesData.find((data) => {
+        return data.quote === currency.code;
+      });
+      if (!forexObj) return;
+
+      const compareValue = Number.parseFloat(
+        (forexObj.rate * baseValue).toFixed(4),
+      );
+
+      const compareItem = buildCompareItem(
+        forexObj,
+        currency,
+        compareValue,
+        exchangeData,
+      );
+      compareContainer.append(compareItem);
+      number++;
+    }
+  });
+  pairNumber.textContent = `${number} pairs`;
+};
+
+const show = (elem) => {
+  elem.classList.add("flex");
+  elem.classList.remove("hidden");
+};
+
 export const displayEmptyState = (heading, body) => {
   const emptyState = document.getElementById("emptyState");
   emptyState.querySelector("#header").textContent = heading;
+  ``;
   emptyState.querySelector("#body").textContent = body;
+  emptyState.classList.add("flex");
+  emptyState.classList.remove("hidden");
+};
+
+export const hide = (elem) => {
+  elem.classList.remove("flex");
+  elem.classList.add("hidden");
 };
 
 export const updateInputDisplay = (input, value) => {

@@ -3,6 +3,7 @@ export const getRatesData = async (base) => {
   availableCurrencies.forEach((currency) => {
     codeArray.push(currency.code);
   });
+  //if (!codeArray.length) return getCachedRates();
 
   const availableCurrenciesCodeString = codeArray.join(",");
   try {
@@ -22,7 +23,7 @@ export const setRatesData = (ratesData) => {
 
 export const getCachedRates = () => sessionStorage.getItem("myRates");
 
-const availableCurrencies = [
+export const availableCurrencies = [
   { code: "USD", name: "United States Dollar" },
   { code: "EUR", name: "Euro" },
   { code: "GBP", name: "British Pound Sterling" },
