@@ -431,7 +431,7 @@
           </nav>
         </div>
         <section
-          class="bg-SURFACE-BASE border-SURFACE navSection hidden flex-col gap-4 rounded-2xl p-4 md:p-5"
+          class="navSection flex flex-col justify-center"
           aria-labelledby="compareCurrency"
           id="compare"
         >
@@ -439,21 +439,20 @@
             id="emptyState__compare"
             class="bg-BACKGROUND hidden flex-col items-center justify-center gap-4 rounded-lg py-10"
           >
-            <h2
-              class="text-TEXT-SECONDARY text-[1.25rem] tracking-[-0.5px]"
-              id="header"
-            >
+            <h2 class="text-TEXT-SECONDARY text-[1.25rem] tracking-[-0.5px]">
               No comparison avialable
             </h2>
             <p
               class="text-TEXT-MUTED max-w-115 text-center text-[0.75rem] tracking-[1px]"
-              id="body"
             >
               Enter an amount in SEND above to see what your currency is worth
               in other currencies
             </p>
           </div>
-          <div id="notEmpty__compare" class="flex-col gap-4">
+          <div
+            id="notEmpty__compare"
+            class="bg-SURFACE-BASE border-SURFACE hidden w-full flex-col gap-4 rounded-2xl p-4 md:p-5"
+          >
             <h2 class="absolute -top-100000 -left-100000" id="compareCurrency">
               Additional Exchange Rates For
               <span id="compare__base"></span> Currency
@@ -657,18 +656,15 @@
             id="emptyState__history"
             class="hidden flex-col items-center justify-center gap-4 py-10"
           >
-            <h2
-              class="text-TEXT-SECONDARY text-[1.25rem] tracking-[-0.5px]"
-              id="header"
-            >
-              No comparison avialable
+            <h2 class="text-TEXT-SECONDARY text-[1.25rem] tracking-[-0.5px]">
+              No chart data avilable
             </h2>
             <p
               class="text-TEXT-MUTED max-w-115 text-center text-[0.75rem] tracking-[1px]"
-              id="body"
             >
-              Enter an amount in SEND above to see what your currency is worth
-              in other currencies
+              we couldn't load rate history for
+              <span id="pair__history"></span> right now. This usually clears up
+              in a minute.
             </p>
           </div>
           <div id="notEmpty__history" class="flex flex-col gap-4">
@@ -801,30 +797,25 @@
             </div>
           </div>
         </section>
-        <section
-          class="text-SURFACE-BASE border-SURFACE bg-SURFACE-BASE navSection hidden flex-col gap-5 rounded-2xl border px-4 py-5 md:p-5"
-          aria-labelledby="loggedConv"
-          id="log"
-        >
+        <section class="navSection" aria-labelledby="loggedConv" id="log">
           <div
             id="emptyState__log"
             class="hidden flex-col items-center justify-center gap-4 py-10"
           >
-            <h2
-              class="text-TEXT-SECONDARY text-[1.25rem] tracking-[-0.5px]"
-              id="header"
-            >
-              No comparison avialable
+            <h2 class="text-TEXT-SECONDARY text-[1.25rem] tracking-[-0.5px]">
+              No conversions logged yet
             </h2>
             <p
               class="text-TEXT-MUTED max-w-115 text-center text-[0.75rem] tracking-[1px]"
-              id="body"
             >
-              Enter an amount in SEND above to see what your currency is worth
-              in other currencies
+              Every conversion is recorded here automatically when you LOG
+              CONVERSION. Your log is private to this session and this browser
             </p>
           </div>
-          <div id="notEmpty__log" class="flex flex-col gap-4">
+          <div
+            id="notEmpty__log"
+            class="text-SURFACE-BASE border-SURFACE bg-SURFACE-BASE hidden flex-col gap-5 rounded-2xl border px-4 py-5 md:p-5"
+          >
             <h2 class="absolute -top-100000 -left-100000" id="loggedConv">
               Logged Conversions
             </h2>
@@ -1103,18 +1094,14 @@
             id="emptyState__favorites"
             class="hidden flex-col items-center justify-center gap-4 py-10"
           >
-            <h2
-              class="text-TEXT-SECONDARY text-[1.25rem] tracking-[-0.5px]"
-              id="header"
-            >
-              No comparison avialable
+            <h2 class="text-TEXT-SECONDARY text-[1.25rem] tracking-[-0.5px]">
+              No pinned pairs yet
             </h2>
             <p
               class="text-TEXT-MUTED max-w-115 text-center text-[0.75rem] tracking-[1px]"
-              id="body"
             >
-              Enter an amount in SEND above to see what your currency is worth
-              in other currencies
+              Pin a pair to track irs rate here. Tap the star icon on any
+              conversion row.
             </p>
           </div>
           <div id="notEmpty__favorites" class="flex flex-col gap-4">

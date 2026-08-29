@@ -203,7 +203,7 @@ export const buildCompareSection = (compareObj) => {
   amountDisplay.textContent = `${baseValue} FROM ${exchangeData.getCurrentBase().code}`;
   const compareContainer = document.getElementById("compareContainer");
   clearElem(compareContainer);
-  if (!baseValue || baseValue === "0") {
+  if (!baseValue || !Number(baseValue)) {
     hide(notEmpty);
     show(emptyState);
     return;
