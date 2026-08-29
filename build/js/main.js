@@ -15,7 +15,7 @@ import {
   updateInputDisplay,
   displayEmptyState,
   hide,
-  buildCompareSection,
+  renderCompareSection,
 } from "./domFunctions.js";
 
 import { AppState, ExchangeData, FavPair, LoggedConv } from "./State.js";
@@ -34,6 +34,8 @@ import {
 const appState = new AppState();
 const exchangeData = new ExchangeData();
 const initApp = () => {
+  const compareContainer = document.getElementById("compareContainer");
+  compareContainer.addEventListener("click", handleCompareClick);
   const mainNav = document.getElementById("mainNav");
   mainNav.addEventListener("click", displaySections);
   const logContainer = document.getElementById("logContainer");
@@ -130,6 +132,24 @@ const initApp = () => {
   loadThePage();
 };
 
+const handleCompareClick = (event) => {
+  if (event.target.closest("button")) {
+    if (event.target.closest("button").classList.contains("fav-btn"))
+      handleFavorites();
+  } else if (event.target.id !== "compareContainer") {
+    const code = event.target
+      .closest(".compare-currency")
+      .querySelector(".name-abbr").textContent;
+    const name = event.target
+      .closest(".compare-currency")
+      .querySelector(".name-full").textContent;
+    exchangeData.setExhangeData({ currentQuote: { code: code, name: name } });
+  }
+  loadThePage();
+};
+
+const handleFavorites = () => {};
+
 const convertAndDisplay = (inputType, convInput, value) => {
   const rate = JSON.parse(getCachedRates()).find((data) => {
     return data.quote === exchangeData.getCurrentQuote().code;
@@ -146,7 +166,7 @@ const convertAndDisplay = (inputType, convInput, value) => {
     availableCurrencies: availableCurrencies,
     ratesData: ratesData,
   };
-  buildCompareSection(compareObj);
+  renderCompareSection(compareObj);
 };
 
 const updateCurrentCurrency = (event) => {

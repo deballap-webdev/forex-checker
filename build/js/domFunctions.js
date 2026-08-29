@@ -150,7 +150,7 @@ const buildCompareItem = (forexObj, currency, amount, exchangeData) => {
   const code = createElem("div", ["name-abbr"], currency.code);
   const name = createElem("div", ["name-full"], currency.name);
   const value = createElem("div", ["value"], amount);
-  const rate = createElem("div", ["exchange-rate"], `@${forexObj.rate}`);
+  const rate = createElem("div", ["exchange-rate"], `@ ${forexObj.rate}`);
   const src = exchangeData
     .getFavorite()
     .find((fav) => fav.getId() === `${exchangeData.base} ${forexObj.quote}`)
@@ -181,15 +181,20 @@ const buildCompareItem = (forexObj, currency, amount, exchangeData) => {
     favBtn.ariaLabel = "add pair to favorites";
     favBtn.classList.remove("active");
   }
+  favBtn.title = "favorites button";
   const compareCurrency = createCard(
     "div",
     ["compare-currency"],
     [flag, pairContainer, exchangeCotainer, favBtn],
   );
+
+  compareCurrency.tabindex = "1";
+  compareCurrency.title = `load ${currency.code} into converter`;
+  compareCurrency.ariaLabel = `load ${currency.name} into converter as receiving currency`;
   return compareCurrency;
 };
 
-export const buildCompareSection = (compareObj) => {
+export const renderCompareSection = (compareObj) => {
   const { baseValue, exchangeData, availableCurrencies, ratesData } =
     compareObj;
   let number = 0;

@@ -431,7 +431,7 @@
           </nav>
         </div>
         <section
-          class="navSection flex flex-col justify-center"
+          class="navSection hidden flex-col justify-center"
           aria-labelledby="compareCurrency"
           id="compare"
         >
@@ -472,7 +472,7 @@
               ></div>
             </div>
             <div id="compareContainer" class="flex flex-col gap-4">
-              <div
+              <!-- <div
                 class="compare-currency"
                 tabindex="1"
                 title="load currency into converter"
@@ -506,144 +506,7 @@
                     class="h-4 w-4"
                   />
                 </button>
-              </div>
-
-              <div
-                class="compare-currency"
-                tabindex="1"
-                title="load currency into converter"
-                aria-label="load currency into converter as recieving currency"
-              >
-                <img
-                  src="img/flags/jp.webp"
-                  width="200"
-                  height="200"
-                  class="flag"
-                />
-                <div class="pair-container">
-                  <div class="name-abbr">JPY</div>
-                  <div class="name-full">Japanese Yen</div>
-                </div>
-                <div class="exchange-container">
-                  <div class="value">157,910</div>
-                  <div class="exchange-rate">@ 157.91</div>
-                </div>
-
-                <button class="fav-btn active">
-                  <img
-                    src="img/icon-star-filled.svg"
-                    alt=""
-                    width="16"
-                    height="16"
-                    class="h-4 w-4"
-                  />
-                </button>
-              </div>
-              <div
-                class="compare-currency"
-                tabindex="1"
-                title="load currency into converter"
-                aria-label="load currency into converter as recieving currency"
-              >
-                <img
-                  src="img/flags/jp.webp"
-                  width="200"
-                  height="200"
-                  class="flag"
-                />
-                <div class="pair-container">
-                  <div class="name-abbr">JPY</div>
-                  <div class="name-full">Japanese Yen</div>
-                </div>
-                <div class="exchange-container">
-                  <div class="value">157,910</div>
-                  <div class="exchange-rate">@ 157.91</div>
-                </div>
-
-                <button
-                  class="fav-btn"
-                  title="favorite button"
-                  aria-label="add or remove item from favorites"
-                >
-                  <img
-                    src="img/icon-star.svg"
-                    alt=""
-                    width="16"
-                    height="16"
-                    class="h-4 w-4"
-                  />
-                </button>
-              </div>
-              <div
-                class="compare-currency"
-                tabindex="1"
-                title="load currency into converter"
-                aria-label="load currency into converter as recieving currency"
-              >
-                <img
-                  src="img/flags/jp.webp"
-                  width="200"
-                  height="200"
-                  class="flag"
-                />
-                <div class="pair-container">
-                  <div class="name-abbr">JPY</div>
-                  <div class="name-full">Japanese Yen</div>
-                </div>
-                <div class="exchange-container">
-                  <div class="value">157,910</div>
-                  <div class="exchange-rate">@ 157.91</div>
-                </div>
-
-                <button
-                  class="fav-btn"
-                  title="favorite button"
-                  aria-label="add or remove item from favorites"
-                >
-                  <img
-                    src="img/icon-star.svg"
-                    alt=""
-                    width="16"
-                    height="16"
-                    class="h-4 w-4"
-                  />
-                </button>
-              </div>
-              <div
-                class="compare-currency"
-                tabindex="1"
-                title="load currency into converter"
-                aria-label="load currency into converter as recieving currency"
-              >
-                <img
-                  src="img/flags/jp.webp"
-                  width="200"
-                  height="200"
-                  class="flag"
-                />
-                <div class="pair-container">
-                  <div class="name-abbr">JPY</div>
-                  <div class="name-full">Japanese Yen</div>
-                </div>
-                <div class="exchange-container">
-                  <div class="value">157,910</div>
-                  <div class="exchange-rate">@ 157.91</div>
-                </div>
-
-                <button
-                  class="fav-btn active"
-                  title="favorites button"
-                  aria-label="add or remove item from favorites"
-                >
-                  <img
-                    src="img/icon-star-filled.svg"
-                    alt=""
-                    width="16"
-                    height="16"
-                    class="h-4 w-4"
-                  />
-                </button>
-              </div>
+              </div> -->
             </div>
           </div>
         </section>
@@ -797,7 +660,11 @@
             </div>
           </div>
         </section>
-        <section class="navSection" aria-labelledby="loggedConv" id="log">
+        <section
+          class="navSection hidden flex-col items-center"
+          aria-labelledby="loggedConv"
+          id="log"
+        >
           <div
             id="emptyState__log"
             class="hidden flex-col items-center justify-center gap-4 py-10"
@@ -814,7 +681,7 @@
           </div>
           <div
             id="notEmpty__log"
-            class="text-SURFACE-BASE border-SURFACE bg-SURFACE-BASE hidden flex-col gap-5 rounded-2xl border px-4 py-5 md:p-5"
+            class="text-SURFACE-BASE border-SURFACE bg-SURFACE-BASE w-full flex-col gap-5 rounded-2xl border px-4 py-5 md:p-5"
           >
             <h2 class="absolute -top-100000 -left-100000" id="loggedConv">
               Logged Conversions
@@ -1086,7 +953,7 @@
         </section>
 
         <section
-          class="bg-SURFACE-BASE border-SURFACE navSection hidden w-full flex-col gap-4 rounded-2xl border p-4 md:gap-5 md:p-5"
+          class="navSection hidden flex-col items-center"
           aria-labelledby="favPairs"
           id="favorites"
         >
@@ -1104,7 +971,10 @@
               conversion row.
             </p>
           </div>
-          <div id="notEmpty__favorites" class="flex flex-col gap-4">
+          <div
+            id="notEmpty__favorites"
+            class="bg-SURFACE-BASE border-SURFACE flex w-full flex-col gap-4 rounded-2xl border p-4 md:gap-5 md:p-5"
+          >
             <h2 class="absolute -top-100000 -left-100000" id="favPairs">
               Favorite Pairs
             </h2>
