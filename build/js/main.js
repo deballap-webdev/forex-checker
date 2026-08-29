@@ -166,11 +166,13 @@ const swapCurrencies = (event) => {
 };
 
 const loadThePage = async () => {
-  if (!(
-    getCachedRates() &&
-    typeof getCachedRates !== "string" &&
-    JSON.parse(getCachedRates())[0].base === exchangeData.getCurrentBase().code
-  )) {
+  if (getCachedRates() === "undefined") {
+    const ratesData = await getRatesData(exchangeData.getCurrentBase().code);
+    setRatesData(ratesData);
+  } else if (
+    typeof getCachedRates() !== "string" ||
+    JSON.parse(getCachedRates())[0].base !== exchangeData.getCurrentBase().code
+  ) {
     const ratesData = await getRatesData(exchangeData.getCurrentBase().code);
     setRatesData(ratesData);
   }
@@ -184,6 +186,7 @@ const loadThePage = async () => {
     return data.quote === exchangeData.getCurrentQuote().code;
   });
   updateRateDisplay(ratesObj);
+  console.log(ratesObj);
   convertAndDisplay("send", receiveInput, sendInput.value);
   convertAndDisplay("receive", sendInput, receiveInput.value);
 };

@@ -123,7 +123,7 @@
                   >
                     <div class="bg-SURFACE sticky top-0 z-10 pt-2">
                       <div
-                        class="border-TEXT-MUTED bg-SURFACE focus-within:border-PRIMARY hover:bg-SURFACE-ELEVATED flex w-full items-center gap-2.5 rounded-md border p-3 focus-within:border focus-within:outline-0"
+                        class="border-TEXT-MUTED bg-SURFACE focus-within:border-PRIMARY hover:bg-SURFACE-ELEVATED flex w-full items-center gap-2.5 rounded-md border px-3 focus-within:border focus-within:outline-0"
                       >
                         <img
                           src="img/icon-search.svg"
@@ -141,7 +141,7 @@
                           id="searchFilterSend"
                           name="searchFilter"
                           placeholder="Search currencies"
-                          class="placeholder:text-TEXT-MUTED w-full placeholder:text-[0.75rem] placeholder:tracking-[0.5px] focus:outline-none"
+                          class="placeholder:text-TEXT-MUTED w-full py-3 placeholder:text-[0.75rem] placeholder:tracking-[0.5px] focus:outline-none"
                         />
                       </div>
                     </div>
@@ -249,13 +249,13 @@
                     class="bg-SURFACE-ELEVATED border-BORDER hover:bg-BORDER focus:outline-PRIMARY flex items-center gap-2 rounded-lg border p-2.5 text-[0.875rem] hover:cursor-pointer focus:outline-1 focus:outline-offset-2"
                     id="receiveBtn"
                   >
-                    <img
+                    <!--   <img
                       src="img/flags/us.webp"
                       width="100"
                       height="100"
                       class="h-5 w-5 rounded-[50%]"
                       alt=""
-                    />USD <span data-dropDown="true">▾</span>
+                    />USD <span data-dropDown="true">▾</span> -->
                   </button>
 
                   <div
@@ -264,7 +264,7 @@
                   >
                     <div class="bg-SURFACE sticky top-0 z-20">
                       <div
-                        class="border-TEXT-MUTED bg-SURFACE sticky top-0 z-10 flex w-full items-center gap-2.5 rounded-md border p-3"
+                        class="border-TEXT-MUTED bg-SURFACE sticky top-0 z-10 flex w-full items-center gap-2.5 rounded-md border px-3"
                       >
                         <img
                           src="img/icon-search.svg"
@@ -282,7 +282,7 @@
                           id="searchFilterReceive"
                           name="searchFilter"
                           placeholder="Search currencies"
-                          class="placeholder:text-TEXT-MUTED w-full placeholder:text-[0.75rem] placeholder:tracking-[0.5px] focus:outline-none"
+                          class="placeholder:text-TEXT-MUTED w-full py-3 placeholder:text-[0.75rem] placeholder:tracking-[0.5px] focus:outline-none"
                         />
                       </div>
                     </div>
@@ -434,11 +434,15 @@
             id="emptyState"
             class="hidden flex-col items-center justify-center gap-4 py-10"
           >
-            <h2 class="text-TEXT-SECONDARY text-[1.25rem] tracking-[-0.5px]">
+            <h2
+              class="text-TEXT-SECONDARY text-[1.25rem] tracking-[-0.5px]"
+              id="header"
+            >
               No comparison avialable
             </h2>
             <p
               class="text-TEXT-MUTED max-w-115 text-center text-[0.75rem] tracking-[1px]"
+              id="body"
             >
               Enter an amount in SEND above to see what your currency is worth
               in other currencies
@@ -451,7 +455,8 @@
           id="compare"
         >
           <h2 class="absolute -top-100000 -left-100000" id="compareCurrency">
-            Additional Exchange Rates For Sending Currency
+            Additional Exchange Rates For
+            <span id="compare__base"></span> Currency
           </h2>
           <div
             class="flex w-full flex-col gap-2.5 md:flex-row md:justify-between"
@@ -480,8 +485,8 @@
               <div class="name-full">British Pound</div>
             </div>
             <div class="exchange-container">
-              <div class="exchange-rate">736.65</div>
-              <div class="exchange-at">@ 0.7366</div>
+              <div class="value">736.65</div>
+              <div class="exchange-rate">@ 0.7366</div>
             </div>
 
             <button
@@ -516,8 +521,8 @@
               <div class="name-full">Japanese Yen</div>
             </div>
             <div class="exchange-container">
-              <div class="exchange-rate">157,910</div>
-              <div class="exchange-at">@ 157.91</div>
+              <div class="value">157,910</div>
+              <div class="exchange-rate">@ 157.91</div>
             </div>
 
             <button class="fav-btn active">
@@ -547,8 +552,8 @@
               <div class="name-full">Japanese Yen</div>
             </div>
             <div class="exchange-container">
-              <div class="exchange-rate">157,910</div>
-              <div class="exchange-at">@ 157.91</div>
+              <div class="value">157,910</div>
+              <div class="exchange-rate">@ 157.91</div>
             </div>
 
             <button
@@ -582,8 +587,8 @@
               <div class="name-full">Japanese Yen</div>
             </div>
             <div class="exchange-container">
-              <div class="exchange-rate">157,910</div>
-              <div class="exchange-at">@ 157.91</div>
+              <div class="value">157,910</div>
+              <div class="exchange-rate">@ 157.91</div>
             </div>
 
             <button
@@ -617,8 +622,8 @@
               <div class="name-full">Japanese Yen</div>
             </div>
             <div class="exchange-container">
-              <div class="exchange-rate">157,910</div>
-              <div class="exchange-at">@ 157.91</div>
+              <div class="value">157,910</div>
+              <div class="exchange-rate">@ 157.91</div>
             </div>
 
             <button

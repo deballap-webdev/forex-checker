@@ -49,10 +49,10 @@
   }
 
   .exchange-container {
-    .exchange-at {
+    .exchange-rate {
       @apply text-TEXT-MUTED text-[0.625rem];
     }
-    .exchange-rate {
+    .value {
       @apply text-[1rem];
     }
   }

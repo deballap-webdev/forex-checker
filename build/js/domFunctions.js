@@ -138,6 +138,62 @@ export const updateMobileNavBtn = (navObj) => {
   }
 };
 
+export const buildCompareItems = (
+  forexData,
+  currency,
+  amount,
+  exchangeData,
+) => {
+  const flagObj = {
+    src: `img/flags/${currency.code.toLowerCase().slice(0, 2)}.webp`,
+    width: "200",
+    height: "200",
+    altText: `${getCountryName(currency.name)} flag`,
+    classArray: ["flag"],
+  };
+  const flag = buildIcon(flagObj);
+  const code = createElem("div", ["name-abbr"], currency.code);
+  const name = createElem("div", ["name-full"], currency.name);
+  const value = createElem("div", ["value"], amount);
+  const rate = createElem("div", ["exchange-rate"], `@${forexData.rate}`);
+  const src = exchangeData
+    .getFavorite()
+    .find((fav) => fav.getId() === `${exchangeData.base} ${forexData.quote}`)
+    ? "img/icon-star-filled.svg"
+    : "img/icon-star.svg";
+  const favIcon = buildIcon({
+    src: src,
+    altText: "star icon",
+    width: "16",
+    height: "16",
+    classArray: ["h-4", "w-4"],
+  });
+  const pairContainer = createCard("div", ["pair-container"], [code, name]);
+  const exchangeCotainer = createCard(
+    "div",
+    ["exchange-container"],
+    [value, rate],
+  );
+  const favBtn = createCard("button", ["fav-btn"], [favIcon]);
+  if (
+    exchangeData
+      .getFavorite()
+      .find((fav) => fav.getId() === `${exchangeData.base} ${forexData.quote}`)
+  ) {
+    favBtn.ariaLabel = "remove pair from favorites";
+    favBtn.classList.add("active");
+  } else {
+    favBtn.ariaLabel = "add pair to favorites";
+    favBtn.classList.remove("active");
+  }
+  const compareCurrency = createCard(
+    "div",
+    ["compare-currency"],
+    [flag, pairContainer, exchangeCotainer, favBtn],
+  );
+  return compareCurrency;
+};
+
 export const displayEmptyState = (heading, body) => {
   const emptyState = document.getElementById("emptyState");
   emptyState.querySelector("#header").textContent = heading;
@@ -205,17 +261,21 @@ const clearElem = (elem) => {
   }
 };
 
-export const updatePickerBtn = (btnId, currentCurrency) => {
-  const nameArray = currentCurrency.name.split(" ");
+const getCountryName = (currencyName) => {
+  const nameArray = currencyName.split(" ");
   nameArray.splice(nameArray.length - 1, 1);
   const countryName = nameArray.length ? nameArray.join(" ") : "European";
+  return countryName;
+};
+
+export const updatePickerBtn = (btnId, currentCurrency) => {
   const pickerBtn = document.getElementById(btnId);
   clearElem(pickerBtn);
   const iconObj = {
     src: `img/flags/${currentCurrency.code.toLowerCase().slice(0, 2)}.webp`,
     width: "100",
     height: "100",
-    altText: `${countryName} flag`,
+    altText: `${getCountryName(currentCurrency.name)} flag`,
     classArray: ["h-5", "w-5", "rounded-[50%]"],
   };
   const btnText = document.createTextNode(`${currentCurrency.code}`);
