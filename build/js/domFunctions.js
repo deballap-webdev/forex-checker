@@ -69,16 +69,6 @@ export const toggleIntervalBtn = (activeBtn, intervalBtns) => {
       : btn.classList.remove("active");
   });
 };
-// still bad should have state to know favorites and work with that, this is just for posting sake
-/* export const favBtnDisplay = (event) => {
-  const favBtn = event.target.closest("button");
-  if (!favBtn) return;
-  if (!favBtn.classList.contains("fav-btn")) return;
-  favBtn.classList.toggle("active");
-  favBtn.querySelector("img").src = favBtn.classList.contains("active")
-    ? "img/icon-star-filled.svg"
-    : "img/icon-star.svg";
-}; */
 
 export const favConvBtnDisplay = (event) => {
   const favConvBtn = event.currentTarget;
@@ -188,7 +178,7 @@ const buildCompareItem = (forexObj, currency, amount, exchangeData) => {
     [flag, pairContainer, exchangeCotainer, favBtn],
   );
 
-  compareCurrency.tabindex = "1";
+  compareCurrency.setAttribute("tabindex", "1");
   compareCurrency.title = `load ${currency.code} into converter`;
   compareCurrency.ariaLabel = `load ${currency.name} into converter as receiving currency`;
   return compareCurrency;
@@ -246,15 +236,6 @@ export const renderCompareSection = (compareObj) => {
 const show = (elem) => {
   elem.classList.add("flex");
   elem.classList.remove("hidden");
-};
-
-export const displayEmptyState = (heading, body) => {
-  const emptyState = document.getElementById("emptyState");
-  emptyState.querySelector("#header").textContent = heading;
-  ``;
-  emptyState.querySelector("#body").textContent = body;
-  emptyState.classList.add("flex");
-  emptyState.classList.remove("hidden");
 };
 
 export const hide = (elem) => {
@@ -321,6 +302,69 @@ const clearElem = (elem) => {
   while (elem.lastChild) {
     elem.lastChild.remove();
   }
+};
+
+export const renderFavoritesSection = (favoriteData) => {
+  const favoritesContainer = document.getElementById("favoritesContainer");
+  clearElem(favoritesContainer);
+  const emptyState = document.getElementById("emptyState__favorites");
+  const notEmpty = document.getElementById("notEmpty__favorites");
+  if (!favoriteData.length) {
+    hide(notEmpty);
+    show(emptyState);
+  } else {
+    show(notEmpty);
+    hide(emptyState);
+  }
+  favoriteData.forEach((favPair) => {
+    const favItem = buildFavItem(favPair);
+    favoritesContainer.append(favItem);
+  });
+};
+
+const buildFavItem = (favPair) => {
+  const baseDiv = createElem("div", ["currency"], favPair.getBase());
+  const quoteDiv = createElem("div", ["currency"], favPair.getQuote());
+  const exchangeRate = createElem("div", ["exch-rate"], favPair.getRate());
+  const percentage = createElem("div", ["percentage"]);
+  const arrowObj = {
+    src: `img/icon-arrow-right.svg`,
+    width: "11",
+    height: "11",
+    altText: "right arrow",
+  };
+  const arrow = buildIcon(arrowObj);
+  const starObj = {
+    src: `img/icon-star-filled.svg`,
+    width: "16",
+    height: "16",
+    altText: "star",
+  };
+  const star = buildIcon(starObj);
+  const pairContainer = createCard(
+    "div",
+    ["pair-container"],
+    [baseDiv, arrow, quoteDiv],
+  );
+  const rateChangeDiv = createCard(
+    "div",
+    ["rate-change-container"],
+    [exchangeRate, percentage],
+  );
+  const favBtn = createCard("button", ["fav-btn"], [star]);
+  favBtn.title = "remove pair from favorites";
+  favBtn.ariaLabel = `remove ${favPair.getBase()}/${favPair.getQuote()} pair from favorites`;
+
+  const favItem = createCard(
+    "div",
+    ["fav-item"],
+    [pairContainer, rateChangeDiv, favBtn],
+  );
+
+  favItem.ariaLabel = `load pair into the converter with base as ${favPair.getBase()} and quote as ${favPair.getQuote()}`;
+  favItem.title = `load pair into the converter`;
+  favItem.setAttribute("tabindex", "1");
+  return favItem;
 };
 
 const getCountryName = (currencyName) => {

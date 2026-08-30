@@ -12,8 +12,8 @@ import {
   updatePickerBtn,
   updateRateDisplay,
   updateInputDisplay,
-  displayEmptyState,
   hide,
+  renderFavoritesSection,
   renderCompareSection,
 } from "./domFunctions.js";
 
@@ -153,21 +153,23 @@ const handleCompareClick = (event) => {
 
 const handleFavorites = (base, quote) => {
   const id = `${base} ${quote}`;
-
   if (exchangeData.getFavorite().find((favPair) => favPair.getId() === id)) {
     exchangeData.removePairFromFavorite(`${base} ${quote}`);
-    console.log("hi");
   } else {
+    const rate = JSON.parse(getCachedRates()).find(
+      (data) => data.quote === quote,
+    ).rate;
     const favPair = new FavPair();
     const favObj = {
       base: base,
       quote: quote,
       id: id,
+      rate: rate,
     };
     favPair.setFavPair(favObj);
     exchangeData.addPairToFavorite(favPair);
-    console.log(exchangeData.getFavorite());
   }
+  renderFavoritesSection(exchangeData.getFavorite());
 };
 
 const convertAndDisplay = (inputType, convInput, value) => {
@@ -179,7 +181,6 @@ const convertAndDisplay = (inputType, convInput, value) => {
   const ratesData = JSON.parse(getCachedRates());
   updateInputDisplay(convInput, parseFloat(convertedValue.toFixed(4)));
   const baseValue = document.getElementById("sendInput").value;
-
   const compareObj = {
     baseValue: baseValue,
     exchangeData: exchangeData,
