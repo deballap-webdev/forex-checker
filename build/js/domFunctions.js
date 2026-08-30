@@ -70,7 +70,7 @@ export const toggleIntervalBtn = (activeBtn, intervalBtns) => {
   });
 };
 // still bad should have state to know favorites and work with that, this is just for posting sake
-export const favBtnDisplay = (event) => {
+/* export const favBtnDisplay = (event) => {
   const favBtn = event.target.closest("button");
   if (!favBtn) return;
   if (!favBtn.classList.contains("fav-btn")) return;
@@ -78,7 +78,7 @@ export const favBtnDisplay = (event) => {
   favBtn.querySelector("img").src = favBtn.classList.contains("active")
     ? "img/icon-star-filled.svg"
     : "img/icon-star.svg";
-};
+}; */
 
 export const favConvBtnDisplay = (event) => {
   const favConvBtn = event.currentTarget;
@@ -151,11 +151,15 @@ const buildCompareItem = (forexObj, currency, amount, exchangeData) => {
   const name = createElem("div", ["name-full"], currency.name);
   const value = createElem("div", ["value"], amount);
   const rate = createElem("div", ["exchange-rate"], `@ ${forexObj.rate}`);
-  const src = exchangeData
+  const favPair = exchangeData
     .getFavorite()
-    .find((fav) => fav.getId() === `${exchangeData.base} ${forexObj.quote}`)
-    ? "img/icon-star-filled.svg"
-    : "img/icon-star.svg";
+    .find(
+      (fav) =>
+        fav.getId() ===
+        `${exchangeData.getCurrentBase().code} ${forexObj.quote}`,
+    );
+  const src = favPair ? "img/icon-star-filled.svg" : "img/icon-star.svg";
+
   const favIcon = buildIcon({
     src: src,
     altText: "star icon",
@@ -170,11 +174,7 @@ const buildCompareItem = (forexObj, currency, amount, exchangeData) => {
     [value, rate],
   );
   const favBtn = createCard("button", ["fav-btn"], [favIcon]);
-  if (
-    exchangeData
-      .getFavorite()
-      .find((fav) => fav.getId() === `${exchangeData.base} ${forexData.quote}`)
-  ) {
+  if (favPair) {
     favBtn.ariaLabel = "remove pair from favorites";
     favBtn.classList.add("active");
   } else {

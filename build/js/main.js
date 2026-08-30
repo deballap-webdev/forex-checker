@@ -4,7 +4,6 @@ import {
   dropDownDisplay,
   toggleIntervalBtn,
   underlineActiveNav,
-  favBtnDisplay,
   favConvBtnDisplay,
   logConvBtnDisplay,
   updateMobileNavBtn,
@@ -61,7 +60,7 @@ const initApp = () => {
   });
   swapBtn.addEventListener("click", swapCurrencies);
   favConvBtn.addEventListener("click", favConvBtnDisplay);
-  compareSection.addEventListener("click", favBtnDisplay);
+  //compareSection.addEventListener("click", favBtnDisplay);
   mobileNavWrapper.addEventListener("click", handleMobileNav);
   mobileNavWrapper.addEventListener("focusout", (event) => {
     dropDownDisplay(
@@ -135,7 +134,11 @@ const initApp = () => {
 const handleCompareClick = (event) => {
   if (event.target.closest("button")) {
     if (event.target.closest("button").classList.contains("fav-btn"))
-      handleFavorites();
+      handleFavorites(
+        exchangeData.getCurrentBase().code,
+        event.target.closest(".compare-currency").querySelector(".name-abbr")
+          .textContent,
+      );
   } else if (event.target.id !== "compareContainer") {
     const code = event.target
       .closest(".compare-currency")
@@ -148,7 +151,24 @@ const handleCompareClick = (event) => {
   loadThePage();
 };
 
-const handleFavorites = () => {};
+const handleFavorites = (base, quote) => {
+  const id = `${base} ${quote}`;
+
+  if (exchangeData.getFavorite().find((favPair) => favPair.getId() === id)) {
+    exchangeData.removePairFromFavorite(`${base} ${quote}`);
+    console.log("hi");
+  } else {
+    const favPair = new FavPair();
+    const favObj = {
+      base: base,
+      quote: quote,
+      id: id,
+    };
+    favPair.setFavPair(favObj);
+    exchangeData.addPairToFavorite(favPair);
+    console.log(exchangeData.getFavorite());
+  }
+};
 
 const convertAndDisplay = (inputType, convInput, value) => {
   const rate = JSON.parse(getCachedRates()).find((data) => {

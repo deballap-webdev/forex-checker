@@ -86,19 +86,24 @@ export class FavPair {
   #quote;
   #id;
   constructor() {
-    this.#base = null;
-    this.#quote = null;
-    this.id = `${this.#base} ${this.#quote}`;
+    this.#base;
+    this.#quote;
+    this.#id;
   }
 
   setFavPair(favPairObj) {
     const { base, quote, id } = favPairObj;
     this.#base = base;
     this.#quote = quote;
+    this.#id = id;
   }
 
   getBase() {
     return this.#base;
+  }
+
+  getId() {
+    return this.#id;
   }
 
   getQuote() {
