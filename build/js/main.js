@@ -159,15 +159,11 @@ const handleFavorites = (base, quote) => {
   if (exchangeData.getFavorite().find((favPair) => favPair.getId() === id)) {
     exchangeData.removePairFromFavorite(`${base} ${quote}`);
   } else {
-    const rate = JSON.parse(getCachedRates()).find(
-      (data) => data.quote === quote,
-    ).rate;
     const favPair = new FavPair();
     const favObj = {
       base: base,
       quote: quote,
       id: id,
-      rate: rate,
     };
     favPair.setFavPair(favObj);
     exchangeData.addPairToFavorite(favPair);
@@ -248,11 +244,14 @@ const loadThePage = async () => {
   convertAndDisplay("send", receiveInput, sendInput.value);
   convertAndDisplay("receive", sendInput, receiveInput.value);
   for (let i = 0; i < exchangeData.getFavorite().length; i++) {
-    const change = await getPercentageChangeFromApi(
+    const apiData = await getPercentageChangeFromApi(
       exchangeData.getFavorite()[i].getBase(),
       exchangeData.getFavorite()[i].getQuote(),
     );
-    exchangeData.getFavorite()[i].setFavPair({ change: change });
+    const change = apiData.change;
+    const rate = apiData.currentRate;
+    console.log(apiData);
+    exchangeData.getFavorite()[i].setFavPair({ change: change, rate: rate });
   }
   console.log(exchangeData.getFavorite().length);
   renderFavoritesSection(exchangeData.getFavorite());

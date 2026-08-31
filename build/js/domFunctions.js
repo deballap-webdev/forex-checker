@@ -333,11 +333,11 @@ const buildFavItem = (favPair) => {
   );
 
   if (favPair.getRate() > 0) {
-    percentageChange.textContent = `▲ +${favPair.getRate()}%`;
+    percentageChange.textContent = `▲ +${favPair.getChange()}%`;
     percentageChange.classList.add("up");
     percentageChange.classList.remove("down");
-  } else if (favPair.getRate() < 0) {
-    percentageChange.textContent = `▼ ${favPair.getRate()}%`;
+  } else if (favPair.getChange() < 0) {
+    percentageChange.textContent = `▼ ${favPair.getChange()}%`;
     percentageChange.classList.add("down");
     percentageChange.classList.remove("up");
   }
