@@ -79,7 +79,13 @@ const initApp = () => {
   });
   swapBtn.addEventListener("click", swapCurrencies);
 
-  favConvBtn.addEventListener("click", favConvBtnDisplay);
+  favConvBtn.addEventListener("click", (event) => {
+    handleFavorites(
+      exchangeData.getCurrentBase().code,
+      exchangeData.getCurrentQuote().code,
+    );
+  });
+
   mobileNavWrapper.addEventListener("click", handleMobileNav);
   mobileNavWrapper.addEventListener("focusout", (event) => {
     dropDownDisplay(
@@ -266,7 +272,8 @@ const loadThePage = async () => {
     const ratesData = await getRatesData(exchangeData.getCurrentBase().code);
     setRatesData(ratesData);
   }
-
+  const favConvBtn = document.getElementById("favConv");
+  favConvBtnDisplay(favConvBtn, exchangeData);
   const sendInput = document.getElementById("sendInput");
   const receiveInput = document.getElementById("receiveInput");
   const ratesData = JSON.parse(getCachedRates());

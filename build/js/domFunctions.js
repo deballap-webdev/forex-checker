@@ -70,15 +70,24 @@ export const toggleIntervalBtn = (activeBtn, intervalBtns) => {
   });
 };
 
-export const favConvBtnDisplay = (event) => {
-  const favConvBtn = event.currentTarget;
-  favConvBtn.classList.toggle("favorited");
-  favConvBtn.classList.toggle("unfavorited");
+export const favConvBtnDisplay = (favConvBtn, exchangeData) => {
   const favIcon = favConvBtn.querySelector("img");
-  if (favConvBtn.classList.contains("favorited")) {
+  if (
+    exchangeData
+      .getFavorite()
+      .find(
+        (favPair) =>
+          favPair.getBase() === exchangeData.getCurrentBase().code &&
+          favPair.getQuote() === exchangeData.getCurrentQuote().code,
+      )
+  ) {
+    favConvBtn.classList.add("favorited");
+    favConvBtn.classList.remove("unfavorited");
     favIcon.src = "img/star-solid-full.svg";
     favConvBtn.querySelector("#fav-label").textContent = "FAVORITED";
   } else {
+    favConvBtn.classList.remove("favorited");
+    favConvBtn.classList.add("unfavorited");
     favIcon.src = "img/icon-star.svg";
     favConvBtn.querySelector("#fav-label").textContent = "FAVOURITE";
   }
