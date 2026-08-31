@@ -307,6 +307,10 @@ const clearElem = (elem) => {
 export const renderFavoritesSection = (favoriteData) => {
   const favoritesContainer = document.getElementById("favoritesContainer");
   clearElem(favoritesContainer);
+  const favPairNum = document.querySelectorAll(".favPairNum");
+  favPairNum.forEach((num) => {
+    num.textContent = favoriteData.length;
+  });
   const emptyState = document.getElementById("emptyState__favorites");
   const notEmpty = document.getElementById("notEmpty__favorites");
   if (!favoriteData.length) {
@@ -323,8 +327,12 @@ export const renderFavoritesSection = (favoriteData) => {
 };
 
 const buildFavItem = (favPair) => {
-  const baseDiv = createElem("div", ["currency"], favPair.getBase());
-  const quoteDiv = createElem("div", ["currency"], favPair.getQuote());
+  const baseDiv = createElem("div", ["currency", "favBase"], favPair.getBase());
+  const quoteDiv = createElem(
+    "div",
+    ["currency", "favQuote"],
+    favPair.getQuote(),
+  );
   const exchangeRate = createElem("div", ["exch-rate"], `${favPair.getRate()}`);
   const percentageChange = createElem(
     "div",
@@ -332,7 +340,7 @@ const buildFavItem = (favPair) => {
     `${favPair.getChange()}%`,
   );
 
-  if (favPair.getRate() > 0) {
+  if (favPair.getChange() > 0) {
     percentageChange.textContent = `▲ +${favPair.getChange()}%`;
     percentageChange.classList.add("up");
     percentageChange.classList.remove("down");

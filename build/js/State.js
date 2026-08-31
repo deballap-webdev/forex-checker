@@ -101,7 +101,7 @@ export class FavPair {
     if (quote) this.#quote = quote;
     if (id) this.#id = id;
     if (rate) this.#rate = rate;
-    if (change) this.#change = change;
+    if (change || change === 0) this.#change = change;
   }
 
   getBase() {

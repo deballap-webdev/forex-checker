@@ -13,7 +13,7 @@ export const getRatesData = async (base) => {
     const currencyJson = await currencyStream.json();
     return currencyJson;
   } catch (err) {
-    console.log(err.stack);
+    console.erorr(err.stack);
   }
 };
 
@@ -31,7 +31,7 @@ export const getPercentageChangeFromApi = async (base, quote) => {
     const dataJson = await data.json();
     return calcPercentageChange(dataJson);
   } catch (err) {
-    console.log(err.stack);
+    console.erorr(err.stack);
   }
 };
 
@@ -54,7 +54,6 @@ const calcPercentageChange = (apiData) => {
             lastTwoDaysData[0].rate
           ).toFixed(4),
         );
-  console.log(lastTwoDaysData);
   return { change: percentageChange, currentRate: lastTwoDaysData[1].rate };
   /*   const percentageChangeObj = {};
   availableCurrencies.forEach((currency) => {

@@ -408,7 +408,7 @@
             >
             <a href="#favorites" class="nav-link"
               ><div class="sectionName w-full">FAVORITES</div>
-              <div class="number">10</div></a
+              <div class="number favPairNum">10</div></a
             >
             <a href="#log" class="nav-link"
               ><div class="sectionName w-full">LOG</div>
@@ -422,7 +422,7 @@
             <a href="#compare" class="nav-link">COMPARE</a>
             <a href="#favorites" class="nav-link"
               >FAVORITES
-              <div class="number">10</div></a
+              <div class="number favPairNum">10</div></a
             >
             <a href="#log" class="nav-link"
               >LOG
@@ -980,96 +980,21 @@
             </h2>
             <div class="flex justify-between">
               <div class="sectionName">PINNED PAIRS</div>
-              <div class="text-[0.75rem] opacity-70" id="favorites__pairNum">
-                10 FAVORITES
+              <div class="text-[0.75rem] opacity-70">
+                <span class="favPairNum">10</span> FAVORITES
               </div>
             </div>
             <div class="flex flex-col gap-3" id="favoritesContainer">
-              <div
+              <!-- <div
                 class="fav-item"
                 tabindex="1"
                 title="load pair into converter"
                 aria-label="load favorite pair into converter"
               >
                 <div class="pair-container">
-                  <div class="currency">USD</div>
+                  <div class="currency favBase">USD</div>
                   <img src="img/icon-arrow-right.svg" alt="" />
-                  <div class="currency">EUR</div>
-                </div>
-
-                <div class="rate-change-container">
-                  <div class="exch-rate">0.8530</div>
-                  <div class="percent-change up">▲ +0.16%</div>
-                </div>
-
-                <button
-                  class="fav-btn"
-                  title="favorite button"
-                  aria-label="add or remove item from favorites"
-                >
-                  <img src="img/icon-star-filled.svg " alt="" />
-                </button>
-              </div>
-              <div
-                class="fav-item"
-                tabindex="1"
-                title="load pair into converter"
-                aria-label="load favorite pair into converter"
-              >
-                <div class="pair-container">
-                  <div class="currency">USD</div>
-                  <img src="img/icon-arrow-right.svg" alt="" />
-                  <div class="currency">EUR</div>
-                </div>
-
-                <div class="rate-change-container">
-                  <div class="exch-rate">0.8530</div>
-                  <div class="percent-change up">▲ +0.16%</div>
-                </div>
-
-                <button
-                  class="fav-btn"
-                  title="favorite button"
-                  aria-label="add or remove item from favorites"
-                >
-                  <img src="img/icon-star-filled.svg " alt="" />
-                </button>
-              </div>
-              <div
-                class="fav-item"
-                tabindex="1"
-                title="load pair into converter"
-                aria-label="load favorite pair into converter"
-              >
-                <div class="pair-container">
-                  <div class="currency">CHF</div>
-                  <img src="img/icon-arrow-right.svg" alt="" />
-                  <div class="currency">NZD</div>
-                </div>
-
-                <div class="rate-change-container">
-                  <div class="exch-rate">0.5890</div>
-                  <div class="percent-change down">▼ -0.89%</div>
-                </div>
-
-                <button
-                  class="fav-btn"
-                  title="favorite button"
-                  aria-label="add or remove item from favorites"
-                >
-                  <img src="img/icon-star-filled.svg " alt="" />
-                </button>
-              </div>
-              <div
-                class="fav-item"
-                tabindex="1"
-                title="load pair into converter"
-                aria-label="load favorite pair into converter"
-              >
-                <div class="pair-container">
-                  <div class="currency">USD</div>
-                  <img src="img/icon-arrow-right.svg" alt="" />
-                  <div class="currency">JPY</div>
+                  <div class="currency favQuote">JPY</div>
                 </div>
 
                 <div class="rate-change-container">
@@ -1084,7 +1009,7 @@
                 >
                   <img src="img/icon-star-filled.svg " alt="" />
                 </button>
-              </div>
+              </div> -->
             </div>
           </div>
         </section>

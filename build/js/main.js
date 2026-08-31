@@ -37,7 +37,22 @@ const appState = new AppState();
 const exchangeData = new ExchangeData();
 const initApp = () => {
   const compareContainer = document.getElementById("compareContainer");
-  compareContainer.addEventListener("click", handleCompareClick);
+  compareContainer.addEventListener("click", (event) => {
+    const quote =
+      event.target === event.currentTarget
+        ? ""
+        : event.target.closest(".compare-currency").querySelector(".name-abbr")
+            .textContent;
+    const sectionObj = {
+      btnClass: "fav-btn",
+      base: exchangeData.getCurrentBase().code,
+      quote: quote,
+      containerId: "compareContainer",
+      event: event,
+    };
+    handleSectionClick(sectionObj);
+  });
+
   const mainNav = document.getElementById("mainNav");
   mainNav.addEventListener("click", displaySections);
   const logContainer = document.getElementById("logContainer");
@@ -55,6 +70,7 @@ const initApp = () => {
   const compareSection = document.getElementById("compare");
   const favConvBtn = document.getElementById("favConv");
   const swapBtn = document.getElementById("swapBtn");
+  const favoritesContainer = document.getElementById("favoritesContainer");
   sendInput.addEventListener("input", (event) => {
     convertAndDisplay("send", receiveInput, sendInput.value);
   });
@@ -62,8 +78,8 @@ const initApp = () => {
     convertAndDisplay("receive", sendInput, receiveInput.value);
   });
   swapBtn.addEventListener("click", swapCurrencies);
+
   favConvBtn.addEventListener("click", favConvBtnDisplay);
-  //compareSection.addEventListener("click", favBtnDisplay);
   mobileNavWrapper.addEventListener("click", handleMobileNav);
   mobileNavWrapper.addEventListener("focusout", (event) => {
     dropDownDisplay(
@@ -72,7 +88,27 @@ const initApp = () => {
       document.getElementById("mobileNavBtn"),
     );
   });
+  favoritesContainer.addEventListener("click", (event) => {
+    const quote =
+      event.target === event.currentTarget
+        ? ""
+        : event.target.closest(".fav-item").querySelector(".favQuote")
+            .textContent;
 
+    const base =
+      event.target === event.currentTarget
+        ? ""
+        : event.target.closest(".fav-item").querySelector(".favBase")
+            .textContent;
+    const sectionObj = {
+      btnClass: "fav-btn",
+      base: base,
+      quote: quote,
+      containerId: "compareContainer",
+      event: event,
+    };
+    handleSectionClick(sectionObj);
+  });
   mobileNavWrapper.addEventListener("keydown", (event) => {
     dropDownDisplay(
       event,
@@ -134,22 +170,22 @@ const initApp = () => {
   loadThePage();
 };
 
-const handleCompareClick = (event) => {
+const handleSectionClick = (sectionObj) => {
+  const { btnClass, base, quote, event, containerId } = sectionObj;
   if (event.target.closest("button")) {
-    if (event.target.closest("button").classList.contains("fav-btn"))
-      handleFavorites(
-        exchangeData.getCurrentBase().code,
-        event.target.closest(".compare-currency").querySelector(".name-abbr")
-          .textContent,
-      );
-  } else if (event.target.id !== "compareContainer") {
-    const code = event.target
-      .closest(".compare-currency")
-      .querySelector(".name-abbr").textContent;
-    const name = event.target
-      .closest(".compare-currency")
-      .querySelector(".name-full").textContent;
-    exchangeData.setExhangeData({ currentQuote: { code: code, name: name } });
+    if (event.target.closest("button").classList.contains(btnClass))
+      handleFavorites(base, quote);
+  } else if (event.target.id !== containerId) {
+    const quoteName = availableCurrencies.find(
+      (currency) => currency.code === quote,
+    ).name;
+    const baseName = availableCurrencies.find(
+      (currency) => currency.code === base,
+    ).name;
+    exchangeData.setExhangeData({
+      currentQuote: { code: quote, name: quoteName },
+      currentBase: { code: base, name: baseName },
+    });
   }
   loadThePage();
 };
@@ -250,10 +286,8 @@ const loadThePage = async () => {
     );
     const change = apiData.change;
     const rate = apiData.currentRate;
-    console.log(apiData);
     exchangeData.getFavorite()[i].setFavPair({ change: change, rate: rate });
   }
-  console.log(exchangeData.getFavorite().length);
   renderFavoritesSection(exchangeData.getFavorite());
 };
 
