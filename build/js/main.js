@@ -28,7 +28,9 @@ import {
   setRatesData,
   getCachedRates,
   convertCurrency,
-  getPercentageChange,
+  setPercentageChange,
+  getCachedChange,
+  getPercentageChangeFromApi,
 } from "./dataFunctions.js";
 
 const appState = new AppState();
@@ -152,7 +154,6 @@ const handleCompareClick = (event) => {
   loadThePage();
 };
 
-getPercentageChange(exchangeData.getCurrentBase().code);
 const handleFavorites = (base, quote) => {
   const id = `${base} ${quote}`;
   if (exchangeData.getFavorite().find((favPair) => favPair.getId() === id)) {
@@ -171,7 +172,8 @@ const handleFavorites = (base, quote) => {
     favPair.setFavPair(favObj);
     exchangeData.addPairToFavorite(favPair);
   }
-  renderFavoritesSection(exchangeData.getFavorite());
+
+  loadThePage();
 };
 
 const convertAndDisplay = (inputType, convInput, value) => {
@@ -232,6 +234,7 @@ const loadThePage = async () => {
     const ratesData = await getRatesData(exchangeData.getCurrentBase().code);
     setRatesData(ratesData);
   }
+
   const sendInput = document.getElementById("sendInput");
   const receiveInput = document.getElementById("receiveInput");
   const ratesData = JSON.parse(getCachedRates());
@@ -244,6 +247,15 @@ const loadThePage = async () => {
   updateRateDisplay(ratesObj);
   convertAndDisplay("send", receiveInput, sendInput.value);
   convertAndDisplay("receive", sendInput, receiveInput.value);
+  for (let i = 0; i < exchangeData.getFavorite().length; i++) {
+    const change = await getPercentageChangeFromApi(
+      exchangeData.getFavorite()[i].getBase(),
+      exchangeData.getFavorite()[i].getQuote(),
+    );
+    exchangeData.getFavorite()[i].setFavPair({ change: change });
+  }
+  console.log(exchangeData.getFavorite().length);
+  renderFavoritesSection(exchangeData.getFavorite());
 };
 
 const displaySections = (event) => {

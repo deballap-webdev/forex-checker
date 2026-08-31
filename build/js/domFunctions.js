@@ -325,8 +325,23 @@ export const renderFavoritesSection = (favoriteData) => {
 const buildFavItem = (favPair) => {
   const baseDiv = createElem("div", ["currency"], favPair.getBase());
   const quoteDiv = createElem("div", ["currency"], favPair.getQuote());
-  const exchangeRate = createElem("div", ["exch-rate"], favPair.getRate());
-  const percentage = createElem("div", ["percentage"]);
+  const exchangeRate = createElem("div", ["exch-rate"], `${favPair.getRate()}`);
+  const percentageChange = createElem(
+    "div",
+    ["percent-change"],
+    `${favPair.getChange()}%`,
+  );
+
+  if (favPair.getRate() > 0) {
+    percentageChange.textContent = `▲ +${favPair.getRate()}%`;
+    percentageChange.classList.add("up");
+    percentageChange.classList.remove("down");
+  } else if (favPair.getRate() < 0) {
+    percentageChange.textContent = `▼ ${favPair.getRate()}%`;
+    percentageChange.classList.add("down");
+    percentageChange.classList.remove("up");
+  }
+
   const arrowObj = {
     src: `img/icon-arrow-right.svg`,
     width: "11",
@@ -349,7 +364,7 @@ const buildFavItem = (favPair) => {
   const rateChangeDiv = createCard(
     "div",
     ["rate-change-container"],
-    [exchangeRate, percentage],
+    [exchangeRate, percentageChange],
   );
   const favBtn = createCard("button", ["fav-btn"], [star]);
   favBtn.title = "remove pair from favorites";
