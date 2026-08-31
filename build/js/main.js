@@ -28,6 +28,7 @@ import {
   setRatesData,
   getCachedRates,
   convertCurrency,
+  getPercentageChange,
 } from "./dataFunctions.js";
 
 const appState = new AppState();
@@ -151,6 +152,7 @@ const handleCompareClick = (event) => {
   loadThePage();
 };
 
+getPercentageChange(exchangeData.getCurrentBase().code);
 const handleFavorites = (base, quote) => {
   const id = `${base} ${quote}`;
   if (exchangeData.getFavorite().find((favPair) => favPair.getId() === id)) {

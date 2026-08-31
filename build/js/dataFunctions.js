@@ -17,6 +17,53 @@ export const getRatesData = async (base) => {
   }
 };
 
+export const getPercentageChange = async (base) => {
+  let codeArray = [];
+  availableCurrencies.forEach((currency) => {
+    codeArray.push(currency.code);
+  });
+
+  /*  console.log(
+    ${new Date().toLocaleDateString("sv-SE")}
+    new Date(Date.now() - 24 * 60 * 60 * 1000).toLocaleDateString("sv-SE"),
+  ); ${/* new Date(Date.now() - 24 * 60 * 60 * 1000).toLocaleDateString("sv-SE") }*/
+  try {
+    const data = await fetch(
+      `https://api.frankfurter.dev/v2/rates?to=${new Date().toLocaleDateString("sv-SE")}&quotes=${codeArray}&base=${base}&from=${new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toLocaleDateString("sv-SE")}`,
+    );
+    // console.log(new Date(Date.now() - 24 * 60 * 60 * 1000));
+    const dataJson = await data.json();
+    getPerctageChangeObject(dataJson);
+    return dataJson;
+  } catch (err) {
+    console.log(err.stack);
+  }
+};
+
+const getPerctageChangeObject = (apiData) => {
+  const percentageChangeObj = {};
+  availableCurrencies.forEach((currency) => {
+    const filteredDataArray = apiData.filter(
+      (data) => currency.code === data.quote,
+    );
+    const lastTwoDaysData = filteredDataArray.slice(
+      filteredDataArray.length - 2,
+    );
+    const percentageChange =
+      lastTwoDaysData.length < 2
+        ? "-"
+        : Number.parseFloat(
+            (
+              (lastTwoDaysData[0].rate - lastTwoDaysData[1].rate) /
+              lastTwoDaysData[0].rate
+            ).toFixed(4),
+          );
+    console.log(percentageChange);
+    percentageChangeObj[currency.code] = percentageChange;
+  });
+  console.log(percentageChangeObj);
+};
+
 export const setRatesData = (ratesData) => {
   sessionStorage.setItem("myRates", JSON.stringify(ratesData));
 };
