@@ -74,7 +74,7 @@ export class ExchangeData {
 
 const removeItemFromArray = (array, itemId) => {
   for (let i = 0; i < array.length; i++) {
-    if (array[i].getId() === itemId) {
+    if (array[i].getId() == itemId) {
       array.splice(i, 1);
       break;
     }

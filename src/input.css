@@ -79,7 +79,7 @@
 }
 
 .conv-log-item {
-  @apply bg-SURFACE border-SURFACE-ELEVATED hover:border-BORDER-STRONG focus:outline-PRIMARY flex w-full items-center gap-2.5 rounded-[10px] border p-3 hover:cursor-pointer focus:outline-1 focus:outline-offset-2 md:gap-4 md:p-4;
+  @apply bg-SURFACE border-SURFACE-ELEVATED hover:border-BORDER-STRONG focus:outline-PRIMARY text-TEXT-PRIMARY flex w-full items-center gap-2.5 rounded-[10px] border p-3 hover:cursor-pointer focus:outline-1 focus:outline-offset-2 md:gap-4 md:p-4;
 
   .date-currency-wrapper {
     @apply flex w-full flex-col justify-center gap-1 md:flex-row;

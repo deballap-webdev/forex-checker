@@ -15,6 +15,7 @@ import {
   hide,
   renderFavoritesSection,
   renderCompareSection,
+  renderLogSection,
 } from "./domFunctions.js";
 
 import { AppState, ExchangeData, FavPair, LoggedConv } from "./State.js";
@@ -28,29 +29,27 @@ import {
   setRatesData,
   getCachedRates,
   convertCurrency,
-  setPercentageChange,
-  getCachedChange,
   getPercentageChangeFromApi,
 } from "./dataFunctions.js";
 
 const appState = new AppState();
 const exchangeData = new ExchangeData();
+
 const initApp = () => {
   const compareContainer = document.getElementById("compareContainer");
   compareContainer.addEventListener("click", (event) => {
-    const quote =
-      event.target === event.currentTarget
-        ? ""
-        : event.target.closest(".compare-currency").querySelector(".name-abbr")
-            .textContent;
-    const sectionObj = {
-      btnClass: "fav-btn",
-      base: exchangeData.getCurrentBase().code,
-      quote: quote,
-      containerId: "compareContainer",
-      event: event,
-    };
-    handleSectionClick(sectionObj);
+    if (event.target === event.currentTarget) return;
+    const base = exchangeData.getCurrentBase().code;
+    const quote = event.target
+      .closest(".compare-currency")
+      .querySelector(".name-abbr").textContent;
+    if (event.target.closest("button")) {
+      if (event.target.closest("button").classList.contains("fav-btn"))
+        handleFavorites(base, quote);
+    } else {
+      loadIntoConverter(base, quote);
+    }
+    loadThePage();
   });
 
   const mainNav = document.getElementById("mainNav");
@@ -85,7 +84,24 @@ const initApp = () => {
       exchangeData.getCurrentQuote().code,
     );
   });
-
+  logContainer.addEventListener("click", (event) => {
+    if (event.target === event.currentTarget) return;
+    if (event.target.closest("button")) {
+      if (event.target.closest("button").classList.contains("delete-btn")) {
+        console.log(exchangeData.getLog());
+        exchangeData.removeConvFromLog(event.target.id);
+        console.log("hey");
+        console.log(exchangeData.getLog());
+      }
+    } else {
+      const convItem = event.target.closest(".conv-log-item");
+      sendInput.value = convItem.querySelector(".send-pice").textContent;
+      const base = convItem.querySelector(".logBase").textContent;
+      const quote = convItem.querySelector(".logBase").textContent;
+      loadIntoConverter(base, quote);
+    }
+    loadThePage();
+  });
   mobileNavWrapper.addEventListener("click", handleMobileNav);
   mobileNavWrapper.addEventListener("focusout", (event) => {
     dropDownDisplay(
@@ -95,25 +111,20 @@ const initApp = () => {
     );
   });
   favoritesContainer.addEventListener("click", (event) => {
-    const quote =
-      event.target === event.currentTarget
-        ? ""
-        : event.target.closest(".fav-item").querySelector(".favQuote")
-            .textContent;
-
-    const base =
-      event.target === event.currentTarget
-        ? ""
-        : event.target.closest(".fav-item").querySelector(".favBase")
-            .textContent;
-    const sectionObj = {
-      btnClass: "fav-btn",
-      base: base,
-      quote: quote,
-      containerId: "compareContainer",
-      event: event,
-    };
-    handleSectionClick(sectionObj);
+    if (event.target === event.currentTarget) return;
+    const base = event.target
+      .closest(".fav-item")
+      .querySelector(".favBase").textContent;
+    const quote = event.target
+      .closest(".fav-item")
+      .querySelector(".favQuote").textContent;
+    if (event.target.closest("button")) {
+      if (event.target.closest("button").classList.contains("fav-btn"))
+        handleFavorites(base, quote);
+    } else {
+      loadIntoConverter(base, quote);
+    }
+    loadThePage();
   });
   mobileNavWrapper.addEventListener("keydown", (event) => {
     dropDownDisplay(
@@ -123,10 +134,12 @@ const initApp = () => {
     );
   });
 
-  const logConvBtn = document.getElementById("logConv", (event) => {});
-  logConvBtn.addEventListener("mousedown", logConvBtnDisplay);
-  logConvBtn.addEventListener("mouseup", logConvBtnDisplay);
-
+  const logConvBtn = document.getElementById("logConv");
+  logConvBtn.addEventListener("click", (event) => {
+    logConvBtnDisplay(event);
+    createAndSetLogObj();
+    loadThePage();
+  });
   sendWrapper.addEventListener("focusout", (event) => {
     dropDownDisplay(
       event,
@@ -176,24 +189,42 @@ const initApp = () => {
   loadThePage();
 };
 
-const handleSectionClick = (sectionObj) => {
+/* const handleSectionClick = (sectionObj) => {
   const { btnClass, base, quote, event, containerId } = sectionObj;
   if (event.target.closest("button")) {
     if (event.target.closest("button").classList.contains(btnClass))
       handleFavorites(base, quote);
-  } else if (event.target.id !== containerId) {
-    const quoteName = availableCurrencies.find(
-      (currency) => currency.code === quote,
-    ).name;
-    const baseName = availableCurrencies.find(
-      (currency) => currency.code === base,
-    ).name;
-    exchangeData.setExhangeData({
-      currentQuote: { code: quote, name: quoteName },
-      currentBase: { code: base, name: baseName },
-    });
-  }
+  } 
   loadThePage();
+}; */
+
+const createAndSetLogObj = () => {
+  const sendInput = document.getElementById("sendInput");
+  const receiveInput = document.getElementById("receiveInput");
+  const logObj = {
+    id: Date.now(),
+    date: Date.now(),
+    receive: receiveInput.value,
+    send: sendInput.value,
+    base: exchangeData.getCurrentBase().code,
+    quote: exchangeData.getCurrentQuote().code,
+  };
+  const log = new LoggedConv();
+  log.setLoggedConv(logObj);
+  exchangeData.addConvToLog(log);
+};
+
+const loadIntoConverter = (base, quote) => {
+  const quoteName = availableCurrencies.find(
+    (currency) => currency.code === quote,
+  ).name;
+  const baseName = availableCurrencies.find(
+    (currency) => currency.code === base,
+  ).name;
+  exchangeData.setExhangeData({
+    currentQuote: { code: quote, name: quoteName },
+    currentBase: { code: base, name: baseName },
+  });
 };
 
 const handleFavorites = (base, quote) => {
@@ -261,6 +292,15 @@ const swapCurrencies = (event) => {
   loadThePage();
 };
 
+const updateLogDataAndDisplay = (event, convObj) => {
+  if (determineAction(event.target.id) === "delete") {
+    exchangeData.removeConvFromLog(event.target.id);
+  } else {
+    createAndSetLogObj(convObj);
+    renderLogSection(exchangeData.getLog());
+  }
+};
+
 const loadThePage = async () => {
   if (getCachedRates() === "undefined" || !getCachedRates()) {
     const ratesData = await getRatesData(exchangeData.getCurrentBase().code);
@@ -283,9 +323,15 @@ const loadThePage = async () => {
   const ratesObj = ratesData.find((data) => {
     return data.quote === exchangeData.getCurrentQuote().code;
   });
+  await setFavRateandChange();
   updateRateDisplay(ratesObj);
   convertAndDisplay("send", receiveInput, sendInput.value);
   convertAndDisplay("receive", sendInput, receiveInput.value);
+  renderFavoritesSection(exchangeData.getFavorite());
+  renderLogSection(exchangeData.getLog());
+};
+
+const setFavRateandChange = async () => {
   for (let i = 0; i < exchangeData.getFavorite().length; i++) {
     const apiData = await getPercentageChangeFromApi(
       exchangeData.getFavorite()[i].getBase(),
@@ -295,7 +341,6 @@ const loadThePage = async () => {
     const rate = apiData.currentRate;
     exchangeData.getFavorite()[i].setFavPair({ change: change, rate: rate });
   }
-  renderFavoritesSection(exchangeData.getFavorite());
 };
 
 const displaySections = (event) => {

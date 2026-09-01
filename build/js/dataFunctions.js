@@ -13,7 +13,7 @@ export const getRatesData = async (base) => {
     const currencyJson = await currencyStream.json();
     return currencyJson;
   } catch (err) {
-    console.erorr(err.stack);
+    console.error(err.stack);
   }
 };
 
@@ -31,16 +31,8 @@ export const getPercentageChangeFromApi = async (base, quote) => {
     const dataJson = await data.json();
     return calcPercentageChange(dataJson);
   } catch (err) {
-    console.erorr(err.stack);
+    console.error(err.stack);
   }
-};
-
-export const getCachedChange = () => {
-  return sessionStorage.getItem("percentageChange");
-};
-
-export const setPercentageChange = (percentageChangeData) => {
-  sessionStorage.setItem("percentageChange", percentageChangeData);
 };
 
 const calcPercentageChange = (apiData) => {
@@ -55,15 +47,6 @@ const calcPercentageChange = (apiData) => {
           ).toFixed(4),
         );
   return { change: percentageChange, currentRate: lastTwoDaysData[1].rate };
-  /*   const percentageChangeObj = {};
-  availableCurrencies.forEach((currency) => {
-    const filteredDataArray = apiData.filter(
-      (data) => currency.code === data.quote,
-    );
-    
-    percentageChangeObj[currency.code] = percentageChange;
-  });
-  return percentageChangeObj; */
 };
 
 export const setRatesData = (ratesData) => {

@@ -945,6 +945,7 @@
   border-color: var(--color-SURFACE-ELEVATED);
   background-color: var(--color-SURFACE);
   padding: calc(var(--spacing) * 3);
+  color: var(--color-TEXT-PRIMARY);
   &:hover {
     @media (hover: hover) {
       cursor: pointer;

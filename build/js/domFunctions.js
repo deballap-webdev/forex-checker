@@ -70,6 +70,85 @@ export const toggleIntervalBtn = (activeBtn, intervalBtns) => {
   });
 };
 
+export const renderLogSection = (logData) => {
+  const logContainer = document.getElementById("logContainer");
+  clearElem(logContainer);
+  logData.forEach((log) => {
+    const logItem = buildLogItem(log);
+    logContainer.append(logItem);
+  });
+};
+
+const buildLogItem = (log) => {
+  const dateText = getLogDate(log.getDate());
+  const date = createElem("div", ["date"], dateText);
+  const baseDiv = createElem("div", ["currency", "logBase"], log.getBase());
+  const quoteDiv = createElem("div", ["currency", "logQuote"], log.getBase());
+  const arrowObj = {
+    src: `img/icon-arrow-right.svg`,
+    width: "11",
+    height: "11",
+    altText: "right arrow",
+  };
+  const arrow = buildIcon(arrowObj);
+  const sendPrice = createElem("div", ["send-price"], log.getSendAmount());
+  const receivePrice = createElem(
+    "div",
+    ["receive-price"],
+    log.getReceiveAmount(),
+  );
+  const currencyContainer = createCard(
+    "div",
+    ["flex", "w-full", "items-center", "gap-2"],
+    [baseDiv, arrow, quoteDiv],
+  );
+  const dateCurrencyWrapper = createCard(
+    "div",
+    ["date-currency-wrapper"],
+    [date, currencyContainer],
+  );
+  const priceContainer = createCard(
+    "div",
+    ["price-container"],
+    [sendPrice, receivePrice],
+  );
+  const deleteObj = {
+    src: "img/icon-delete.svg",
+    altText: "trash can",
+    width: "16",
+    height: "16",
+    classArray: ["w-4", "h-4"],
+  };
+  const deleteIcon = buildIcon(deleteObj);
+  const deleteBtn = createCard("button", ["delete-btn"], [deleteIcon]);
+  deleteBtn.title = "Delete Log";
+  deleteBtn.ariaLabel = "Delete Logged Conversion";
+  deleteBtn.id = log.getId();
+  const logItem = createCard(
+    "div",
+    ["conv-log-item"],
+    [dateCurrencyWrapper, priceContainer, deleteBtn],
+  );
+  logItem.setAttribute("tabindex", "1");
+  logItem.title = "load pair into the converter";
+  logItem.ariaLabel = `load ${log.getBase()}/${log.getQuote()} pair into the converter to see current price at ${log.getSendAmount()} ${log.getBase()}`;
+
+  return logItem;
+};
+
+const getLogDate = (initialDate) => {
+  console.log(getOrdinal(new Date(initialDate).getDate()));
+  const hours = (Date.now() - initialDate) / (1000 * 60 * 60);
+  if (hours < 1) {
+    const mins = hours * 60;
+    return `${Math.floor(mins)}M`;
+  } else if (hours > 24) {
+    return new Date(initialDate).toLocaleDateString();
+  } else {
+    return `${Math.floor(hours)}H`;
+  }
+};
+
 export const favConvBtnDisplay = (favConvBtn, exchangeData) => {
   const favIcon = favConvBtn.querySelector("img");
   if (
@@ -94,26 +173,24 @@ export const favConvBtnDisplay = (favConvBtn, exchangeData) => {
 };
 
 export const logConvBtnDisplay = (event) => {
-  if (event.type === "mousedown") {
-    const img = document.createElement("img");
-    img.id = "check";
-    img.src = "img/checkmark.png";
-    img.width = "512";
-    img.height = "512";
-    img.classList.add("w-4", "h-4");
-    event.currentTarget.classList.add("bg-PRIMARY", "text-SURFACE", "w-31.75");
-    event.currentTarget.classList.remove("hover:bg-PRIMARY-SUBTLE");
-    event.currentTarget.textContent = "LOGGED";
-    event.currentTarget.append(img);
-  } else {
-    setTimeout(() => {
-      event.target.closest("button").textContent = "LOG CONVERSION";
-      event.target
-        .closest("button")
-        .classList.remove("bg-PRIMARY", "text-SURFACE", "w-31.75");
-      event.target.closest("button").classList.add("hover:bg-PRIMARY-SUBTLE");
-    }, 500);
-  }
+  const img = document.createElement("img");
+  img.id = "check";
+  img.src = "img/checkmark.png";
+  img.width = "512";
+  img.height = "512";
+  img.classList.add("w-4", "h-4");
+  event.currentTarget.classList.add("bg-PRIMARY", "text-SURFACE", "w-31.75");
+  event.currentTarget.classList.remove("hover:bg-PRIMARY-SUBTLE");
+  event.currentTarget.textContent = "LOGGED";
+  event.currentTarget.append(img);
+
+  setTimeout(() => {
+    event.target.closest("button").textContent = "LOG CONVERSION";
+    event.target
+      .closest("button")
+      .classList.remove("bg-PRIMARY", "text-SURFACE", "w-31.75");
+    event.target.closest("button").classList.add("hover:bg-PRIMARY-SUBTLE");
+  }, 500);
 };
 
 export const updateMobileNavBtn = (navObj) => {
