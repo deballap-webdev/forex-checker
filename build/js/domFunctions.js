@@ -137,7 +137,6 @@ const buildLogItem = (log) => {
 };
 
 const getLogDate = (initialDate) => {
-  console.log(getOrdinal(new Date(initialDate).getDate()));
   const hours = (Date.now() - initialDate) / (1000 * 60 * 60);
   if (hours < 1) {
     const mins = hours * 60;
@@ -145,7 +144,32 @@ const getLogDate = (initialDate) => {
   } else if (hours > 24) {
     return new Date(initialDate).toLocaleDateString();
   } else {
-    return `${Math.floor(hours)}H`;
+    return getDateString(initialDate);
+  }
+};
+
+const getDateString = (initialDate) => {
+  const day = new Date(initialDate).getDate();
+  const ordinal = getOrdinal(day);
+  const month = new Date(initialDate).toLocaleString("en-US", {
+    month: "long",
+  });
+
+  return `${day}${ordinal} ${month}`;
+};
+
+const getOrdinal = (day) => {
+  if (day >= 11 && day <= 13) return "th";
+
+  switch (day % 10) {
+    case 1:
+      return "st";
+    case 2:
+      return "nd";
+    case 3:
+      return "rd";
+    default:
+      return "th";
   }
 };
 
