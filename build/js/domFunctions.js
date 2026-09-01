@@ -236,12 +236,17 @@ export const updateMobileNavBtn = (navObj) => {
     navObj;
   document.getElementById("activeSection").textContent =
     appState.getActiveSection();
-  document.getElementById("numBox").textContent =
-    appState.getActiveSection() === "FAVORITES"
-      ? exchangeData.getFavorite().length
-      : appState.getActiveSection() === "LOG"
-        ? exchangeData.getLog().length
-        : "";
+  if (appState.getActiveSection() === "FAVORITES") {
+    document.getElementById("numBox").textContent =
+      exchangeData.getFavorite().length;
+    document.getElementById("numBox").classList.add("favPairNum");
+    document.getElementById("numBox").classList.remove("logNum");
+  } else if (appState.getActiveSection() === "LOG") {
+    document.getElementById("numBox").textContent =
+      exchangeData.getLog().length;
+    document.getElementById("numBox").classList.add("logNum");
+    document.getElementById("numBox").classList.remove("favPairNum");
+  }
 
   if (!document.getElementById("numBox").textContent.length) {
     document.getElementById("numBox").classList.add("hidden");

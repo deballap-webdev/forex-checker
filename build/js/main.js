@@ -12,7 +12,6 @@ import {
   updatePickerBtn,
   updateRateDisplay,
   updateInputDisplay,
-  hide,
   renderFavoritesSection,
   renderCompareSection,
   renderLogSection,
@@ -21,6 +20,8 @@ import {
 import { AppState, ExchangeData, FavPair, LoggedConv } from "./State.js";
 
 import {
+  storeExchangeData,
+  getStoredExchangeData,
   getRatesData,
   availableCurrencies,
   popularCurrencies,
@@ -51,6 +52,7 @@ const initApp = () => {
     }
     loadThePage();
   });
+
   const clearLogBtn = document.getElementById("clearLog");
   const mainNav = document.getElementById("mainNav");
   mainNav.addEventListener("click", displaySections);
@@ -121,8 +123,18 @@ const initApp = () => {
     } else {
       loadIntoConverter(base, quote);
     }
+    loadStoredData();
     loadThePage();
   });
+
+  const loadStoredData = () => {
+    if (getStoredExchangeData() !== "string" || !getStoredExchangeData())
+      return;
+    const storedData = JSON.parse(getStoredExchangeData());
+    console.log(storedData);
+    exchangeData.setExhangeData(storedData);
+    console.log(exchangeData);
+  };
 
   clearLogBtn.addEventListener("click", (event) => {
     if (confirm("are you sure you want to clear your entire log?")) {
@@ -324,6 +336,7 @@ const loadThePage = async () => {
   convertAndDisplay("receive", sendInput, receiveInput.value);
   renderFavoritesSection(exchangeData.getFavorite());
   renderLogSection(exchangeData.getLog());
+  storeExchangeData(exchangeData);
 };
 
 const setFavRateandChange = async () => {
@@ -407,7 +420,6 @@ const handleFilter = (event) => {
   buildPickerItems(pickerObj);
 };
 
-//This is very bad and temporary i'll actually store active section and number and other stuff in data storage rather than use dom as source of truth, and this should'nt  be in main.js anyways
 const handleMobileNav = (event) => {
   if (!event.target.closest("button") && !event.target.closest("a")) return;
   const mobileNav = document.getElementById("mobileNav");

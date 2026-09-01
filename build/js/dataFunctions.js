@@ -17,6 +17,14 @@ export const getRatesData = async (base) => {
   }
 };
 
+export const storeExchangeData = (exchangeData) => {
+  localStorage.setItem("myExchangeData", JSON.stringify(exchangeData.getLog()));
+  console.log(JSON.parse(getStoredExchangeData()));
+};
+
+export const getStoredExchangeData = () =>
+  localStorage.getItem("myExchangeData");
+
 export const getPercentageChangeFromApi = async (base, quote) => {
   let codeArray = [];
   availableCurrencies.forEach((currency) => {
