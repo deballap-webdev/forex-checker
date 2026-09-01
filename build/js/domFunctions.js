@@ -72,7 +72,21 @@ export const toggleIntervalBtn = (activeBtn, intervalBtns) => {
 
 export const renderLogSection = (logData) => {
   const logContainer = document.getElementById("logContainer");
+  const emptyState = document.getElementById("emptyState__log");
+  const notEmpty = document.getElementById("notEmpty__log");
+  const logNum = document.querySelectorAll(".logNum");
+  logNum.forEach((num) => {
+    num.textContent = logData.length;
+  });
   clearElem(logContainer);
+  if (!logData.length) {
+    hide(notEmpty);
+    show(emptyState);
+    return;
+  } else {
+    show(notEmpty);
+    hide(emptyState);
+  }
   logData.forEach((log) => {
     const logItem = buildLogItem(log);
     logContainer.append(logItem);
@@ -83,7 +97,7 @@ const buildLogItem = (log) => {
   const dateText = getLogDate(log.getDate());
   const date = createElem("div", ["date"], dateText);
   const baseDiv = createElem("div", ["currency", "logBase"], log.getBase());
-  const quoteDiv = createElem("div", ["currency", "logQuote"], log.getBase());
+  const quoteDiv = createElem("div", ["currency", "logQuote"], log.getQuote());
   const arrowObj = {
     src: `img/icon-arrow-right.svg`,
     width: "11",

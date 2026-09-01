@@ -51,7 +51,7 @@ const initApp = () => {
     }
     loadThePage();
   });
-
+  const clearLogBtn = document.getElementById("clearLog");
   const mainNav = document.getElementById("mainNav");
   mainNav.addEventListener("click", displaySections);
   const logContainer = document.getElementById("logContainer");
@@ -88,16 +88,13 @@ const initApp = () => {
     if (event.target === event.currentTarget) return;
     if (event.target.closest("button")) {
       if (event.target.closest("button").classList.contains("delete-btn")) {
-        console.log(exchangeData.getLog());
-        exchangeData.removeConvFromLog(event.target.id);
-        console.log("hey");
-        console.log(exchangeData.getLog());
+        exchangeData.removeConvFromLog(event.target.closest("button").id);
       }
     } else {
       const convItem = event.target.closest(".conv-log-item");
-      sendInput.value = convItem.querySelector(".send-pice").textContent;
+      sendInput.value = convItem.querySelector(".send-price").textContent;
       const base = convItem.querySelector(".logBase").textContent;
-      const quote = convItem.querySelector(".logBase").textContent;
+      const quote = convItem.querySelector(".logQuote").textContent;
       loadIntoConverter(base, quote);
     }
     loadThePage();
@@ -125,6 +122,13 @@ const initApp = () => {
       loadIntoConverter(base, quote);
     }
     loadThePage();
+  });
+
+  clearLogBtn.addEventListener("click", (event) => {
+    if (confirm("are you sure you want to clear your entire log?")) {
+      exchangeData.clearLog();
+      loadThePage();
+    }
   });
   mobileNavWrapper.addEventListener("keydown", (event) => {
     dropDownDisplay(
@@ -292,15 +296,6 @@ const swapCurrencies = (event) => {
   loadThePage();
 };
 
-const updateLogDataAndDisplay = (event, convObj) => {
-  if (determineAction(event.target.id) === "delete") {
-    exchangeData.removeConvFromLog(event.target.id);
-  } else {
-    createAndSetLogObj(convObj);
-    renderLogSection(exchangeData.getLog());
-  }
-};
-
 const loadThePage = async () => {
   if (getCachedRates() === "undefined" || !getCachedRates()) {
     const ratesData = await getRatesData(exchangeData.getCurrentBase().code);
@@ -356,8 +351,8 @@ const displaySections = (event) => {
 };
 
 const addHoverEffect = (event) => {
-  const deleteBtnArray = document.querySelectorAll(".delete-btn");
   if (!event.target.closest("button")) return;
+  const deleteBtnArray = document.querySelectorAll(".delete-btn");
   applyDeleteHover(event, deleteBtnArray, event.target.closest("button"));
 };
 
