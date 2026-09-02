@@ -123,18 +123,9 @@ const initApp = () => {
     } else {
       loadIntoConverter(base, quote);
     }
-    loadStoredData();
+
     loadThePage();
   });
-
-  const loadStoredData = () => {
-    if (getStoredExchangeData() !== "string" || !getStoredExchangeData())
-      return;
-    const storedData = JSON.parse(getStoredExchangeData());
-    console.log(storedData);
-    exchangeData.setExhangeData(storedData);
-    console.log(exchangeData);
-  };
 
   clearLogBtn.addEventListener("click", (event) => {
     if (confirm("are you sure you want to clear your entire log?")) {
@@ -202,7 +193,51 @@ const initApp = () => {
   intervalContainer.addEventListener("click", intervalBtnDisplay);
   logContainer.addEventListener("mouseover", addHoverEffect);
   logContainer.addEventListener("mouseout", addHoverEffect);
+  ///localStorage.clear("myExchangeData");
+  loadStoredData();
   loadThePage();
+};
+
+const loadStoredData = () => {
+  if (typeof getStoredExchangeData() !== "string" || !getStoredExchangeData())
+    return;
+  const storedData = JSON.parse(getStoredExchangeData());
+  storedData.favorite.forEach((fav) => {
+    const favItem = new FavPair();
+    const favObj = {
+      base: fav.base,
+      change: fav.change,
+      id: fav.id,
+      quote: fav.quote,
+      rate: fav.rate,
+    };
+    favItem.setFavPair(favObj);
+    exchangeData.addPairToFavorite(favItem);
+  });
+
+  storedData.log.forEach((log) => {
+    const logItem = new LoggedConv();
+    const logObj = {
+      base: log.base,
+      quote: log.quote,
+      date: log.date,
+      send: log.send,
+      receive: log.receive,
+      id: log.id,
+    };
+    logItem.setLoggedConv(logObj);
+    exchangeData.addConvToLog(logItem);
+  });
+
+  const exchangeObj = {
+    interval: storedData.interval,
+    currentBase: storedData.currentBase,
+    currentQuote: storedData.currentQuote,
+  };
+
+  exchangeData.setExhangeData(exchangeObj);
+  console.log(storedData);
+  console.log(exchangeData);
 };
 
 /* const handleSectionClick = (sectionObj) => {
@@ -337,6 +372,7 @@ const loadThePage = async () => {
   renderFavoritesSection(exchangeData.getFavorite());
   renderLogSection(exchangeData.getLog());
   storeExchangeData(exchangeData);
+  console.log(exchangeData);
 };
 
 const setFavRateandChange = async () => {

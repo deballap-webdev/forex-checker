@@ -18,8 +18,7 @@ export const getRatesData = async (base) => {
 };
 
 export const storeExchangeData = (exchangeData) => {
-  localStorage.setItem("myExchangeData", JSON.stringify(exchangeData.getLog()));
-  console.log(JSON.parse(getStoredExchangeData()));
+  localStorage.setItem("myExchangeData", JSON.stringify(exchangeData));
 };
 
 export const getStoredExchangeData = () =>

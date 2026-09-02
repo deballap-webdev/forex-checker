@@ -63,12 +63,20 @@ export class ExchangeData {
   }
 
   setExhangeData(exchangeObj) {
-    const { log, favorite, interval, currentBase, currentQuote } = exchangeObj;
-    if (log) this.#log = log;
-    if (favorite) this.#favorite = favorite;
+    const { interval, currentBase, currentQuote } = exchangeObj;
     if (interval) this.#interval = interval;
     if (currentBase) this.#currentBase = currentBase;
     if (currentQuote) this.#currentQuote = currentQuote;
+  }
+
+  toJSON() {
+    return {
+      favorite: this.#favorite.map((fav) => fav.toJSON()),
+      log: this.#log.map((log) => log.toJSON()),
+      currentBase: this.#currentBase,
+      currentQuote: this.#currentQuote,
+      interval: this.#interval,
+    };
   }
 }
 
@@ -93,6 +101,16 @@ export class FavPair {
     this.#id;
     this.#rate;
     this.#change;
+  }
+
+  toJSON() {
+    return {
+      base: this.#base,
+      quote: this.#quote,
+      id: this.#id,
+      rate: this.#rate,
+      change: this.#change,
+    };
   }
 
   setFavPair(favPairObj) {
@@ -132,12 +150,23 @@ export class LoggedConv {
   #receive;
   #id;
   constructor() {
-    this.#base = null;
-    this.#quote = null;
-    this.#date = null;
-    this.#send = null;
-    this.#receive = null;
-    this.#id = null;
+    this.#base;
+    this.#quote;
+    this.#date;
+    this.#send;
+    this.#receive;
+    this.#id;
+  }
+
+  toJSON() {
+    return {
+      base: this.#base,
+      quote: this.#quote,
+      date: this.#date,
+      send: this.#send,
+      receive: this.#receive,
+      id: this.#id,
+    };
   }
 
   getBase() {
@@ -180,7 +209,7 @@ export class AppState {
   #error;
   constructor() {
     this.#activeSection = "HISTORY";
-    this.#error = null;
+    this.#error;
   }
 
   getActiveSection() {
