@@ -458,11 +458,12 @@ export const renderHistorySection = (historicData) => {
   const emptyState = document.getElementById("emptyState__history");
   const notEmpty = document.getElementById("notEmpty__history");
   document.getElementById("history__open").textContent = historicData.open;
-  document.getElementById("history__last").textContent = historicData.last;
+  document.getElementById("history__last").textContent =
+    historicData.currentRate;
   const change = document.getElementById("history__change");
   const percentageChange = document.getElementById("history__percentChange");
   change.textContent = historicData.change;
-  percentageChange.textContent = historicData.percentageChange;
+  percentageChange.textContent = historicData.percentChange;
 };
 
 const buildFavItem = (favPair) => {

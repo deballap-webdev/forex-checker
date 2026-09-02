@@ -366,8 +366,8 @@ const loadThePage = async () => {
   );
 
   const historicData = await getHistoricDataFromApi(
-    exchangeData.getCurrentBase(),
-    exchangeData.getCurrentQuote(),
+    exchangeData.getCurrentBase().code,
+    exchangeData.getCurrentQuote().code,
     exchangeData.getInterval(),
   );
   renderHistorySection(historicData);
@@ -413,8 +413,8 @@ const intervalBtnDisplay = async (event) => {
     exchangeData.getInterval(),
   );
   const historicData = await getHistoricDataFromApi(
-    exchangeData.getCurrentBase(),
-    exchangeData.getCurrentQuote(),
+    exchangeData.getCurrentBase().code,
+    exchangeData.getCurrentQuote().code,
     exchangeData.getInterval(),
   );
   renderHistorySection(historicData);

@@ -32,7 +32,7 @@ export const getHistoricDataFromApi = async (base, quote, interval) => {
 
   const from = getFromDate(interval);
   const to = new Date().toLocaleDateString("sv-SE");
-  console.log(from);
+
   try {
     const data = await fetch(
       `https://api.frankfurter.dev/v2/rates?to=${to}&quotes=${quote}&base=${base}&from=${from}`,
@@ -90,16 +90,17 @@ const getHistoricData = (apiData, interval) => {
       : Number.parseFloat(
           (
             ((apiData[apiData.length - 1].rate - apiData[0].rate) /
-              apiData[0]) *
+              apiData[0].rate) *
             100
           ).toFixed(4),
         );
+
+  console.log(percentChange);
   return {
     change: change,
     currentRate: apiData[apiData.length - 1].rate,
     percentChange: percentChange,
-    open: apiData[0],
-    last: apiData[apiData.length - 1],
+    open: apiData[0].rate,
   };
 };
 
