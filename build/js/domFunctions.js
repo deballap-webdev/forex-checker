@@ -460,10 +460,35 @@ export const renderHistorySection = (historicData) => {
   document.getElementById("history__open").textContent = historicData.open;
   document.getElementById("history__last").textContent =
     historicData.currentRate;
+
   const change = document.getElementById("history__change");
-  const percentageChange = document.getElementById("history__percentChange");
+  const percentChange = document.getElementById("history__percentChange");
   change.textContent = historicData.change;
-  percentageChange.textContent = historicData.percentChange;
+  percentChange.textContent = historicData.percentChange;
+
+  if (historicData.change > 0) {
+    change.textContent = `+${historicData.change}`;
+    change.classList.add("text-SUCCESS");
+    change.classList.remove("text-DANGER");
+  } else if (historicData.change < 0) {
+    change.textContent = `${historicData.change}`;
+    change.classList.remove("text-SUCCESS");
+    change.classList.add("text-DANGER");
+  } else {
+    change.textContent = `${historicData.change}`;
+  }
+
+  if (historicData.percentChange > 0) {
+    percentChange.textContent = `▲ ${historicData.percentChange}`;
+    percentChange.classList.add("text-SUCCESS");
+    percentChange.classList.remove("text-DANGER");
+  } else if (historicData.percentChange < 0) {
+    percentChange.textContent = `▼ ${historicData.percentChange}`;
+    percentChange.classList.remove("text-SUCCESS");
+    percentChange.classList.add("text-DANGER");
+  } else {
+    percentChange.textContent = `${historicData.percentChange}`;
+  }
 };
 
 const buildFavItem = (favPair) => {

@@ -241,9 +241,10 @@ const loadStoredData = () => {
 const createAndSetLogObj = () => {
   const sendInput = document.getElementById("sendInput");
   const receiveInput = document.getElementById("receiveInput");
+  const now = Date.now();
   const logObj = {
-    id: Date.now(),
-    date: Date.now(),
+    id: now,
+    date: now,
     receive: receiveInput.value,
     send: sendInput.value,
     base: exchangeData.getCurrentBase().code,
