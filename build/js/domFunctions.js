@@ -62,9 +62,9 @@ const hideDropDown = (elemToToggle, btn) => {
   elemToToggle.classList.remove("flex");
 };
 
-export const toggleIntervalBtn = (activeBtn, intervalBtns) => {
+export const toggleIntervalBtn = (intervalBtns, interval) => {
   intervalBtns.forEach((btn) => {
-    btn === activeBtn
+    btn.textContent.trim() === interval
       ? btn.classList.add("active")
       : btn.classList.remove("active");
   });
@@ -155,10 +155,10 @@ const getLogDate = (initialDate) => {
   if (hours < 1) {
     const mins = hours * 60;
     return `${Math.floor(mins)}M`;
-  } else if (hours > 24) {
-    return new Date(initialDate).toLocaleDateString();
-  } else {
+  } else if (hours >= 24) {
     return getDateString(initialDate);
+  } else {
+    return `${Math.floor(hours)}H`;
   }
 };
 
@@ -217,17 +217,16 @@ export const logConvBtnDisplay = (event) => {
   img.width = "512";
   img.height = "512";
   img.classList.add("w-4", "h-4");
-  event.currentTarget.classList.add("bg-PRIMARY", "text-SURFACE", "w-31.75");
-  event.currentTarget.classList.remove("hover:bg-PRIMARY-SUBTLE");
-  event.currentTarget.textContent = "LOGGED";
-  event.currentTarget.append(img);
+  const logButton = event.currentTarget;
+  logButton.classList.add("bg-PRIMARY", "text-SURFACE", "w-31.75");
+  logButton.classList.remove("hover:bg-PRIMARY-SUBTLE");
+  logButton.textContent = "LOGGED";
+  logButton.append(img);
 
   setTimeout(() => {
-    event.target.closest("button").textContent = "LOG CONVERSION";
-    event.target
-      .closest("button")
-      .classList.remove("bg-PRIMARY", "text-SURFACE", "w-31.75");
-    event.target.closest("button").classList.add("hover:bg-PRIMARY-SUBTLE");
+    logButton.textContent = "LOG CONVERSION";
+    logButton.classList.remove("bg-PRIMARY", "text-SURFACE", "w-31.75");
+    logButton.classList.add("hover:bg-PRIMARY-SUBTLE");
   }, 500);
 };
 
@@ -455,6 +454,17 @@ export const renderFavoritesSection = (favoriteData) => {
   });
 };
 
+export const renderHistorySection = (historicData) => {
+  const emptyState = document.getElementById("emptyState__history");
+  const notEmpty = document.getElementById("notEmpty__history");
+  document.getElementById("history__open").textContent = historicData.open;
+  document.getElementById("history__last").textContent = historicData.last;
+  const change = document.getElementById("history__change");
+  const percentageChange = document.getElementById("history__percentChange");
+  change.textContent = historicData.change;
+  percentageChange.textContent = historicData.percentageChange;
+};
+
 const buildFavItem = (favPair) => {
   const baseDiv = createElem("div", ["currency", "favBase"], favPair.getBase());
   const quoteDiv = createElem(
@@ -465,16 +475,16 @@ const buildFavItem = (favPair) => {
   const exchangeRate = createElem("div", ["exch-rate"], `${favPair.getRate()}`);
   const percentageChange = createElem(
     "div",
-    ["percent-change"],
-    `${favPair.getChange()}%`,
+    ["percent-change", "text-nowrap"],
+    `${favPair.getChange()}`,
   );
 
   if (favPair.getChange() > 0) {
-    percentageChange.textContent = `▲ +${favPair.getChange()}%`;
+    percentageChange.textContent = `▲ +${favPair.getChange()}`;
     percentageChange.classList.add("up");
     percentageChange.classList.remove("down");
   } else if (favPair.getChange() < 0) {
-    percentageChange.textContent = `▼ ${favPair.getChange()}%`;
+    percentageChange.textContent = `▼ ${favPair.getChange()}`;
     percentageChange.classList.add("down");
     percentageChange.classList.remove("up");
   }
@@ -592,7 +602,6 @@ const createElem = (elemType, classArray, textContent, id) => {
 
 const createCard = (elemType, classArray, chilldrenArray) => {
   const card = createElem(elemType, classArray);
-  classArray.forEach((className) => card.classList.add(className));
   chilldrenArray.forEach((child) => {
     card.append(child);
   });

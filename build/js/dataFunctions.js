@@ -24,36 +24,83 @@ export const storeExchangeData = (exchangeData) => {
 export const getStoredExchangeData = () =>
   localStorage.getItem("myExchangeData");
 
-export const getPercentageChangeFromApi = async (base, quote) => {
+export const getHistoricDataFromApi = async (base, quote, interval) => {
   let codeArray = [];
   availableCurrencies.forEach((currency) => {
     codeArray.push(currency.code);
   });
 
+  const from = getFromDate(interval);
+  const to = new Date().toLocaleDateString("sv-SE");
+  console.log(from);
   try {
     const data = await fetch(
-      `https://api.frankfurter.dev/v2/rates?to=${new Date().toLocaleDateString("sv-SE")}&quotes=${quote}&base=${base}&from=${new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toLocaleDateString("sv-SE")}`,
+      `https://api.frankfurter.dev/v2/rates?to=${to}&quotes=${quote}&base=${base}&from=${from}`,
     );
 
     const dataJson = await data.json();
-    return calcPercentageChange(dataJson);
+    return getHistoricData(dataJson, interval);
   } catch (err) {
     console.error(err.stack);
   }
 };
 
-const calcPercentageChange = (apiData) => {
-  const lastTwoDaysData = apiData.slice(apiData.length - 2);
-  const percentageChange =
-    lastTwoDaysData.length < 2
+const getFromDate = (interval) => {
+  console.log(interval);
+  const keyLookup = {
+    "1D": {
+      from: new Date(Date.now() - 604800000).toLocaleDateString("sv-SE"),
+    },
+    "1W": {
+      from: new Date(Date.now() - 604800000).toLocaleDateString("sv-SE"),
+    },
+
+    "1M": {
+      from: new Date(Date.now() - 2629800000).toLocaleDateString("sv-SE"),
+    },
+
+    "3M": {
+      from: new Date(Date.now() - 7889400000).toLocaleDateString("sv-SE"),
+    },
+
+    "1Y": {
+      from: new Date(Date.now() - 31557600000).toLocaleDateString("sv-SE"),
+    },
+    "5Y": {
+      from: new Date(Date.now() - 157788000000).toLocaleDateString("sv-SE"),
+    },
+  };
+
+  if (!keyLookup[interval]) return;
+  return keyLookup[interval].from;
+};
+
+const getHistoricData = (apiData, interval) => {
+  if (interval === "1D") apiData = apiData.slice(apiData.length - 2);
+  const change =
+    apiData.length < 2
+      ? "-"
+      : Number.parseFloat(
+          (apiData[apiData.length - 1].rate - apiData[0].rate).toFixed(4),
+        );
+
+  const percentChange =
+    apiData.length < 2
       ? "-"
       : Number.parseFloat(
           (
-            (lastTwoDaysData[1].rate - lastTwoDaysData[0].rate) /
-            lastTwoDaysData[0].rate
+            ((apiData[apiData.length - 1].rate - apiData[0].rate) /
+              apiData[0]) *
+            100
           ).toFixed(4),
         );
-  return { change: percentageChange, currentRate: lastTwoDaysData[1].rate };
+  return {
+    change: change,
+    currentRate: apiData[apiData.length - 1].rate,
+    percentChange: percentChange,
+    open: apiData[0],
+    last: apiData[apiData.length - 1],
+  };
 };
 
 export const setRatesData = (ratesData) => {

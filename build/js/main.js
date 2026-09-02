@@ -15,6 +15,7 @@ import {
   renderFavoritesSection,
   renderCompareSection,
   renderLogSection,
+  renderHistorySection,
 } from "./domFunctions.js";
 
 import { AppState, ExchangeData, FavPair, LoggedConv } from "./State.js";
@@ -30,7 +31,7 @@ import {
   setRatesData,
   getCachedRates,
   convertCurrency,
-  getPercentageChangeFromApi,
+  getHistoricDataFromApi,
 } from "./dataFunctions.js";
 
 const appState = new AppState();
@@ -234,20 +235,8 @@ const loadStoredData = () => {
     currentBase: storedData.currentBase,
     currentQuote: storedData.currentQuote,
   };
-
   exchangeData.setExhangeData(exchangeObj);
-  console.log(storedData);
-  console.log(exchangeData);
 };
-
-/* const handleSectionClick = (sectionObj) => {
-  const { btnClass, base, quote, event, containerId } = sectionObj;
-  if (event.target.closest("button")) {
-    if (event.target.closest("button").classList.contains(btnClass))
-      handleFavorites(base, quote);
-  } 
-  loadThePage();
-}; */
 
 const createAndSetLogObj = () => {
   const sendInput = document.getElementById("sendInput");
@@ -278,7 +267,7 @@ const loadIntoConverter = (base, quote) => {
   });
 };
 
-const handleFavorites = (base, quote) => {
+const handleFavorites = async (base, quote) => {
   const id = `${base} ${quote}`;
   if (exchangeData.getFavorite().find((favPair) => favPair.getId() === id)) {
     exchangeData.removePairFromFavorite(`${base} ${quote}`);
@@ -292,7 +281,7 @@ const handleFavorites = (base, quote) => {
     favPair.setFavPair(favObj);
     exchangeData.addPairToFavorite(favPair);
   }
-
+  await setFavRateandChange();
   loadThePage();
 };
 
@@ -365,21 +354,31 @@ const loadThePage = async () => {
   const ratesObj = ratesData.find((data) => {
     return data.quote === exchangeData.getCurrentQuote().code;
   });
-  await setFavRateandChange();
   updateRateDisplay(ratesObj);
   convertAndDisplay("send", receiveInput, sendInput.value);
   convertAndDisplay("receive", sendInput, receiveInput.value);
   renderFavoritesSection(exchangeData.getFavorite());
   renderLogSection(exchangeData.getLog());
   storeExchangeData(exchangeData);
-  console.log(exchangeData);
+  toggleIntervalBtn(
+    document.querySelectorAll(".interval-btn"),
+    exchangeData.getInterval(),
+  );
+
+  const historicData = await getHistoricDataFromApi(
+    exchangeData.getCurrentBase(),
+    exchangeData.getCurrentQuote(),
+    exchangeData.getInterval(),
+  );
+  renderHistorySection(historicData);
 };
 
 const setFavRateandChange = async () => {
   for (let i = 0; i < exchangeData.getFavorite().length; i++) {
-    const apiData = await getPercentageChangeFromApi(
+    const apiData = await getHistoricDataFromApi(
       exchangeData.getFavorite()[i].getBase(),
       exchangeData.getFavorite()[i].getQuote(),
+      "1D",
     );
     const change = apiData.change;
     const rate = apiData.currentRate;
@@ -405,10 +404,20 @@ const addHoverEffect = (event) => {
   applyDeleteHover(event, deleteBtnArray, event.target.closest("button"));
 };
 
-const intervalBtnDisplay = (event) => {
+const intervalBtnDisplay = async (event) => {
   const intervalBtn = event.target.closest("button");
   if (!intervalBtn) return;
-  toggleIntervalBtn(intervalBtn, document.querySelectorAll(".interval-btn"));
+  exchangeData.setExhangeData({ interval: intervalBtn.textContent.trim() });
+  toggleIntervalBtn(
+    document.querySelectorAll(".interval-btn"),
+    exchangeData.getInterval(),
+  );
+  const historicData = await getHistoricDataFromApi(
+    exchangeData.getCurrentBase(),
+    exchangeData.getCurrentQuote(),
+    exchangeData.getInterval(),
+  );
+  renderHistorySection(historicData);
 };
 
 const toggleDropDownDisplay = (event) => {
