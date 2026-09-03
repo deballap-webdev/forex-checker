@@ -1,14 +1,11 @@
-export const getRatesData = async (base) => {
-  let codeArray = [];
-  availableCurrencies.forEach((currency) => {
-    codeArray.push(currency.code);
-  });
-  //if (!codeArray.length) return getCachedRates();
-
-  const availableCurrenciesCodeString = codeArray.join(",");
+export const getRatesData = async (base, quote) => {
+  if (!quote) {
+    let codeArray = availableCurrencies.map((currency) => currency.code);
+  }
+  const quotes = quote ? quote : codeArray.join(",");
   try {
     const currencyStream = await fetch(
-      `https://api.frankfurter.dev/v2/rates?base=${base}&quotes=${availableCurrenciesCodeString}`,
+      `https://api.frankfurter.dev/v2/rates?base=${base}&quotes=${quotes}`,
     );
     const currencyJson = await currencyStream.json();
     return currencyJson;
@@ -25,11 +22,6 @@ export const getStoredExchangeData = () =>
   localStorage.getItem("myExchangeData");
 
 export const getHistoricDataFromApi = async (base, quote, interval) => {
-  let codeArray = [];
-  availableCurrencies.forEach((currency) => {
-    codeArray.push(currency.code);
-  });
-
   const from = getFromDate(interval);
   const to = new Date().toLocaleDateString("sv-SE");
 
@@ -45,8 +37,20 @@ export const getHistoricDataFromApi = async (base, quote, interval) => {
   }
 };
 
+export const popularPairs = [
+  { base: "EUR", quote: "USD" },
+  { base: "USD", quote: "JPY" },
+  { base: "GBP", quote: "USD" },
+  { base: "AUD", quote: "USD" },
+  { base: "USD", quote: "CAD" },
+  { base: "USD", quote: "CHF" },
+  { base: "NZD", quote: "USD" },
+  { base: "EUR", quote: "GBP" },
+  { base: "EUR", quote: "JPY" },
+  { base: "GBP", quote: "JPY" },
+];
+
 const getFromDate = (interval) => {
-  console.log(interval);
   const keyLookup = {
     "1D": {
       from: new Date(Date.now() - 604800000).toLocaleDateString("sv-SE"),
@@ -95,7 +99,6 @@ const getHistoricData = (apiData, interval) => {
           ).toFixed(4),
         );
 
-  console.log(percentChange);
   return {
     change: change,
     currentRate: apiData[apiData.length - 1].rate,
@@ -187,10 +190,12 @@ const santizeNum = (num) => {
   const cleanNum = Number(num.replaceAll(regex, ""));
   if (!isNaN(cleanNum) && cleanNum !== "") return cleanNum;
 };
+const popularCurrenciesCode = popularCurrencies.map(
+  (currency) => currency.code,
+);
 export const otherCurrencies = availableCurrencies.filter((currency) => {
-  return !popularCurrencies
-    .map((currency) => currency.code)
-    .includes(currency.code);
+  return;
+  !popularCurrenciesCode.includes(currency.code);
 });
 
 export const filterCurrencies = (entryText) => {

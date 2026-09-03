@@ -16,6 +16,7 @@ import {
   renderCompareSection,
   renderLogSection,
   renderHistorySection,
+  renderLiveRates,
 } from "./domFunctions.js";
 
 import { AppState, ExchangeData, FavPair, LoggedConv } from "./State.js";
@@ -32,6 +33,7 @@ import {
   getCachedRates,
   convertCurrency,
   getHistoricDataFromApi,
+  popularPairs,
 } from "./dataFunctions.js";
 
 const appState = new AppState();
@@ -194,7 +196,6 @@ const initApp = () => {
   intervalContainer.addEventListener("click", intervalBtnDisplay);
   logContainer.addEventListener("mouseover", addHoverEffect);
   logContainer.addEventListener("mouseout", addHoverEffect);
-  ///localStorage.clear("myExchangeData");
   loadStoredData();
   loadThePage();
 };
@@ -344,6 +345,12 @@ const loadThePage = async () => {
     const ratesData = await getRatesData(exchangeData.getCurrentBase().code);
     setRatesData(ratesData);
   }
+  const historicData = await getHistoricDataFromApi(
+    exchangeData.getCurrentBase().code,
+    exchangeData.getCurrentQuote().code,
+    exchangeData.getInterval(),
+  );
+
   const favConvBtn = document.getElementById("favConv");
   favConvBtnDisplay(favConvBtn, exchangeData);
   const sendInput = document.getElementById("sendInput");
@@ -366,13 +373,26 @@ const loadThePage = async () => {
     exchangeData.getInterval(),
   );
 
-  const historicData = await getHistoricDataFromApi(
-    exchangeData.getCurrentBase().code,
-    exchangeData.getCurrentQuote().code,
-    exchangeData.getInterval(),
-  );
   renderHistorySection(historicData);
 };
+
+const getDataAndRenderLiveRates = async () => {
+  const promises = popularPairs.map(async (pair) => {
+    const liveRate = await getRatesData(pair.base, pair.quote);
+    const historicData = await getHistoricDataFromApi(
+      pair.base,
+      pair.quote,
+      "1D",
+    );
+    liveRate[0].percentChange = historicData.percentChange;
+    return liveRate[0];
+  });
+  const liveRatesArray = await Promise.all(promises);
+  console.log(liveRatesArray);
+  renderLiveRates(liveRatesArray);
+};
+
+getDataAndRenderLiveRates();
 
 const setFavRateandChange = async () => {
   for (let i = 0; i < exchangeData.getFavorite().length; i++) {

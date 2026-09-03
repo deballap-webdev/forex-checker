@@ -38,7 +38,7 @@ export const dropDownDisplay = (event, elemToToggle, btn) => {
       elemToToggle.classList.toggle("hidden");
       elemToToggle.classList.toggle("flex");
       event.target.ariaExpanded =
-        event.target.ariaExpanded === "true" ? "false" : "true";
+        event.currentTarget.ariaExpanded === "true" ? "false" : "true";
     },
     keydown: () => {
       if (event.key !== "Escape") return;
@@ -454,6 +454,44 @@ export const renderFavoritesSection = (favoriteData) => {
   });
 };
 
+export const renderLiveRates = (liveRatesArray) => {
+  const liveRatesContainer = document.getElementById("liveRatesContainer");
+  clearElem(liveRatesContainer);
+  liveRatesArray.forEach((pair) => {
+    const tickerItem = buildTickerItem(pair);
+    liveRatesContainer.append(tickerItem);
+  });
+  console.log(liveRatesContainer);
+};
+
+const buildTickerItem = (pair) => {
+  const pairSpan = createElem(
+    "span",
+    ["text-TEXT-MUTED"],
+    `${pair.base}/${pair.quote}`,
+  );
+  const rateDiv = createElem("strong", [], `${pair.rate}`);
+  const percentChange = createElem(
+    "span",
+    ["text-nowrap"],
+    `${pair.percentChange}`,
+  );
+
+  if (pair.percentChange > 0) {
+    percentChange.classList.add("text-SUCCESS");
+    percentChange.textContent = `▲ +${pair.percentChange}`;
+  } else if (pair.percentChange < 0) {
+    percentChange.classList.add("text-DANGER");
+    percentChange.textContent = `▼ ${pair.percentChange}`;
+  }
+  const tickerItem = createCard(
+    "div",
+    ["ticker-item"],
+    [pairSpan, rateDiv, percentChange],
+  );
+  return tickerItem;
+};
+
 export const renderHistorySection = (historicData) => {
   const emptyState = document.getElementById("emptyState__history");
   const notEmpty = document.getElementById("notEmpty__history");
@@ -479,7 +517,7 @@ export const renderHistorySection = (historicData) => {
   }
 
   if (historicData.percentChange > 0) {
-    percentChange.textContent = `▲ ${historicData.percentChange}`;
+    percentChange.textContent = `▲ +${historicData.percentChange}%`;
     percentChange.classList.add("text-SUCCESS");
     percentChange.classList.remove("text-DANGER");
   } else if (historicData.percentChange < 0) {
