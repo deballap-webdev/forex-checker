@@ -18,16 +18,16 @@
 }
 
 @keyframes ticker {
-  from {
+  0% {
     transform: translateX(0);
   }
-  to {
-    transform: translateX(-50%);
+  100% {
+    transform: translateX(calc(-100% - 100vw));
   }
 }
 
 .ticker-item {
-  @apply border-r-SURFACE-ELEVATED flex w-max animate-[ticker_30s_linear_infinite] items-center justify-center gap-2.5 border-r px-3 py-3 text-[10px] md:px-3 md:text-[12px];
+  @apply border-r-SURFACE-ELEVATED flex w-max animate-[ticker_20s_linear_infinite] items-center justify-center gap-2.5 border-r px-3 py-3 text-[10px] md:px-3 md:text-[12px];
 }
 
 .compare-currency {

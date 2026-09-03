@@ -198,7 +198,31 @@ const initApp = () => {
   logContainer.addEventListener("mouseout", addHoverEffect);
   loadStoredData();
   loadThePage();
+  getDataAndRenderLiveRates();
 };
+
+const renderChart = (historicData) => {
+  /*   new Chart(document.getElementById("history__chart"), {
+    type: "line",
+    data: {
+      labels: historicData.map((data) => data.date),
+      datasets: [
+        {
+          label: "",
+          data: historicData.map((data) => data.rate),
+        },
+      ],
+    },
+  }); */
+};
+
+const formatter = new Intl.DateTimeFormat("en-GB", {
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZoneName: "short",
+});
+
+console.log(formatter.format(new Date()));
 
 const loadStoredData = () => {
   if (typeof getStoredExchangeData() !== "string" || !getStoredExchangeData())
@@ -373,7 +397,11 @@ const loadThePage = async () => {
     exchangeData.getInterval(),
   );
 
-  renderHistorySection(historicData);
+  renderHistorySection(
+    historicData,
+    exchangeData.getCurrentBase().code,
+    exchangeData.getCurrentQuote().code,
+  );
 };
 
 const getDataAndRenderLiveRates = async () => {
@@ -391,8 +419,6 @@ const getDataAndRenderLiveRates = async () => {
   console.log(liveRatesArray);
   renderLiveRates(liveRatesArray);
 };
-
-getDataAndRenderLiveRates();
 
 const setFavRateandChange = async () => {
   for (let i = 0; i < exchangeData.getFavorite().length; i++) {
@@ -438,7 +464,12 @@ const intervalBtnDisplay = async (event) => {
     exchangeData.getCurrentQuote().code,
     exchangeData.getInterval(),
   );
-  renderHistorySection(historicData);
+
+  renderHistorySection(
+    historicData,
+    exchangeData.getCurrentBase().code,
+    exchangeData.getCurrentQuote().code,
+  );
 };
 
 const toggleDropDownDisplay = (event) => {

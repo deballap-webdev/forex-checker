@@ -11,6 +11,14 @@
       rel="stylesheet"
     />
     <script src="js/main.js" type="module"></script>
+    <!--     <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.min.js"
+      integrity="sha512-mOiNIzRB+4/INX75lwv3+eSG+Sih4wQy+qS/+0mHkk2MjHZW6ABGN6eQD1MoV5Tv9KG+G3UAMy1vW3fk5goVXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      type="module"
+    ></script>
+ -->
     <title>Foreign Exchange Checker</title>
   </head>
   <body class="bg-BACKGROUND text-TEXT-PRIMARY font-FF leading-[120%]">
@@ -512,9 +520,7 @@
                   <div
                     id="history__open"
                     class="w-fill text-[1.25rem] tracking-[-0.5px]"
-                  >
-                    0.8516
-                  </div>
+                  ></div>
                 </div>
                 <div
                   class="bg-SURFACE-BASE border-SURFACE col-start-2 col-end-3 row-start-1 row-end-2 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
@@ -525,9 +531,7 @@
                   <div
                     id="history__last"
                     class="w-fill text-[1.25rem] tracking-[-0.5px]"
-                  >
-                    0.8530
-                  </div>
+                  ></div>
                 </div>
                 <div
                   class="bg-SURFACE-BASE border-SURFACE col-start-1 col-end-2 row-start-2 row-end-3 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
@@ -538,9 +542,7 @@
                   <div
                     id="history__change"
                     class="w-fill text-[1.25rem] tracking-[-0.5px]"
-                  >
-                    +0.0014
-                  </div>
+                  ></div>
                 </div>
                 <div
                   class="bg-SURFACE-BASE border-SURFACE col-start-2 col-end-3 row-start-2 row-end-3 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
@@ -551,9 +553,7 @@
                   <div
                     id="history__percentChange"
                     class="w-fill text-[1.25rem] tracking-[-0.5px]"
-                  >
-                    ▲ +0.16%
-                  </div>
+                  ></div>
                 </div>
               </div>
 
@@ -607,13 +607,20 @@
               class="bg-SURFACE-BASE border-SURFACE flex w-full flex-col gap-5 rounded-[18px] border px-3 py-4 md:p-5"
             >
               <div class="flex justify-between">
-                <div class="text-[1rem] font-medium tracking-[1px]">
+                <div
+                  class="text-[1rem] font-medium tracking-[1px]"
+                  id="history__pair"
+                >
                   USD/EUR
                 </div>
-                <div class="text-center tracking-[0.5px] opacity-70">
+                <div
+                  class="text-center tracking-[0.5px] opacity-70"
+                  id="history__open-time"
+                >
                   0.8530 • MAY 14 16:00 CET
                 </div>
               </div>
+              <canvas id="history__chart"></canvas>
               <div class="flex flex-row items-center gap-4">
                 <div class="flex h-68 flex-col justify-between">
                   <div class="text-TEXT-MUTED text-[0.625rem]">0.8612</div>

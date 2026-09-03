@@ -1,8 +1,7 @@
 export const getRatesData = async (base, quote) => {
-  if (!quote) {
-    let codeArray = availableCurrencies.map((currency) => currency.code);
-  }
-  const quotes = quote ? quote : codeArray.join(",");
+  const quotes = quote
+    ? quote
+    : availableCurrencies.map((currency) => currency.code).join(",");
   try {
     const currencyStream = await fetch(
       `https://api.frankfurter.dev/v2/rates?base=${base}&quotes=${quotes}`,
@@ -104,6 +103,7 @@ const getHistoricData = (apiData, interval) => {
     currentRate: apiData[apiData.length - 1].rate,
     percentChange: percentChange,
     open: apiData[0].rate,
+    date: "",
   };
 };
 

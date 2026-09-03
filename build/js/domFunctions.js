@@ -156,20 +156,20 @@ const getLogDate = (initialDate) => {
     const mins = hours * 60;
     return `${Math.floor(mins)}M`;
   } else if (hours >= 24) {
-    return getDateString(initialDate);
+    return getDateString(initialDate, "long");
   } else {
     return `${Math.floor(hours)}H`;
   }
 };
 
-const getDateString = (initialDate) => {
+const getDateString = (initialDate, length) => {
   const day = new Date(initialDate).getDate();
   const ordinal = getOrdinal(day);
   const month = new Date(initialDate).toLocaleString("en-US", {
-    month: "long",
+    month: length,
   });
 
-  return `${day}${ordinal} ${month}`;
+  return `${month} ${day}${ordinal}`;
 };
 
 const getOrdinal = (day) => {
@@ -474,15 +474,15 @@ const buildTickerItem = (pair) => {
   const percentChange = createElem(
     "span",
     ["text-nowrap"],
-    `${pair.percentChange}`,
+    `${pair.percentChange}%`,
   );
 
   if (pair.percentChange > 0) {
     percentChange.classList.add("text-SUCCESS");
-    percentChange.textContent = `▲ +${pair.percentChange}`;
+    percentChange.textContent = `▲ +${pair.percentChange}%`;
   } else if (pair.percentChange < 0) {
     percentChange.classList.add("text-DANGER");
-    percentChange.textContent = `▼ ${pair.percentChange}`;
+    percentChange.textContent = `▼ ${pair.percentChange}%`;
   }
   const tickerItem = createCard(
     "div",
@@ -492,13 +492,28 @@ const buildTickerItem = (pair) => {
   return tickerItem;
 };
 
-export const renderHistorySection = (historicData) => {
+export const renderHistorySection = (historicData, base, quote) => {
   const emptyState = document.getElementById("emptyState__history");
   const notEmpty = document.getElementById("notEmpty__history");
+  updateHistoryTextContents(historicData, base, quote);
+};
+
+const formatTime = (date) => {
+  const formatter = new Intl.DateTimeFormat("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZoneName: "short",
+  });
+  return formatter.format(date);
+};
+
+const updateHistoryTextContents = (historicData, base, quote) => {
   document.getElementById("history__open").textContent = historicData.open;
   document.getElementById("history__last").textContent =
     historicData.currentRate;
-
+  document.getElementById("history__pair").textContent = `${base}/${quote}`;
+  document.getElementById("history__open-time").textContent =
+    `${historicData.currentRate} • ${getDateString(Date.now(), "short")} ${formatTime(Date.now())}`;
   const change = document.getElementById("history__change");
   const percentChange = document.getElementById("history__percentChange");
   change.textContent = historicData.change;
