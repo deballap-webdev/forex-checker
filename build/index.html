@@ -10,15 +10,16 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
       rel="stylesheet"
     />
-    <script src="js/main.js" type="module"></script>
-    <!--     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.min.js"
-      integrity="sha512-mOiNIzRB+4/INX75lwv3+eSG+Sih4wQy+qS/+0mHkk2MjHZW6ABGN6eQD1MoV5Tv9KG+G3UAMy1vW3fk5goVXA=="
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.js"
+      integrity="sha512-T/Zt9dXFrr8cLjWcDkt8WRUVNzj6c7K5y2G8xAAh1kGKcM+LdolRrNJR1bWwuulykpaNuRfFJKCKTzcsWTbKaw=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-      type="module"
+      defer
     ></script>
- -->
+    <script src="js/main.js" type="module"></script>
+
     <title>Foreign Exchange Checker</title>
   </head>
   <body class="bg-BACKGROUND text-TEXT-PRIMARY font-FF leading-[120%]">
@@ -547,12 +548,14 @@
                 <div
                   class="bg-SURFACE-BASE border-SURFACE col-start-2 col-end-3 row-start-2 row-end-3 flex flex-col justify-center gap-4 rounded-2xl border px-4 py-3 md:w-35 md:gap-5 md:px-5"
                 >
-                  <div class="w-full text-[0.875rem] tracking-[1px] opacity-70">
+                  <div
+                    class="w-full text-[0.875rem] tracking-[1px] text-nowrap opacity-70"
+                  >
                     % CHANGE
                   </div>
                   <div
                     id="history__percentChange"
-                    class="w-fill text-[1.25rem] tracking-[-0.5px]"
+                    class="w-fill text-[1.25rem] tracking-[-0.5px] text-nowrap"
                   ></div>
                 </div>
               </div>
@@ -621,7 +624,7 @@
                 </div>
               </div>
               <canvas id="history__chart"></canvas>
-              <div class="flex flex-row items-center gap-4">
+              <!--        <div class="flex flex-row items-center gap-4">
                 <div class="flex h-68 flex-col justify-between">
                   <div class="text-TEXT-MUTED text-[0.625rem]">0.8612</div>
                   <div class="text-TEXT-MUTED text-[0.625rem]">0.8516</div>
@@ -633,7 +636,7 @@
                 <div class="text-TEXT-MUTED text-[0.625rem]">Apr 14</div>
                 <div class="text-TEXT-MUTED text-[0.625rem]">Apr 28</div>
                 <div class="text-TEXT-MUTED text-[0.625rem]">May 14</div>
-              </div>
+              </div> -->
             </div>
           </div>
         </section>

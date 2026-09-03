@@ -201,29 +201,6 @@ const initApp = () => {
   getDataAndRenderLiveRates();
 };
 
-const renderChart = (historicData) => {
-  /*   new Chart(document.getElementById("history__chart"), {
-    type: "line",
-    data: {
-      labels: historicData.map((data) => data.date),
-      datasets: [
-        {
-          label: "",
-          data: historicData.map((data) => data.rate),
-        },
-      ],
-    },
-  }); */
-};
-
-const formatter = new Intl.DateTimeFormat("en-GB", {
-  hour: "2-digit",
-  minute: "2-digit",
-  timeZoneName: "short",
-});
-
-console.log(formatter.format(new Date()));
-
 const loadStoredData = () => {
   if (typeof getStoredExchangeData() !== "string" || !getStoredExchangeData())
     return;
@@ -369,6 +346,7 @@ const loadThePage = async () => {
     const ratesData = await getRatesData(exchangeData.getCurrentBase().code);
     setRatesData(ratesData);
   }
+
   const historicData = await getHistoricDataFromApi(
     exchangeData.getCurrentBase().code,
     exchangeData.getCurrentQuote().code,
@@ -455,6 +433,7 @@ const intervalBtnDisplay = async (event) => {
   const intervalBtn = event.target.closest("button");
   if (!intervalBtn) return;
   exchangeData.setExhangeData({ interval: intervalBtn.textContent.trim() });
+  storeExchangeData(exchangeData);
   toggleIntervalBtn(
     document.querySelectorAll(".interval-btn"),
     exchangeData.getInterval(),

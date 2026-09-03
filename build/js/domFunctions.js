@@ -164,27 +164,11 @@ const getLogDate = (initialDate) => {
 
 const getDateString = (initialDate, length) => {
   const day = new Date(initialDate).getDate();
-  const ordinal = getOrdinal(day);
   const month = new Date(initialDate).toLocaleString("en-US", {
     month: length,
   });
 
-  return `${month} ${day}${ordinal}`;
-};
-
-const getOrdinal = (day) => {
-  if (day >= 11 && day <= 13) return "th";
-
-  switch (day % 10) {
-    case 1:
-      return "st";
-    case 2:
-      return "nd";
-    case 3:
-      return "rd";
-    default:
-      return "th";
-  }
+  return `${month} ${day}`;
 };
 
 export const favConvBtnDisplay = (favConvBtn, exchangeData) => {
@@ -461,7 +445,6 @@ export const renderLiveRates = (liveRatesArray) => {
     const tickerItem = buildTickerItem(pair);
     liveRatesContainer.append(tickerItem);
   });
-  console.log(liveRatesContainer);
 };
 
 const buildTickerItem = (pair) => {
@@ -495,7 +478,10 @@ const buildTickerItem = (pair) => {
 export const renderHistorySection = (historicData, base, quote) => {
   const emptyState = document.getElementById("emptyState__history");
   const notEmpty = document.getElementById("notEmpty__history");
+  const chart = document.getElementById("history__chart");
   updateHistoryTextContents(historicData, base, quote);
+  clearElem(chart);
+  renderChart(historicData);
 };
 
 const formatTime = (date) => {
@@ -505,6 +491,110 @@ const formatTime = (date) => {
     timeZoneName: "short",
   });
   return formatter.format(date);
+};
+
+let cryptoChartInstance = null;
+
+const getResponsiveTicksLimit = () => {
+  const width = window.innerWidth;
+  if (width < 600) return 4;
+  if (width < 1024) return 8;
+  return 12;
+};
+
+const renderChart = (historicData) => {
+  const canvasElement = document.getElementById("history__chart");
+  if (!canvasElement) return;
+  if (cryptoChartInstance !== null) {
+    cryptoChartInstance.destroy();
+  }
+  cryptoChartInstance = new Chart(canvasElement, {
+    type: "line",
+    data: {
+      labels: historicData.data.map((data) =>
+        getDateString(data.date, "short"),
+      ),
+      datasets: [
+        {
+          borderColor: "#cef739",
+          label: "",
+          data: historicData.data.map((data) => data.rate),
+          pointRadius: historicData.data.length > 60 ? 0 : 3,
+          borderWidth: 2,
+          fill: true,
+          backgroundColor: (context) => {
+            const chart = context.chart;
+            const { ctx, chartArea } = chart;
+
+            if (!chartArea) return null;
+
+            const gradient = ctx.createLinearGradient(
+              0,
+              chartArea.top,
+              0,
+              chartArea.bottom,
+            );
+
+            gradient.addColorStop(0, "rgba(206, 247, 57, 0.5)");
+            gradient.addColorStop(1, "rgba(32, 32, 34, 0)");
+
+            return gradient;
+          },
+        },
+      ],
+    },
+
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+
+      scales: {
+        x: {
+          ticks: {
+            maxTicksLimit: getResponsiveTicksLimit(),
+            autoSkip: true,
+            font: {
+              size: 10,
+            },
+            color: "#9d9d9d",
+            padding: 15,
+
+            align: "inner",
+          },
+        },
+
+        y: {
+          ticks: {
+            maxTicksLimit: 5,
+            autoSkip: true,
+            font: {
+              size: 10,
+            },
+            color: "#9d9d9d",
+            padding: 8,
+          },
+          grid: {
+            display: true,
+            color: "rgba(255, 255, 255, 0.1)",
+
+            drawTicks: false,
+          },
+          border: {
+            dash: [6, 10],
+          },
+        },
+      },
+    },
+
+    onResize: function (chart) {
+      chart.options.scales.x.ticks.maxTicksLimit = getResponsiveTicksLimit();
+      chart.update();
+    },
+  });
 };
 
 const updateHistoryTextContents = (historicData, base, quote) => {
