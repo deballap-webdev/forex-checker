@@ -6,18 +6,27 @@ building realistic projects.
 
 ## Table of contents
 
--   [Overview](#overview)
-    -   [The challenge](#the-challenge)
-    -   [Screenshot](#screenshot)
-    -   [Links](#links)
--   [My process](#my-process)
-    -   [Built with](#built-with)
-    -   [What I learned](#what-i-learned)
-    -   [Continued development](#continued-development)
-    -   [Useful resources](#useful-resources)
-    -   [AI Collaboration](#ai-collaboration)
--   [Author](#author)
--   [Acknowledgments](#acknowledgments)
+- [Frontend Mentor - FX Checker solution](#frontend-mentor---fx-checker-solution)
+  - [Table of contents](#table-of-contents)
+  - [Overview](#overview)
+    - [The challenge](#the-challenge)
+      - [Converter](#converter)
+      - [Currency picker](#currency-picker)
+      - [Live markets ticker](#live-markets-ticker)
+      - [Rate history](#rate-history)
+      - [Compare](#compare)
+      - [Favorites](#favorites)
+      - [Conversion log](#conversion-log)
+      - [UI \& accessibility](#ui--accessibility)
+  - [Links](#links)
+  - [My process](#my-process)
+    - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+  - [AI Collaboration](#ai-collaboration)
+  - [Author](#author)
+  - [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -27,67 +36,63 @@ Your users should be able to:
 
 #### Converter
 
--   Enter an amount to send and see it convert in real time as they type
--   Pick the "send" and "receive" currencies from a searchable currency
-    picker
--   See the live exchange rate for the active pair
--   Swap the send and receive currencies with the swap button
--   Favorite the active pair, and log a conversion to their history
+- Enter an amount to send and see it convert in real time as they type
+- Pick the "send" and "receive" currencies from a searchable currency
+  picker
+- See the live exchange rate for the active pair
+- Swap the send and receive currencies with the swap button
+- Favorite the active pair, and log a conversion to their history
 
 #### Currency picker
 
--   Search the full list of available currencies by code or name
--   See currencies grouped into "Popular" and "Other currencies", each
-    row showing the flag, code, and name
--   See a check against the currency that's currently selected
+- Search the full list of available currencies by code or name
+- See currencies grouped into "Popular" and "Other currencies", each
+  row showing the flag, code, and name
+- See a check against the currency that's currently selected
 
 #### Live markets ticker
 
--   See a ticker of currency pairs, each with its current rate and
-    24-hour change
+- See a ticker of currency pairs, each with its current rate and
+  24-hour change
 
 #### Rate history
 
--   View a line and area chart of the active pair's rate over time
--   Switch the chart range between 1D, 1W, 1M, 3M, 1Y, and 5Y
--   See the open, last, absolute change, and percentage change for the
-    selected range
+- View a line and area chart of the active pair's rate over time
+- Switch the chart range between 1D, 1W, 1M, 3M, 1Y, and 5Y
+- See the open, last, absolute change, and percentage change for the
+  selected range
 
 #### Compare
 
--   See their send amount converted into a range of other currencies at
-    once, each with its reference rate
--   Pin or unpin any comparison row to their favorites
+- See their send amount converted into a range of other currencies at
+  once, each with its reference rate
+- Pin or unpin any comparison row to their favorites
 
 #### Favorites
 
--   See their pinned pairs, each with its live rate and 24-hour change
--   Load a pinned pair back into the converter by selecting its row
--   Unpin a pair they no longer want to track
+- See their pinned pairs, each with its live rate and 24-hour change
+- Load a pinned pair back into the converter by selecting its row
+- Unpin a pair they no longer want to track
 
 #### Conversion log
 
--   See a log of conversions they've made, each showing the relative
-    time, the pair, and the send and receive amounts
--   Clear the whole log
--   Delete an individual entry
+- See a log of conversions they've made, each showing the relative
+  time, the pair, and the send and receive amounts
+- Clear the whole log
+- Delete an individual entry
 
 #### UI & accessibility
 
--   View the optimal layout for the interface depending on their
-    device's screen size
--   See hover and focus states for interactive elements on the page
--   Navigate the entire app using only their keyboard
-
-## Screenshot
-
-*Add a screenshot of the completed application here.*
+- View the optimal layout for the interface depending on their
+  device's screen size
+- See hover and focus states for interactive elements on the page
+- Navigate the entire app using only their keyboard
 
 ## Links
 
--   Solution URL: *Add Frontend Mentor solution URL here*
--   Live Site URL: https://foreign-exchange-app.onrender.com
--   GitHub Repository: https://github.com/deballap-webdev/forex-checker
+- Solution URL: https://www.frontendmentor.io/solutions/responsive-forex-checker-built-with-vanillajs-tailwind-css-and-chartjs-JRXw0lktUV
+- Live Site URL: https://foreign-exchange-app.onrender.com
+- GitHub Repository: https://github.com/deballap-webdev/forex-checker
 
 ## My process
 
@@ -119,16 +124,16 @@ solutions rather than having it build the project for me.
 
 ### Built with
 
--   Semantic HTML5 markup
--   Tailwind CSS
--   Vanilla JavaScript
--   JavaScript ES modules
--   Chart.js
--   Exchange-rate API
--   Browser Local Storage
--   CSS Flexbox and Grid
--   Responsive design
--   Figma
+- Semantic HTML5 markup
+- Tailwind CSS
+- Vanilla JavaScript
+- JavaScript ES modules
+- Chart.js
+- Exchange-rate API
+- Browser Local Storage
+- CSS Flexbox and Grid
+- Responsive design
+- Figma
 
 ## What I learned
 
@@ -183,17 +188,17 @@ than continue polishing the same application indefinitely.
 
 ## Useful resources
 
--   [Frontend Mentor](https://www.frontendmentor.io/) - Used for the
-    challenge brief and project design.
--   [Chart.js Documentation](https://www.chartjs.org/docs/latest/) -
-    Used while integrating and configuring the rate-history chart.
--   [Tailwind CSS Documentation](https://tailwindcss.com/docs) - Used
-    while working on the styling and responsive layout.
--   [MDN Web Docs](https://developer.mozilla.org/) - Used as a reference
-    for JavaScript, DOM APIs, browser APIs, and web development
-    concepts.
--   [Figma](https://www.figma.com/) - Used to work from the provided
-    design files.
+- [Frontend Mentor](https://www.frontendmentor.io/) - Used for the
+  challenge brief and project design.
+- [Chart.js Documentation](https://www.chartjs.org/docs/latest/) -
+  Used while integrating and configuring the rate-history chart.
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs) - Used
+  while working on the styling and responsive layout.
+- [MDN Web Docs](https://developer.mozilla.org/) - Used as a reference
+  for JavaScript, DOM APIs, browser APIs, and web development
+  concepts.
+- [Figma](https://www.figma.com/) - Used to work from the provided
+  design files.
 
 ## AI Collaboration
 
@@ -225,11 +230,11 @@ application, and adapted any useful suggestions to fit my project.
 
 ## Author
 
--   GitHub - [@deballap-webdev](https://github.com/deballap-webdev)
--   X - [@AllaputaDe35387](https://x.com/AllaputaDe35387)
--   LinkedIn - [Deborah
-    Allaputa](https://www.linkedin.com/in/deborah-allaputa-a41a26426/)
--   Instagram - [@debb13.a](https://www.instagram.com/debb13.a/)
+- GitHub - [@deballap-webdev](https://github.com/deballap-webdev)
+- X - [@AllaputaDe35387](https://x.com/AllaputaDe35387)
+- LinkedIn - [Deborah
+  Allaputa](https://www.linkedin.com/in/deborah-allaputa-a41a26426/)
+- Instagram - [@debb13.a](https://www.instagram.com/debb13.a/)
 
 ## Acknowledgments
 
