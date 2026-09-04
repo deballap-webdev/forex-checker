@@ -229,6 +229,10 @@ export const updateMobileNavBtn = (navObj) => {
       exchangeData.getLog().length;
     document.getElementById("numBox").classList.add("logNum");
     document.getElementById("numBox").classList.remove("favPairNum");
+  } else {
+    document.getElementById("numBox").classList.remove("logNum");
+    document.getElementById("numBox").classList.remove("favPairNum");
+    document.getElementById("numBox").textContent = "";
   }
 
   if (!document.getElementById("numBox").textContent.length) {
@@ -479,6 +483,7 @@ const buildTickerItem = (pair) => {
 export const renderHistorySection = (historicData, base, quote) => {
   const emptyState = document.getElementById("emptyState__history");
   const notEmpty = document.getElementById("notEmpty__history");
+
   if (!historicData || !historicData.data.length) {
     show(emptyState);
     hide(notEmpty);
@@ -489,6 +494,7 @@ export const renderHistorySection = (historicData, base, quote) => {
     show(notEmpty);
     hide(emptyState);
   }
+
   const chart = document.getElementById("history__chart");
   updateHistoryTextContents(historicData, base, quote);
   clearElem(chart);
