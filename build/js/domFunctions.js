@@ -309,7 +309,6 @@ export const renderCompareSection = (compareObj) => {
   const amountDisplay = document.getElementById("compare__amount");
   const baseScreenReader = document.getElementById("compare__base");
   const pairNumber = document.getElementById("compare__pairs");
-
   baseScreenReader.textContent = exchangeData.getCurrentBase().name;
   amountDisplay.textContent = `${baseValue} FROM ${exchangeData.getCurrentBase().code}`;
   const compareContainer = document.getElementById("compareContainer");

@@ -22,6 +22,9 @@
     <title>Foreign Exchange Checker</title>
   </head>
   <body class="bg-BACKGROUND text-TEXT-PRIMARY font-FF leading-[120%]">
+    <h1 class="absolute -top-1000 -left-1000">
+      Foreign Exchange Checker Powered by Franfutter A P I
+    </h1>
     <header>
       <div class="flex flex-row items-center justify-between px-6 py-5">
         <img src="img/logo.svg" alt="" />
@@ -43,10 +46,10 @@
     >
       <section
         class="flex flex-col gap-4"
-        aria-labelledby="convArea"
+        aria-labelledby="convHeader"
         id="convArea"
       >
-        <h2 class="absolute -top-100000 -left-100000" id="convArea">
+        <h2 class="absolute -top-100000 -left-100000" id="convHeader">
           Currency Conversion Area
         </h2>
         <div class="tracking-[-0.5px ]">CHECK THE RATE</div>
@@ -64,6 +67,7 @@
                 >
                 <input
                   class="hover:decoration-TEXT-MUTED focus:outline-PRIMARY flex max-w-42 items-center rounded-lg pr-1 text-[2rem] font-bold hover:underline hover:decoration-1 focus:outline-2 lg:max-w-67.5 lg:text-[2.5rem]"
+                  type="text"
                   placeholder="0"
                   id="sendInput"
                   name="sendInput"
@@ -71,6 +75,8 @@
                 <div class="relative" id="sendWrapper">
                   <button
                     class="bg-SURFACE-ELEVATED border-BORDER hover:bg-BORDER focus:outline-PRIMARY flex items-center gap-2 rounded-lg border p-2.5 text-[0.875rem] hover:cursor-pointer focus:outline-1 focus:outline-offset-2"
+                    title="expand/collapse base currency picker"
+                    aria-label="expand/collapse base currency picker"
                     id="sendBtn"
                   >
                     <!--      <img
@@ -167,6 +173,7 @@
                 >
                 <input
                   class="hover:decoration-TEXT-MUTED text-PRIMARY focus:outline-PRIMARY flex max-w-42 items-center rounded-lg pr-1 text-[2rem] font-bold hover:underline hover:decoration-1 focus:outline-2 lg:max-w-67.5 lg:text-[2.5rem]"
+                  type="text"
                   placeholder="0"
                   id="receiveInput"
                   name="receiveInput"
@@ -175,6 +182,8 @@
                 <div class="relative" id="receiveWrapper">
                   <button
                     class="bg-SURFACE-ELEVATED border-BORDER hover:bg-BORDER focus:outline-PRIMARY flex items-center gap-2 rounded-lg border p-2.5 text-[0.875rem] hover:cursor-pointer focus:outline-1 focus:outline-offset-2"
+                    title="expand/collapse quote currency picker"
+                    aria-label="expand/collapse base currency picker"
                     id="receiveBtn"
                   ></button>
 
@@ -238,9 +247,10 @@
           <div
             class="border-SURFACE-ELEVATED flex w-full flex-col items-center gap-4 border-t border-dashed p-4 md:flex-row md:justify-between md:px-5"
           >
-            <div class="text-[0.625rem] md:text-[0.75rem]" id="rateDisplay">
-              <!-- USD = 0.8530 EU -->
-            </div>
+            <div
+              class="text-[0.625rem] md:text-[0.75rem]"
+              id="rateDisplay"
+            ></div>
             <div
               class="flex w-full justify-around md:w-fit md:items-center md:justify-start md:gap-3"
             >
@@ -277,16 +287,16 @@
             class="bg-SURFACE-BASE flex items-center justify-between rounded-lg px-3 text-[1rem]"
             id="mobileNavBtn"
           >
-            <div class="flex h-10 items-center justify-center gap-2">
-              <div id="activeSection">HISTORY</div>
-              <div
+            <span class="flex h-10 items-center justify-center gap-2">
+              <span id="activeSection">HISTORY</span>
+              <span
                 class="jsutify-center bg-PRIMARY-SUBTLE text-PRIMARY hidden h-5 w-5 items-center justify-center rounded-[50%] text-[0.625rem]"
                 id="numBox"
-              ></div>
-            </div>
-            <div data-dropDown="true">
+              ></span>
+            </span>
+            <span data-dropDown="true">
               <span class="inline-block rotate-90">></span>
-            </div>
+            </span>
           </button>
           <nav aria-label="mobile" id="mobileNav" class="mobileNav hidden">
             <a href="#history" class="nav-link">
@@ -559,8 +569,7 @@
               </div>
             </div>
 
-            <div class="flex w-full flex-col gap-3" id="logContainer">
-            </div>
+            <div class="flex w-full flex-col gap-3" id="logContainer"></div>
           </div>
         </section>
 
