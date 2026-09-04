@@ -10,7 +10,6 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
       rel="stylesheet"
     />
-
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.js"
       integrity="sha512-T/Zt9dXFrr8cLjWcDkt8WRUVNzj6c7K5y2G8xAAh1kGKcM+LdolRrNJR1bWwuulykpaNuRfFJKCKTzcsWTbKaw=="
@@ -36,13 +35,7 @@
         >
           <span class="mr-2">•</span>LIVE MARKETS
         </div>
-        <div id="liveRatesContainer" class="flex">
-          <!--   <div class="ticker-item">
-          <span class="text-TEXT-MUTED">USD/JPY</span>
-          <strong>1.5791</strong>
-          <span class="text-SUCCESS text-nowrap"> ▲ +0.08% </span>
-        </div> -->
-        </div>
+        <div id="liveRatesContainer" class="flex"></div>
       </div>
     </header>
     <main
@@ -133,28 +126,7 @@
                           3
                         </div>
                       </div>
-                      <div class="popular">
-                        <!--   <button
-                          class="picker-item"
-                          aria-label="select currency as sending currency"
-                        >
-                          <img
-                            src="img/flags/eu.webp"
-                            width="200"
-                            height="200"
-                            class="flag"
-                            alt=""
-                          />
-                          <div class="name-abbr">EUR</div>
-                          <div class="name-full">Euro</div>
-                          <img
-                            src="img/icon-check.svg"
-                            width="12"
-                            height="12"
-                            alt=""
-                          />
-                        </button> -->
-                      </div>
+                      <div class="popular"></div>
                     </div>
                     <div
                       class="border-b-SURFACE-ELEVATED text-TEXT-MUTED flex items-center gap-2.5 border-b p-2 text-[0.75rem] tracking-[0.5px]"
@@ -163,22 +135,7 @@
                       <div class="otherNum"></div>
                     </div>
 
-                    <div class="other">
-                      <!--   <button
-                        class="picker-item"
-                        aria-label="select currency as sending currency"
-                      >
-                        <img
-                          src="img/flags/eu.webp"
-                          width="200"
-                          height="200"
-                          class="flag"
-                          alt=""
-                        />
-                        <div class="name-abbr">EUR</div>
-                        <div class="name-full">Euro</div>
-                      </button> -->
-                    </div>
+                    <div class="other"></div>
                   </div>
                 </div>
               </div>
@@ -219,15 +176,7 @@
                   <button
                     class="bg-SURFACE-ELEVATED border-BORDER hover:bg-BORDER focus:outline-PRIMARY flex items-center gap-2 rounded-lg border p-2.5 text-[0.875rem] hover:cursor-pointer focus:outline-1 focus:outline-offset-2"
                     id="receiveBtn"
-                  >
-                    <!--   <img
-                      src="img/flags/us.webp"
-                      width="100"
-                      height="100"
-                      class="h-5 w-5 rounded-[50%]"
-                      alt=""
-                    />USD <span data-dropDown="true">▾</span> -->
-                  </button>
+                  ></button>
 
                   <div
                     class="bg-SURFACE border-BORDER absolute top-15 right-0 z-20 hidden max-h-114.5 w-[calc(100vw-100px)] scrollbar-none flex-col gap-2.5 overflow-y-auto rounded-lg border p-2 lg:w-94"
@@ -271,23 +220,7 @@
                           class="text-TEXT-MUTED popularNum text-left text-[0.75rem] tracking-[0.5px]"
                         ></div>
                       </div>
-                      <div class="popular">
-                        <!-- 
-                        <button
-                          class="picker-item"
-                          aria-label="select currency as receiving currency"
-                        >
-                          <img
-                            src="img/flags/eu.webp"
-                            width="200"
-                            height="200"
-                            class="flag"
-                            alt=""
-                          />
-                          <div class="name-abbr">EUR</div>
-                          <div class="name-full">Euro</div>
-                        </button> -->
-                      </div>
+                      <div class="popular"></div>
                     </div>
                     <div
                       class="border-b-SURFACE-ELEVATED text-TEXT-MUTED flex items-center gap-2.5 border-b p-2 text-[0.75rem] tracking-[0.5px]"
@@ -296,22 +229,7 @@
                       <div class="otherNum"></div>
                     </div>
 
-                    <div class="other">
-                      <!--      <button
-                        class="picker-item"
-                        aria-label="select currency as receiving currency"
-                      >
-                        <img
-                          src="img/flags/eu.webp"
-                          width="200"
-                          height="200"
-                          class="flag"
-                          alt=""
-                        />
-                        <div class="name-abbr">EUR</div>
-                        <div class="name-full">Euro</div>
-                      </button> -->
-                    </div>
+                    <div class="other"></div>
                   </div>
                 </div>
               </div>
@@ -442,43 +360,7 @@
                 id="compare__pairs"
               ></div>
             </div>
-            <div id="compareContainer" class="flex flex-col gap-4">
-              <!-- <div
-                class="compare-currency"
-                tabindex="1"
-                title="load currency into converter"
-                aria-label="load currency into converter as recieving currency"
-              >
-                <img
-                  src="img/flags/gb.webp"
-                  width="200"
-                  height="200"
-                  class="flag"
-                />
-                <div class="pair-container">
-                  <div class="name-abbr">GBP</div>
-                  <div class="name-full">British Pound</div>
-                </div>
-                <div class="exchange-container">
-                  <div class="value">736.65</div>
-                  <div class="exchange-rate">@ 0.7366</div>
-                </div>
-
-                <button
-                  class="fav-btn active"
-                  title="favorites button"
-                  aria-label="add or remove item from favorites"
-                >
-                  <img
-                    src="img/icon-star-filled.svg"
-                    alt=""
-                    width="16"
-                    height="16"
-                    class="h-4 w-4"
-                  />
-                </button>
-              </div> -->
-            </div>
+            <div id="compareContainer" class="flex flex-col gap-4"></div>
           </div>
         </section>
         <section
@@ -624,19 +506,6 @@
                 </div>
               </div>
               <canvas id="history__chart"></canvas>
-              <!--        <div class="flex flex-row items-center gap-4">
-                <div class="flex h-68 flex-col justify-between">
-                  <div class="text-TEXT-MUTED text-[0.625rem]">0.8612</div>
-                  <div class="text-TEXT-MUTED text-[0.625rem]">0.8516</div>
-                  <div class="text-TEXT-MUTED text-[0.625rem]">0.8421</div>
-                </div>
-                <div class="bg-PRIMARY-SUBTLE h-68 w-full"></div>
-              </div>
-              <div class="flex w-[calc(100%-52px)] justify-between self-end">
-                <div class="text-TEXT-MUTED text-[0.625rem]">Apr 14</div>
-                <div class="text-TEXT-MUTED text-[0.625rem]">Apr 28</div>
-                <div class="text-TEXT-MUTED text-[0.625rem]">May 14</div>
-              </div> -->
             </div>
           </div>
         </section>
@@ -965,37 +834,10 @@
                 <span class="favPairNum">10</span> FAVORITES
               </div>
             </div>
-            <div class="flex flex-col gap-3" id="favoritesContainer">
-              <!-- <div
-                class="fav-item"
-                tabindex="1"
-                title="load pair into converter"
-                aria-label="load favorite pair into converter"
-              >
-                <div class="pair-container">
-                  <div class="currency favBase">USD</div>
-                  <img src="img/icon-arrow-right.svg" alt="" />
-                  <div class="currency favQuote">JPY</div>
-                </div>
-
-                <div class="rate-change-container">
-                  <div class="exch-rate">0.9860</div>
-                  <div class="percent-change down">▼ -3.16%</div>
-                </div>
-
-                <button
-                  class="fav-btn"
-                  title="favorite button"
-                  aria-label="add or remove item from favorites"
-                >
-                  <img src="img/icon-star-filled.svg " alt="" />
-                </button>
-              </div> -->
-            </div>
+            <div class="flex flex-col gap-3" id="favoritesContainer"></div>
           </div>
         </section>
       </div>
-
       <p
         id="confirmation"
         aria-live="assertive"

@@ -284,9 +284,6 @@
   .h-12 {
     height: calc(var(--spacing) * 12);
   }
-  .h-68 {
-    height: calc(var(--spacing) * 68);
-  }
   .max-h-114\.5 {
     max-height: calc(var(--spacing) * 114.5);
   }
@@ -304,9 +301,6 @@
   }
   .w-31\.75 {
     width: calc(var(--spacing) * 31.75);
-  }
-  .w-\[calc\(100\%-52px\)\] {
-    width: calc(100% - 52px);
   }
   .w-\[calc\(100vw-100px\)\] {
     width: calc(100vw - 100px);
@@ -379,9 +373,6 @@
   }
   .gap-10 {
     gap: calc(var(--spacing) * 10);
-  }
-  .self-end {
-    align-self: flex-end;
   }
   .overflow-hidden {
     overflow: hidden;
@@ -759,7 +750,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-100% - 100vw));
+    transform: translateX(calc(-50% - 50vw));
   }
 }
 .ticker-item {

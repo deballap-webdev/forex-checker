@@ -318,6 +318,7 @@ export const renderCompareSection = (compareObj) => {
     hide(emptyState);
     show(notEmpty);
   }
+
   availableCurrencies.forEach((currency) => {
     if (
       currency.code !== exchangeData.getCurrentBase().code &&
@@ -481,6 +482,9 @@ export const renderHistorySection = (historicData, base, quote) => {
   if (!historicData || !historicData.data.length) {
     show(emptyState);
     hide(notEmpty);
+    document.getElementById("pair__history").textContent = `${base}/${quote}`;
+
+    return;
   } else {
     show(notEmpty);
     hide(emptyState);
