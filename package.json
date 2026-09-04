@@ -38,5 +38,13 @@
   "type": "commonjs",
   "devDependencies": {
     "prettier-plugin-tailwindcss": "^0.8.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deballap-webdev/forex-checker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/deballap-webdev/forex-checker/issues"
+  },
+  "homepage": "https://github.com/deballap-webdev/forex-checker#readme"
 }
