@@ -94,7 +94,7 @@ const getHistoricData = (apiData, interval) => {
             ((apiData[apiData.length - 1].rate - apiData[0].rate) /
               apiData[0].rate) *
             100
-          ).toFixed(4),
+          ).toFixed(2),
         );
 
   return {
@@ -193,8 +193,7 @@ const popularCurrenciesCode = popularCurrencies.map(
   (currency) => currency.code,
 );
 export const otherCurrencies = availableCurrencies.filter((currency) => {
-  return;
-  !popularCurrenciesCode.includes(currency.code);
+  return !popularCurrenciesCode.includes(currency.code);
 });
 
 export const filterCurrencies = (entryText) => {

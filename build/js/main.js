@@ -17,6 +17,7 @@ import {
   renderLogSection,
   renderHistorySection,
   renderLiveRates,
+  updateScreenReaderConfirmation,
 } from "./domFunctions.js";
 
 import { AppState, ExchangeData, FavPair, LoggedConv } from "./State.js";
@@ -41,19 +42,20 @@ const exchangeData = new ExchangeData();
 
 const initApp = () => {
   const compareContainer = document.getElementById("compareContainer");
-  compareContainer.addEventListener("click", (event) => {
+  compareContainer.addEventListener("click", async (event) => {
     if (event.target === event.currentTarget) return;
     const base = exchangeData.getCurrentBase().code;
     const quote = event.target
       .closest(".compare-currency")
       .querySelector(".name-abbr").textContent;
     if (event.target.closest("button")) {
-      if (event.target.closest("button").classList.contains("fav-btn"))
+      if (event.target.closest("button").classList.contains("fav-btn")) {
         handleFavorites(base, quote);
+        loadThePage();
+      }
     } else {
       loadIntoConverter(base, quote);
     }
-    loadThePage();
   });
 
   const clearLogBtn = document.getElementById("clearLog");
@@ -89,12 +91,13 @@ const initApp = () => {
       exchangeData.getCurrentQuote().code,
     );
   });
-  logContainer.addEventListener("click", (event) => {
+  logContainer.addEventListener("click", async (event) => {
     if (event.target === event.currentTarget) return;
     if (event.target.closest("button")) {
       if (event.target.closest("button").classList.contains("delete-btn")) {
         exchangeData.removeConvFromLog(event.target.closest("button").id);
       }
+      loadThePage();
     } else {
       const convItem = event.target.closest(".conv-log-item");
       sendInput.value = convItem.querySelector(".send-price").textContent;
@@ -102,7 +105,6 @@ const initApp = () => {
       const quote = convItem.querySelector(".logQuote").textContent;
       loadIntoConverter(base, quote);
     }
-    loadThePage();
   });
   mobileNavWrapper.addEventListener("click", handleMobileNav);
   mobileNavWrapper.addEventListener("focusout", (event) => {
@@ -112,7 +114,7 @@ const initApp = () => {
       document.getElementById("mobileNavBtn"),
     );
   });
-  favoritesContainer.addEventListener("click", (event) => {
+  favoritesContainer.addEventListener("click", async (event) => {
     if (event.target === event.currentTarget) return;
     const base = event.target
       .closest(".fav-item")
@@ -121,13 +123,13 @@ const initApp = () => {
       .closest(".fav-item")
       .querySelector(".favQuote").textContent;
     if (event.target.closest("button")) {
-      if (event.target.closest("button").classList.contains("fav-btn"))
+      if (event.target.closest("button").classList.contains("fav-btn")) {
         handleFavorites(base, quote);
+        loadThePage();
+      }
     } else {
       loadIntoConverter(base, quote);
     }
-
-    loadThePage();
   });
 
   clearLogBtn.addEventListener("click", (event) => {
@@ -199,6 +201,12 @@ const initApp = () => {
   loadStoredData();
   loadThePage();
   getDataAndRenderLiveRates();
+
+  updateScreenReaderConfirmation(
+    `base currency ${
+      exchangeData.getCurrentBase().name
+    } quote currency ${exchangeData.getCurrentQuote().name} at 1 ${exchangeData.getCurrentBase().code} = ${JSON.parse(getCachedRates()).find((obj) => obj.quote === exchangeData.getCurrentQuote().code).rate} ${exchangeData.getCurrentQuote().code}`,
+  );
 };
 
 const loadStoredData = () => {
@@ -254,10 +262,14 @@ const createAndSetLogObj = () => {
   };
   const log = new LoggedConv();
   log.setLoggedConv(logObj);
+
   exchangeData.addConvToLog(log);
+  updateScreenReaderConfirmation(
+    `${logObj.base}/${logObj.quote} logged sending amount ${logObj.send}, receiving amount ${logObj.receive}`,
+  );
 };
 
-const loadIntoConverter = (base, quote) => {
+const loadIntoConverter = async (base, quote) => {
   const quoteName = availableCurrencies.find(
     (currency) => currency.code === quote,
   ).name;
@@ -268,12 +280,23 @@ const loadIntoConverter = (base, quote) => {
     currentQuote: { code: quote, name: quoteName },
     currentBase: { code: base, name: baseName },
   });
+  await loadThePage();
+  document.getElementById("sendInput").focus();
+  updateScreenReaderConfirmation(
+    `base currency ${
+      exchangeData.getCurrentBase().name
+    } quote currency ${exchangeData.getCurrentQuote().name} at 1 ${exchangeData.getCurrentBase().code} = ${JSON.parse(getCachedRates()).find((obj) => obj.quote === exchangeData.getCurrentQuote().code).rate} ${exchangeData.getCurrentQuote().code}`,
+  );
+  document.getElementById("sendInput").focus();
 };
 
 const handleFavorites = async (base, quote) => {
   const id = `${base} ${quote}`;
   if (exchangeData.getFavorite().find((favPair) => favPair.getId() === id)) {
     exchangeData.removePairFromFavorite(`${base} ${quote}`);
+    updateScreenReaderConfirmation(
+      `${base}/${quote} pair removed from favorites`,
+    );
   } else {
     const favPair = new FavPair();
     const favObj = {
@@ -283,6 +306,7 @@ const handleFavorites = async (base, quote) => {
     };
     favPair.setFavPair(favObj);
     exchangeData.addPairToFavorite(favPair);
+    updateScreenReaderConfirmation(`${base}/${quote} pair added to favorites`);
   }
   await setFavRateandChange();
   loadThePage();
@@ -324,15 +348,28 @@ const updateCurrentCurrency = (event) => {
       currentQuote: filteredCurrencies.all[0],
     });
   }
+
+  updateScreenReaderConfirmation(
+    `base currency ${
+      exchangeData.getCurrentBase().name
+    } quote currency ${exchangeData.getCurrentQuote().name} at 1 ${exchangeData.getCurrentBase().code} = ${JSON.parse(getCachedRates()).find((obj) => obj.quote === exchangeData.getCurrentQuote().code).rate} ${exchangeData.getCurrentQuote().code}`,
+  );
   loadThePage();
 };
 
-const swapCurrencies = (event) => {
+const swapCurrencies = async (event) => {
   exchangeData.setExhangeData({
     currentQuote: exchangeData.getCurrentBase(),
     currentBase: exchangeData.getCurrentQuote(),
   });
-  loadThePage();
+
+  await loadThePage();
+
+  updateScreenReaderConfirmation(
+    `base currency ${
+      exchangeData.getCurrentBase().name
+    } quote currency ${exchangeData.getCurrentQuote().name} at 1 ${exchangeData.getCurrentBase().code} = ${JSON.parse(getCachedRates()).find((obj) => obj.quote === exchangeData.getCurrentQuote().code).rate} ${exchangeData.getCurrentQuote().code}`,
+  );
 };
 
 const loadThePage = async () => {
@@ -394,7 +431,6 @@ const getDataAndRenderLiveRates = async () => {
     return liveRate[0];
   });
   const liveRatesArray = await Promise.all(promises);
-  console.log(liveRatesArray);
   renderLiveRates(liveRatesArray);
 };
 
@@ -432,7 +468,15 @@ const addHoverEffect = (event) => {
 const intervalBtnDisplay = async (event) => {
   const intervalBtn = event.target.closest("button");
   if (!intervalBtn) return;
+  if (intervalBtn.textContent.trim() !== exchangeData.getInterval()) {
+    const intervalText = getIntervalText(intervalBtn.textContent.trim());
+    updateScreenReaderConfirmation(
+      `changed historic interval to ${intervalText}`,
+    );
+  }
+
   exchangeData.setExhangeData({ interval: intervalBtn.textContent.trim() });
+
   storeExchangeData(exchangeData);
   toggleIntervalBtn(
     document.querySelectorAll(".interval-btn"),
@@ -449,6 +493,32 @@ const intervalBtnDisplay = async (event) => {
     exchangeData.getCurrentBase().code,
     exchangeData.getCurrentQuote().code,
   );
+};
+
+const getIntervalText = (interval) => {
+  let intervalText;
+  switch (interval) {
+    case "1W":
+      intervalText = "one week";
+      break;
+    case "3M":
+      intervalText = "three months";
+      break;
+    case "1Y":
+      intervalText = "one year";
+      break;
+    case "1M":
+      intervalText = "one month";
+      break;
+    case "5Y":
+      intervalText = "five years";
+      break;
+    default:
+      intervalText = "one day";
+      break;
+  }
+
+  return intervalText;
 };
 
 const toggleDropDownDisplay = (event) => {

@@ -156,7 +156,7 @@ const getLogDate = (initialDate) => {
     const mins = hours * 60;
     return `${Math.floor(mins)}M`;
   } else if (hours >= 24) {
-    return getDateString(initialDate, "long");
+    return getDateString(initialDate, "short");
   } else {
     return `${Math.floor(hours)}H`;
   }
@@ -478,6 +478,13 @@ const buildTickerItem = (pair) => {
 export const renderHistorySection = (historicData, base, quote) => {
   const emptyState = document.getElementById("emptyState__history");
   const notEmpty = document.getElementById("notEmpty__history");
+  if (!historicData || !historicData.data.length) {
+    show(emptyState);
+    hide(notEmpty);
+  } else {
+    show(notEmpty);
+    hide(emptyState);
+  }
   const chart = document.getElementById("history__chart");
   updateHistoryTextContents(historicData, base, quote);
   clearElem(chart);
@@ -500,6 +507,11 @@ const getResponsiveTicksLimit = () => {
   if (width < 600) return 4;
   if (width < 1024) return 8;
   return 12;
+};
+
+export const updateScreenReaderConfirmation = (msg) => {
+  const confirmation = document.getElementById("confirmation");
+  confirmation.textContent = msg;
 };
 
 const renderChart = (historicData) => {

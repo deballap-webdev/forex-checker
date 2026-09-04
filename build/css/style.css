@@ -191,6 +191,9 @@
   .sticky {
     position: sticky;
   }
+  .-top-1000 {
+    top: calc(var(--spacing) * -1000);
+  }
   .-top-10000 {
     top: calc(var(--spacing) * -10000);
   }
@@ -205,6 +208,9 @@
   }
   .right-0 {
     right: 0px;
+  }
+  .-left-1000 {
+    left: calc(var(--spacing) * -1000);
   }
   .-left-10000 {
     left: calc(var(--spacing) * -10000);
@@ -582,10 +588,6 @@
   .text-TEXT-SECONDARY {
     color: var(--color-TEXT-SECONDARY);
   }
-  .ordinal {
-    --tw-ordinal: ordinal;
-    font-variant-numeric: var(--tw-ordinal,) var(--tw-slashed-zero,) var(--tw-numeric-figure,) var(--tw-numeric-spacing,) var(--tw-numeric-fraction,);
-  }
   .opacity-70 {
     opacity: 70%;
   }
@@ -763,7 +765,7 @@
 .ticker-item {
   display: flex;
   width: max-content;
-  animation: ticker 20s linear infinite;
+  animation: ticker 30s linear infinite;
   align-items: center;
   justify-content: center;
   gap: calc(var(--spacing) * 2.5);
@@ -1372,26 +1374,6 @@
   syntax: "*";
   inherits: false;
 }
-@property --tw-ordinal {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-slashed-zero {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-numeric-figure {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-numeric-spacing {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-numeric-fraction {
-  syntax: "*";
-  inherits: false;
-}
 @property --tw-outline-style {
   syntax: "*";
   inherits: false;
@@ -1457,11 +1439,6 @@
       --tw-leading: initial;
       --tw-font-weight: initial;
       --tw-tracking: initial;
-      --tw-ordinal: initial;
-      --tw-slashed-zero: initial;
-      --tw-numeric-figure: initial;
-      --tw-numeric-spacing: initial;
-      --tw-numeric-fraction: initial;
       --tw-outline-style: solid;
       --tw-blur: initial;
       --tw-brightness: initial;
