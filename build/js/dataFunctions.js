@@ -83,7 +83,7 @@ const getHistoricData = (apiData, interval) => {
     apiData.length < 2
       ? "-"
       : Number.parseFloat(
-          (apiData[apiData.length - 1].rate - apiData[0].rate).toFixed(4),
+          (apiData[apiData.length - 1].rate - apiData[0].rate).toFixed(6),
         );
 
   const percentChange =
