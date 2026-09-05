@@ -470,6 +470,9 @@ const buildTickerItem = (pair) => {
   } else if (pair.percentChange < 0) {
     percentChange.classList.add("text-DANGER");
     percentChange.textContent = `▼ ${pair.percentChange}%`;
+  } else {
+    percentChange.classList.remove("text-DANGER");
+    percentChange.classList.remove("text-SUCCESS");
   }
   const tickerItem = createCard(
     "div",
@@ -639,6 +642,8 @@ const updateHistoryTextContents = (historicData, base, quote) => {
     change.classList.remove("text-SUCCESS");
     change.classList.add("text-DANGER");
   } else {
+    change.classList.remove("text-SUCCESS");
+    change.classList.remove("text-DANGER");
     change.textContent = `${historicData.change}`;
   }
 
@@ -652,6 +657,8 @@ const updateHistoryTextContents = (historicData, base, quote) => {
     percentChange.classList.add("text-DANGER");
   } else {
     percentChange.textContent = `${historicData.percentChange}`;
+    percentChange.classList.remove("text-SUCCESS");
+    percentChange.classList.remove("text-DANGER");
   }
 };
 
